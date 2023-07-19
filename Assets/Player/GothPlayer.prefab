@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 7802619430215304842}
   - component: {fileID: 5305947573161650694}
   - component: {fileID: 6757992098160155788}
-  - component: {fileID: 2127104011065891633}
+  - component: {fileID: -2803076797620887683}
   m_Layer: 0
   m_Name: GothPlayer
   m_TagString: Player
@@ -451,7 +451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputs: {fileID: 5305947573161650694}
   movement: {fileID: 6757992098160155788}
-  actions: {fileID: 2127104011065891633}
+  actions: {fileID: -2803076797620887683}
 --- !u!114 &5305947573161650694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,7 +483,7 @@ MonoBehaviour:
   rb: {fileID: 227360453239991894}
   sprite: {fileID: 6578348717276465853}
   head: {fileID: 739733312611201010}
---- !u!114 &2127104011065891633
+--- !u!114 &-2803076797620887683
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -492,7 +492,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3620910826385597470}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10e035c79146c5940be78361689b2caa, type: 3}
+  m_Script: {fileID: 11500000, guid: 312f592de30235a4aa7ada398de3e59a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isWorking: 0
