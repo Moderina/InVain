@@ -6241,6 +6241,10 @@ PrefabInstance:
       propertyPath: m_Vertices.Array.data[178].position.y
       value: -1.2
       objectReference: {fileID: 0}
+    - target: {fileID: 7802619430215304842, guid: baa597a3d19f1094ca7beadd7c2274d6, type: 3}
+      propertyPath: actions
+      value: 
+      objectReference: {fileID: 356285830}
     - target: {fileID: 8350355513789678479, guid: baa597a3d19f1094ca7beadd7c2274d6, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -6265,8 +6269,20 @@ PrefabInstance:
       propertyPath: m_RenderMode
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -2803076797620887683, guid: baa597a3d19f1094ca7beadd7c2274d6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: baa597a3d19f1094ca7beadd7c2274d6, type: 3}
+--- !u!114 &356285830 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4363091444493685550, guid: baa597a3d19f1094ca7beadd7c2274d6, type: 3}
+  m_PrefabInstance: {fileID: 356285829}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e035c79146c5940be78361689b2caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
