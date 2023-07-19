@@ -14,7 +14,7 @@ public class Machine : MonoBehaviour, IObservable
     void OnTriggerEnter2D(Collider2D col)
     {
         progress.Value = 0;
-        if(currentPlayer == null) 
+        if(currentPlayer == null && col.transform.tag == "Work") 
         {
             currentPlayer = col.transform;
             slider = currentPlayer.Find("Canvas").Find("Slider").GetComponent<Slider>();
@@ -26,7 +26,7 @@ public class Machine : MonoBehaviour, IObservable
         if (col.transform == currentPlayer) 
         {
             currentPlayer.Find("Canvas").gameObject.SetActive(true);
-            if(col.transform.parent.GetComponent<Actions>().isPlayerWorking()) 
+            if(col.transform.parent.GetComponent<Actions>().IsWorking()) 
             {
                 progress.Value += Time.deltaTime;
             }
@@ -35,17 +35,20 @@ public class Machine : MonoBehaviour, IObservable
                 progress.Value = 0;
             }
             Debug.Log(progress);
+            slider.value = progress.Value / 2;
         }
-        slider.value = progress.Value / 2;
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
-        currentPlayer = null;
-        progress.Value = 0;
-        slider.value = 0;
-        col.transform.Find("Canvas").gameObject.SetActive(false);
-        Debug.Log("leftAREA");
+        if (col.transform.tag == "Work") {
+            currentPlayer = null;
+            progress.Value = 0;
+            slider.value = 0;
+            col.transform.Find("Canvas").gameObject.SetActive(false);
+            Debug.Log("leftAREA");
+        }
+
     }
 
     

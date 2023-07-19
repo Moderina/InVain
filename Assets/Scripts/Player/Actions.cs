@@ -11,7 +11,7 @@ public class Actions : MonoBehaviour
         isWorking = work;
     }
 
-    public bool isPlayerWorking() {
+    public bool IsWorking() {
         return isWorking;
     }
 }

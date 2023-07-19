@@ -297,7 +297,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!58 &249340977
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -595,6 +595,18 @@ PrefabInstance:
       propertyPath: m_Bounds.m_Extent.y
       value: 0.93109494
       objectReference: {fileID: 0}
+    - target: {fileID: 7802619430215304842, guid: baa597a3d19f1094ca7beadd7c2274d6, type: 3}
+      propertyPath: inputs
+      value: 
+      objectReference: {fileID: 858766258}
+    - target: {fileID: 7802619430215304842, guid: baa597a3d19f1094ca7beadd7c2274d6, type: 3}
+      propertyPath: actions
+      value: 
+      objectReference: {fileID: 858766260}
+    - target: {fileID: 7802619430215304842, guid: baa597a3d19f1094ca7beadd7c2274d6, type: 3}
+      propertyPath: movement
+      value: 
+      objectReference: {fileID: 858766259}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: baa597a3d19f1094ca7beadd7c2274d6, type: 3}
 --- !u!1 &619394800
@@ -794,6 +806,65 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &858766257 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3620910826385597470, guid: baa597a3d19f1094ca7beadd7c2274d6, type: 3}
+  m_PrefabInstance: {fileID: 543031340}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &858766258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858766257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04c79c7dcb0eb714da560f6f8f162df5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &858766259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858766257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f36a2e599a7b65845beac98c52ce90da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  accel: 50
+  friction: 10
+  maxVel: 5
+  jumpVel: 15
+  rb: {fileID: 858766264}
+  sprite: {fileID: 878532436}
+  head: {fileID: 1504940363}
+--- !u!114 &858766260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858766257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312f592de30235a4aa7ada398de3e59a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isWorking: 0
+--- !u!50 &858766264 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 227360453239991894, guid: baa597a3d19f1094ca7beadd7c2274d6, type: 3}
+  m_PrefabInstance: {fileID: 543031340}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &878532436 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6578348717276465853, guid: baa597a3d19f1094ca7beadd7c2274d6, type: 3}
+  m_PrefabInstance: {fileID: 543031340}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &912625022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -947,7 +1018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!50 &1392990798
 Rigidbody2D:
   serializedVersion: 4
@@ -1052,3 +1123,8 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!4 &1504940363 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 739733312611201010, guid: baa597a3d19f1094ca7beadd7c2274d6, type: 3}
+  m_PrefabInstance: {fileID: 543031340}
+  m_PrefabAsset: {fileID: 0}

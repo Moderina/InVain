@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Collectables
   - Ground
+  - Work
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - WorkingLayer
   - 
   - 
   - 

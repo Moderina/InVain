@@ -13,7 +13,7 @@ public class GothInputs : MonoBehaviour {
 	public void UpdateGothInputStruct() {
 		inputStruct.mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		inputStruct.direction = (int)Input.GetAxisRaw("Horizontal");
-		if (Input.GetButtonDown("Jump")) inputStruct.jump = 1;
+		if (Input.GetKeyDown(KeyCode.Space)) inputStruct.jump = 1;
 		inputStruct.work = Input.GetKey(KeyCode.E);
 	}
 
