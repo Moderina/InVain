@@ -6,6 +6,7 @@ using Elympics;
 
 public class Machine : MonoBehaviour, IObservable
 {
+    public Canvas TasksUI;
     public ElympicsFloat progress = new ElympicsFloat();
 
     Slider slider;
