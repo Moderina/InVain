@@ -4,7 +4,7 @@ using Elympics;
 public class GothPlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable {
 	[SerializeField] private GothInputs inputs;
 	[SerializeField] private GothMovement movement;
-	[SerializeField] private Actions actions;
+	[SerializeField] private GothActions actions;
 
 	private void Update() {
 		if(Elympics.Player != PredictableFor) return;
