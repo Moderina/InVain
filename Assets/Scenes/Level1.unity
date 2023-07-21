@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 72831731}
   m_Layer: 7
   m_Name: Mixer
-  m_TagString: Untagged
+  m_TagString: Machine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -388,6 +388,11 @@ MonoBehaviour:
   - stageDurationInMiliseconds: 1000
     frequencyInMiliseconds: 1000
     maxStageDurationInMiliseconds: 5000
+--- !u!1 &159805700 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3620910826385597470, guid: baa597a3d19f1094ca7beadd7c2274d6, type: 3}
+  m_PrefabInstance: {fileID: 356285829}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &287195237
 GameObject:
   m_ObjectHideFlags: 0
@@ -6507,12 +6512,25 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4363091444493685550, guid: baa597a3d19f1094ca7beadd7c2274d6, type: 3}
   m_PrefabInstance: {fileID: 356285829}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 159805700}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10e035c79146c5940be78361689b2caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &356285839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159805700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e6a570a935c85241b0d7e9fd3788545, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myTasks: []
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

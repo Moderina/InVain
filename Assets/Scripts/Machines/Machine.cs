@@ -55,6 +55,7 @@ public class Machine : ElympicsMonoBehaviour, IObservable
             {
                 taskIndex.Value = taskID;
                 currentPlayer.parent.GetComponent<PlayerHandler>().taskID = -1;
+                slider.maxValue = machineTasks[taskIndex.Value].TaskTime;
                 Debug.Log("Taskindex: " + taskIndex);
             }
             
@@ -73,6 +74,15 @@ public class Machine : ElympicsMonoBehaviour, IObservable
                 }
                 Debug.Log(progress);
                 slider.value = progress.Value;
+                if (progress.Value > slider.maxValue)
+                {
+                    Debug.Log("Task Completed");
+                    taskIndex.Value = -1;
+                }
+            }
+            else 
+            {
+                currentPlayer.Find("Canvas").gameObject.SetActive(false);
             }
 
         }
@@ -113,7 +123,7 @@ public class Machine : ElympicsMonoBehaviour, IObservable
     {
         currentPlayer.parent.GetComponent<Inputs>().inputStruct.taskID = index;
         taskIndex.Value = index;
-        slider.maxValue = machineTasks[index].TaskTime;
+        //slider.maxValue = machineTasks[index].TaskTime;
         TasksUI.gameObject.SetActive(false);
     }
 }
