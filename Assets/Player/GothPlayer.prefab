@@ -333,8 +333,9 @@ GameObject:
   - component: {fileID: 227360453239991894}
   - component: {fileID: 4970541998524791744}
   - component: {fileID: 5163964363165734028}
+  - component: {fileID: 6337984383189714099}
   - component: {fileID: 7802619430215304842}
-  - component: {fileID: 5305947573161650694}
+  - component: {fileID: 3002021279229118533}
   - component: {fileID: 6757992098160155788}
   - component: {fileID: 4363091444493685550}
   m_Layer: 0
@@ -437,6 +438,48 @@ MonoBehaviour:
   - stageDurationInMiliseconds: 1000
     frequencyInMiliseconds: 1000
     maxStageDurationInMiliseconds: 5000
+--- !u!114 &6337984383189714099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3620910826385597470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b709081092fa45a2b4aeaf1d001c9119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionConfig:
+    synchronizationEnabled: 1
+    tolerance: 0.01
+  rotationConfig:
+    synchronizationEnabled: 1
+    tolerance: 1
+  velocityConfig:
+    synchronizationEnabled: 1
+    tolerance: 0.01
+  angularVelocityConfig:
+    synchronizationEnabled: 1
+    tolerance: 1
+  dragConfig:
+    synchronizationEnabled: 0
+    tolerance: 0.01
+  angularDragConfig:
+    synchronizationEnabled: 0
+    tolerance: 0.01
+  inertiaConfig:
+    synchronizationEnabled: 0
+    tolerance: 0.01
+  massConfig:
+    synchronizationEnabled: 0
+    tolerance: 0.01
+  gravityScaleConfig:
+    synchronizationEnabled: 0
+    tolerance: 0.01
+  isKinematicConfig:
+    synchronizationEnabled: 0
+    tolerance: 0
 --- !u!114 &7802619430215304842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,10 +492,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a97149ec6cab30f4e83999edaaccbf10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputs: {fileID: 5305947573161650694}
+  inputs: {fileID: 3002021279229118533}
   movement: {fileID: 6757992098160155788}
   actions: {fileID: 4363091444493685550}
---- !u!114 &5305947573161650694
+  taskID: 0
+--- !u!114 &3002021279229118533
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -461,7 +505,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3620910826385597470}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04c79c7dcb0eb714da560f6f8f162df5, type: 3}
+  m_Script: {fileID: 11500000, guid: ee0c3e22986186b4e977e313d3cd5005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &6757992098160155788

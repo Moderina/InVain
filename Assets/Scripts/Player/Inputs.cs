@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public struct InputStruct 
 {
     public int direction;
     public int jump;
+    public int taskID;
     public bool work;
     public Vector3 mousePos;
 }
@@ -14,12 +13,14 @@ public class Inputs : MonoBehaviour
 {
     public InputStruct inputStruct;
 
+    void Start() {inputStruct.taskID = -1;}
+
     public void UpdateInput() 
     {
         inputStruct.mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         inputStruct.direction = (int)Input.GetAxisRaw("Horizontal");
-        if (Input.GetKeyDown(KeyCode.W)) inputStruct.jump=1;
-        inputStruct.work = Input.GetKey(KeyCode.Space);
+        if (Input.GetButtonDown("Jump")) inputStruct.jump=1;
+        inputStruct.work = Input.GetKey(KeyCode.E);
     }
 
     public InputStruct GetInput() 
@@ -27,6 +28,7 @@ public class Inputs : MonoBehaviour
         InputStruct returnstruct = inputStruct;
         inputStruct.direction = 0;
         inputStruct.jump = 0;
+        inputStruct.taskID = -1;
         inputStruct.work = false;
         inputStruct.mousePos = transform.position + transform.right;
         return returnstruct;
