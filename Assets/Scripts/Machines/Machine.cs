@@ -78,6 +78,7 @@ public class Machine : ElympicsMonoBehaviour, IObservable
                 {
                     Debug.Log("Task Completed");
                     taskIndex.Value = -1;
+                    TaskCompleted();
                 }
             }
             else 
@@ -86,6 +87,11 @@ public class Machine : ElympicsMonoBehaviour, IObservable
             }
 
         }
+    }
+
+    private void TaskCompleted()
+    {
+        currentPlayer.parent.GetComponent<TaskManager>().OnTaskCompleted(taskIndex.Value);
     }
 
     void OnTriggerExit2D(Collider2D col)
