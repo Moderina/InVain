@@ -72,13 +72,13 @@ public class Machine : ElympicsMonoBehaviour, IObservable
                 {
                     progress.Value = 0;
                 }
-                Debug.Log(progress);
+                //Debug.Log(progress);
                 slider.value = progress.Value;
                 if (progress.Value > slider.maxValue)
                 {
                     Debug.Log("Task Completed");
-                    taskIndex.Value = -1;
                     TaskCompleted();
+                    taskIndex.Value = -1;
                 }
             }
             else 

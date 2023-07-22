@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 1
   Description: Dance
-  TaskTime: 10
+  TaskTime: 3
+  Completed: 0
