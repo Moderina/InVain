@@ -59,7 +59,6 @@ public class Machine : ElympicsMonoBehaviour, IObservable
                 Debug.Log("Taskindex: " + taskIndex);
             }
             
-
             //if task chosen, let work
             if(taskIndex.Value != -1)
             {
@@ -89,11 +88,6 @@ public class Machine : ElympicsMonoBehaviour, IObservable
         }
     }
 
-    private void TaskCompleted()
-    {
-        currentPlayer.parent.GetComponent<TaskManager>().OnTaskCompleted(taskIndex.Value);
-    }
-
     void OnTriggerExit2D(Collider2D col)
     {
         if (col.transform.tag == "Work") {
@@ -106,9 +100,15 @@ public class Machine : ElympicsMonoBehaviour, IObservable
             TasksUI.gameObject.SetActive(false);
             Debug.Log("leftAREA");
         }
-
     }
 
+    private void TaskCompleted()
+    {
+        currentPlayer.parent.GetComponent<TaskManager>().OnTaskCompleted(taskIndex.Value);
+    }
+
+
+    #region Machine Tasks UI
     public void LoadTaskUI() 
     {
         for(int i=0; i<machineTasks.Length; i++)
@@ -116,7 +116,7 @@ public class Machine : ElympicsMonoBehaviour, IObservable
             var taskui = Instantiate(_TaskPrefab);
             taskui.transform.Find("Name").gameObject.GetComponent<TextMeshProUGUI>().text = machineTasks[i].Description;
             taskui.transform.SetParent(TasksPanel.transform);
-            taskui.name = i.ToString();
+            taskui.name = machineTasks[i].ID.ToString();
             taskui.GetComponent<Button>().onClick.AddListener(delegate() 
             {
                 int.TryParse(taskui.name, out int index);
@@ -132,4 +132,5 @@ public class Machine : ElympicsMonoBehaviour, IObservable
         //slider.maxValue = machineTasks[index].TaskTime;
         TasksUI.gameObject.SetActive(false);
     }
+    #endregion
 }

@@ -6,6 +6,7 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable {
 	[SerializeField] private GothMovement movement;
 	[SerializeField] private Actions actions;
     public int taskID = -1;
+	public bool wantsToFinish = false;
 
 	private void Update() {
 		if(Elympics.Player != PredictableFor) return;
@@ -17,6 +18,7 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable {
 		currentInput.direction = 0;
 		currentInput.jump = 0;
 		currentInput.work = false;
+		wantsToFinish = false;
 		currentInput.mousePos = transform.position + transform.right;
 
 		if(ElympicsBehaviour.TryGetInput(PredictableFor, out var inputReader)) 
@@ -26,6 +28,7 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable {
 			inputReader.Read(out currentInput.jump);
             inputReader.Read(out taskID);
 			inputReader.Read(out currentInput.work);
+			inputReader.Read(out wantsToFinish);
 			inputReader.Read(out x);
 			inputReader.Read(out y);
 			inputReader.Read(out z);
@@ -42,6 +45,7 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable {
 		inputSerializer.Write(currentInputs.jump);
         inputSerializer.Write(currentInputs.taskID);
 		inputSerializer.Write(currentInputs.work);
+		inputSerializer.Write(currentInputs.wantsToFinish);
 		inputSerializer.Write(currentInputs.mousePos.x);
 		inputSerializer.Write(currentInputs.mousePos.y);
 		inputSerializer.Write(currentInputs.mousePos.z);

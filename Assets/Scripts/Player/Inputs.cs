@@ -6,6 +6,7 @@ public struct InputStruct
     public int jump;
     public int taskID;
     public bool work;
+    public bool wantsToFinish;
     public Vector3 mousePos;
 }
 
@@ -21,6 +22,7 @@ public class Inputs : MonoBehaviour
         inputStruct.direction = (int)Input.GetAxisRaw("Horizontal");
         if (Input.GetButtonDown("Jump")) inputStruct.jump=1;
         inputStruct.work = Input.GetKey(KeyCode.E);
+        inputStruct.wantsToFinish = Input.GetKey(KeyCode.Y);
     }
 
     public InputStruct GetInput() 
