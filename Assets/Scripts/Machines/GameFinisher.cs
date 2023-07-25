@@ -72,6 +72,7 @@ public class GameFinisher : ElympicsMonoBehaviour
                 // }
             }
             this.gameObject.SetActive(false);
+            Elympics.EndGame();
         }
     }
 }

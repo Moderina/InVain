@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5382842e48e5e954ba1a7614b13ceb5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allPlayers: []
   Key: {fileID: 1597482653198234610, guid: fed6a0c0a7892fd4683c4d6e5ad38e4f, type: 3}
 --- !u!114 &9459028
 MonoBehaviour:
@@ -171,7 +172,7 @@ MonoBehaviour:
   forceNetworkId: 0
   networkId: 13
   predictableFor:
-    playerIndex: -2
+    playerIndex: -3
   isUpdatableForNonOwners: 0
   visibleFor:
     playerIndex: -3
