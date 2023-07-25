@@ -36,7 +36,6 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
         {
             if(myTasks[i].Value == -1)
             {
-                Debug.Log("fiufiu");
                 TaskPanel.transform.GetChild(i+1).GetComponent<TextMeshProUGUI>().color = Color.green;
                 //myTasks[i].Value = -2;
             }

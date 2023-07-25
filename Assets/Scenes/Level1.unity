@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 13
+  networkId: 8
   predictableFor:
     playerIndex: -3
   isUpdatableForNonOwners: 0
@@ -428,7 +428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 2
+  networkId: 1
   predictableFor:
     playerIndex: -2
   isUpdatableForNonOwners: 0
@@ -905,7 +905,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3606397888988503172, guid: 39fedab374e8866458cfa63a41d43065, type: 3}
       propertyPath: networkId
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3606397888988503172, guid: 39fedab374e8866458cfa63a41d43065, type: 3}
       propertyPath: predictableFor.playerIndex
@@ -961,11 +961,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5905624950225249831, guid: 39fedab374e8866458cfa63a41d43065, type: 3}
       propertyPath: networkId
-      value: 12
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8299489411768654494, guid: 39fedab374e8866458cfa63a41d43065, type: 3}
       propertyPath: networkId
-      value: 11
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8477579895606986754, guid: 39fedab374e8866458cfa63a41d43065, type: 3}
       propertyPath: TaskPanel
@@ -1914,6 +1914,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3606397888988503172, guid: 39fedab374e8866458cfa63a41d43065, type: 3}
+      propertyPath: networkId
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5180941438748306454, guid: 39fedab374e8866458cfa63a41d43065, type: 3}
       propertyPath: m_Name
       value: GothPlayer
@@ -1961,6 +1965,14 @@ PrefabInstance:
     - target: {fileID: 5617193678860479977, guid: 39fedab374e8866458cfa63a41d43065, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5905624950225249831, guid: 39fedab374e8866458cfa63a41d43065, type: 3}
+      propertyPath: networkId
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299489411768654494, guid: 39fedab374e8866458cfa63a41d43065, type: 3}
+      propertyPath: networkId
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8477579895606986754, guid: 39fedab374e8866458cfa63a41d43065, type: 3}
       propertyPath: TaskPanel

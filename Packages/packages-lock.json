@@ -5,7 +5,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "b2f3e8496c72075dfef7fcff2eb3ad337c735afd"
+      "hash": "29e1e6e06df3c3700bbce5f19ae52b50c15e377d"
     },
     "com.unity.2d.animation": {
       "version": "7.0.6",
@@ -219,18 +219,18 @@
       }
     },
     "com.unity.sysroot": {
-      "version": "2.0.6",
+      "version": "2.0.7",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.sysroot.linux-x86_64": {
-      "version": "2.0.5",
+      "version": "2.0.6",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.sysroot": "2.0.6"
+        "com.unity.sysroot": "2.0.7"
       },
       "url": "https://packages.unity.com"
     },
@@ -267,12 +267,12 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.toolchain.win-x86_64-linux-x86_64": {
-      "version": "2.0.5",
+      "version": "2.0.6",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.sysroot": "2.0.6",
-        "com.unity.sysroot.linux-x86_64": "2.0.5"
+        "com.unity.sysroot": "2.0.7",
+        "com.unity.sysroot.linux-x86_64": "2.0.6"
       },
       "url": "https://packages.unity.com"
     },

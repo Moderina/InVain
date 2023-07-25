@@ -5,6 +5,8 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable {
 	[SerializeField] private Inputs inputs;
 	[SerializeField] private GothMovement movement;
 	[SerializeField] private Actions actions;
+
+	//TODO: przeniesc taskID i wantsToFinish do Actions.cs
     public int taskID = -1;
 	public bool wantsToFinish = false;
 
