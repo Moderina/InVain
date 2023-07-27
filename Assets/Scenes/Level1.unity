@@ -3232,5 +3232,37 @@ PrefabInstance:
       propertyPath: TaskPanel
       value: 
       objectReference: {fileID: 793805021}
+    - target: {fileID: 8807956302478863186, guid: 39fedab374e8866458cfa63a41d43065, type: 3}
+      propertyPath: coyoteTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8807956302478863186, guid: 39fedab374e8866458cfa63a41d43065, type: 3}
+      propertyPath: jumpVelocity
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8807956302478863186, guid: 39fedab374e8866458cfa63a41d43065, type: 3}
+      propertyPath: defaultGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8807956302478863186, guid: 39fedab374e8866458cfa63a41d43065, type: 3}
+      propertyPath: fallingMultiplier
+      value: -9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8807956302478863186, guid: 39fedab374e8866458cfa63a41d43065, type: 3}
+      propertyPath: groundMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8807956302478863186, guid: 39fedab374e8866458cfa63a41d43065, type: 3}
+      propertyPath: lowJumpMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8807956302478863186, guid: 39fedab374e8866458cfa63a41d43065, type: 3}
+      propertyPath: highJumpMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8807956302478863186, guid: 39fedab374e8866458cfa63a41d43065, type: 3}
+      propertyPath: jumpBufferDuration
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39fedab374e8866458cfa63a41d43065, type: 3}

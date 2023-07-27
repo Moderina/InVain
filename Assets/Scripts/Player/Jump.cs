@@ -23,9 +23,11 @@ public class Jump : ElympicsMonoBehaviour
     private float coyoteTimeCounter;
     [SerializeField] private float jumpBufferDuration;
     private float jumpBufferCounter;
-    private int rememberedJumpInput;
+    private int rememberedJumpInput = 0;
+    private bool rememberedGround = false;
 
     // For effects
+    private bool jumping = false;
     private bool isMidAir = false;
     public event System.Action OnJumped;
     public event System.Action OnLanded;
@@ -34,26 +36,33 @@ public class Jump : ElympicsMonoBehaviour
     {
         //We only jump when the jump button was pressed, not held
         bool startJump = false;
-        if (rememberedJumpInput != 0 && jumpInput != 0) startJump = true;
+        if (rememberedJumpInput == 0 && jumpInput != 0) startJump = true;
         rememberedJumpInput = jumpInput;
 
         //Jump buffering
         if (startJump) jumpBufferCounter = jumpBufferDuration;
-
         //Checking if we're grounded + coyote time
-        //if (IsGrounded())
-        if (true)
+
+        //if touching grass
+        if (!jumping)
+        //if (true)
         {
             coyoteTimeCounter = coyoteTime;
 
             if (isMidAir)
             {
                 isMidAir = false;
-                OnLanded?.Invoke();
+                // if wasnt touching grass a second ago, he landed
+                if (!rememberedGround)
+                {
+                    rememberedGround = true;
+                    OnLanded?.Invoke();
+                }
             }
         }
 
         float gravityMultiplier;
+        //if can jump
         if (coyoteTimeCounter > 0 && jumpBufferCounter > 0)
         {
             //Actual jump
@@ -70,7 +79,7 @@ public class Jump : ElympicsMonoBehaviour
             //Faster falling
             gravityMultiplier = fallingMultiplier;
         }
-        else if (playerRigidBody.velocity.y > 0 && jumpInput != 0)
+        else if (playerRigidBody.velocity.y > 0 && jumpInput == 0)
         {
             //Low jump
             gravityMultiplier = lowJumpMultiplier;
@@ -89,17 +98,40 @@ public class Jump : ElympicsMonoBehaviour
 
     public bool IsGrounded()
     {
+        Debug.Log("check");
         Collider2D[] hits = Physics2D.OverlapBoxAll(playerRigidBody.position + GroundCheckOffset * Vector2.down, PlayerSizeScaled, 0, groundMask);
         foreach (var hit in hits)
         {
-            if (hit.TryGetComponent<PlatformEffector2D>(out var _))
+            Debug.Log(hit.name);
+            if (hit.tag == "Ground")
             {
-                if (hit.bounds.max.y <= playerCollider.bounds.min.y) return true;
+                return true;
             }
-            else return true;
+            return false;
         }
         return false;
     }
 
     private Vector2 PlayerSizeScaled => Vector2.Scale(transform.localScale, playerCollider.size);
+
+    private void OnCollisionEnter2D(Collision2D col) 
+    {
+        if (col.gameObject.CompareTag("Ground")) 
+        {
+			jumping = false; 
+		}
+    }
+    private void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Ground")) 
+        {
+			jumping = true; 
+		}
+    }
+
+    void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(new Vector3(1,2,0), new Vector3(1,0,0));
+        Gizmos.DrawLine(playerRigidBody.position, playerRigidBody.position + GroundCheckOffset * Vector2.down * 10);
+    }
 }

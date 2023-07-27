@@ -4,6 +4,7 @@ using Elympics;
 public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable {
 	[SerializeField] private Inputs inputs;
 	[SerializeField] private GothMovement movement;
+	[SerializeField] private Jump jump;
 	[SerializeField] private Actions actions;
 
 	//TODO: przeniesc taskID i wantsToFinish do Actions.cs
@@ -38,6 +39,7 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable {
 		}
 
 		movement.Movement(currentInput.direction, currentInput.jump, currentInput.mousePos);
+		jump.OnJumpInput(currentInput.jump);
 		actions.UpdateActions(currentInput.work);
 	}
 

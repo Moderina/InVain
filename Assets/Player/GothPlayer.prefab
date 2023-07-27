@@ -269,7 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 6
+  networkId: 12
   predictableFor:
     playerIndex: -2
   isUpdatableForNonOwners: 0
@@ -545,7 +545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 5
+  networkId: 13
   predictableFor:
     playerIndex: -2
   isUpdatableForNonOwners: 0
@@ -612,6 +612,7 @@ GameObject:
   - component: {fileID: 1868449551253147266}
   - component: {fileID: 6633586253121470541}
   - component: {fileID: 2913653027336246404}
+  - component: {fileID: 8807956302478863186}
   - component: {fileID: 5272230217081051942}
   - component: {fileID: 8477579895606986754}
   - component: {fileID: 7802619429865863952}
@@ -699,7 +700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 3
+  networkId: 11
   predictableFor:
     playerIndex: 0
   isUpdatableForNonOwners: 0
@@ -771,8 +772,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputs: {fileID: 6633586253121470541}
   movement: {fileID: 2913653027336246404}
+  jump: {fileID: 8807956302478863186}
   actions: {fileID: 5272230217081051942}
   taskID: 0
+  wantsToFinish: 0
 --- !u!114 &6633586253121470541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -804,6 +807,30 @@ MonoBehaviour:
   rb: {fileID: 8539342622071891550}
   sprite: {fileID: 3381240911354446517}
   head: {fileID: 9215040457264031738}
+--- !u!114 &8807956302478863186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5180941438748306454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd4f5ab024b32e44e8aa3c2e7c40105b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRigidBody: {fileID: 8539342622071891550}
+  playerCollider: {fileID: 3556858970211562440}
+  jumpVelocity: 0
+  defaultGravity: 0
+  lowJumpMultiplier: 0
+  highJumpMultiplier: 0
+  fallingMultiplier: 0
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
+  coyoteTime: 0
+  jumpBufferDuration: 0
 --- !u!114 &5272230217081051942
 MonoBehaviour:
   m_ObjectHideFlags: 0

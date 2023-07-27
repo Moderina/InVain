@@ -20,10 +20,10 @@ public class GothMovement : ElympicsMonoBehaviour {
         rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxVel, maxVel), rb.velocity.y);
         rb.AddForce(new Vector2(-rb.velocity.x * friction, 0));
 
-        if (!jumping && jump > 0) {
-            rb.AddForce(new Vector2(0, jumpVel), ForceMode2D.Impulse);
-            jumping = true;
-        }
+        // if (!jumping && jump > 0) {
+        //     rb.AddForce(new Vector2(0, jumpVel), ForceMode2D.Impulse);
+        //     jumping = true;
+        // }
 
         FaceDirection(mousePos);
     }
