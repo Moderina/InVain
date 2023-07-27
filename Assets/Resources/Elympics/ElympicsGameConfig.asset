@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameName: SummerCamp
   gameId: 12b0381d-8297-48c7-b9c4-c6de3abdf240
-  gameVersion: 1.1
-  players: 6
+  gameVersion: 1.21
+  players: 2
   gameplayScene: Assets/Scenes/Level1.unity
   gameplaySceneAsset: {fileID: 102900000, guid: f850509f88bfea34dbf49fed57761a01, type: 3}
   botsInServer: 1
@@ -52,26 +52,6 @@ MonoBehaviour:
     regionName: 
   testPlayers:
   - userId: 0
-    isBot: 0
-    botDifficulty: 0
-    gameEngineData: 
-    matchmakerData: []
-  - userId: 
-    isBot: 0
-    botDifficulty: 0
-    gameEngineData: 
-    matchmakerData: []
-  - userId: 
-    isBot: 0
-    botDifficulty: 0
-    gameEngineData: 
-    matchmakerData: []
-  - userId: 
-    isBot: 0
-    botDifficulty: 0
-    gameEngineData: 
-    matchmakerData: []
-  - userId: 
     isBot: 0
     botDifficulty: 0
     gameEngineData: 

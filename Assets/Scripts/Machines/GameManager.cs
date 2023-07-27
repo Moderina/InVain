@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Elympics;
 
-public class GameManager : MonoBehaviour, IUpdatable
+public class GameManager : ElympicsMonoBehaviour
 {
-    public void ElympicsUpdate()
+    public IEnumerator WaitToEnd()
     {
-        throw new System.NotImplementedException();
+        yield return new WaitForSeconds(5);
+        Elympics.EndGame();
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

@@ -12,7 +12,7 @@ public class Machine : ElympicsMonoBehaviour, IObservable
     public GameObject TasksPanel;
     public GameObject _TaskPrefab;
 
-    public TaskData[] machineTasks;
+    public List<TaskData> machineTasks = new List<TaskData>();
 
     private ElympicsInt taskIndex = new ElympicsInt();
     public ElympicsFloat progress = new ElympicsFloat();
@@ -55,7 +55,8 @@ public class Machine : ElympicsMonoBehaviour, IObservable
             {
                 taskIndex.Value = taskID;
                 currentPlayer.parent.GetComponent<PlayerHandler>().taskID = -1;
-                slider.maxValue = machineTasks[taskIndex.Value].TaskTime;
+                //slider.maxValue = machineTasks[taskIndex.Value].TaskTime;
+                slider.maxValue = machineTasks.Find(x => x.ID == taskIndex.Value).TaskTime;
                 Debug.Log("Taskindex: " + taskIndex);
             }
             
@@ -111,7 +112,7 @@ public class Machine : ElympicsMonoBehaviour, IObservable
     #region Machine Tasks UI
     public void LoadTaskUI() 
     {
-        for(int i=0; i<machineTasks.Length; i++)
+        for(int i=0; i<machineTasks.Count; i++)
         {
             var taskui = Instantiate(_TaskPrefab);
             taskui.transform.Find("Name").gameObject.GetComponent<TextMeshProUGUI>().text = machineTasks[i].Description;

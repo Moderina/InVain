@@ -35,13 +35,15 @@ public class GameFinisher : ElympicsMonoBehaviour
         {
             if(currentPlayer.GetComponentInParent<PlayerHandler>().wantsToFinish && !hasKey)
             {
+                if (!Elympics.IsServer) return;
                 if (!CanFinish()) return;
                 hasKey = true;
                 numberOfWinners.Value += 1;
-                Win();
                 currentPlayer.GetComponentInParent<PlayerHandler>().wantsToFinish = false;
                 var key = ElympicsInstantiate("Key", ElympicsPlayer.All);
                 key.AddComponent<Key>().OnCreate(currentPlayer);
+                Win();
+
             }
         }
     }
@@ -61,7 +63,7 @@ public class GameFinisher : ElympicsMonoBehaviour
 
     private void Win()
     {
-        if (numberOfWinners.Value > 0) 
+        if (numberOfWinners.Value == allPlayers.Length-1) 
         {
             //currentPlayer.GetComponentInParent<PlayerHandler>().enabled = false;
             foreach(TaskManager player in allPlayers)
@@ -69,10 +71,12 @@ public class GameFinisher : ElympicsMonoBehaviour
                 // if(player.AreTasksCompleted())
                 // {
                     player.finished.Value = true;
+                    Debug.Log("cant take much more");
                 // }
             }
+            if(!Elympics.IsServer) return;
+            GetComponent<GameManager>().WaitToEnd();
             this.gameObject.SetActive(false);
-            Elympics.EndGame();
         }
     }
 }

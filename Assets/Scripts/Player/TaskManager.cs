@@ -125,6 +125,8 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
     private void GameFinished(bool lastValue, bool newValue)
     {
         if(Elympics.Player != PredictableFor) return;
+        Debug.Log("nothing wrong with me");
+
         var UI = TaskPanel.transform.parent;
         var WIN = Instantiate(new GameObject(), UI.transform);
         WIN.AddComponent<TextMeshProUGUI>();
