@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7396393b719a6949abd4d302544ad6b, type: 3}
-  m_Name: Repair
+  m_Script: {fileID: 11500000, guid: e655e2a2336222e4288e904e412ac107, type: 3}
+  m_Name: hampter
   m_EditorClassIdentifier: 
-  ID: 3
-  Description: Repair
-  TaskTime: 4
-  requirements:
-  - {fileID: 11400000, guid: c57a444f217c3fd46bcb2f4e3aba4b48, type: 2}
+  ID: 1
+  Name: hampter
+  sprite: {fileID: 21300000, guid: f885f284b00d4334ba0ce2b49eed97d8, type: 3}

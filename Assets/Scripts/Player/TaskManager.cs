@@ -7,14 +7,15 @@ using Elympics;
 
 public class TaskManager : ElympicsMonoBehaviour, IObservable
 {
-    public GameObject TaskPanel;
-    public int numberOfTasks = 3;
+    [SerializeField] private GameObject TaskPanel;
+    [SerializeField] private int numberOfTasks = 2;
     
     public ElympicsBool finished = new ElympicsBool(false);
     private ElympicsBool tasksReady = new ElympicsBool(false);
     public List<TaskData> allTasks = new List<TaskData>();
     private List<TaskData> playerTasks = new List<TaskData>();
 
+    // list with tasks' IDs 
     public ElympicsList<ElympicsInt> myTasks = new ElympicsList<ElympicsInt>(() => new ElympicsInt());
     
     void Start()
@@ -37,10 +38,8 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
             if(myTasks[i].Value == -1)
             {
                 TaskPanel.transform.GetChild(i+1).GetComponent<TextMeshProUGUI>().color = Color.green;
-                //myTasks[i].Value = -2;
             }
         }
-        //if(finished.Value) GameFinished();
     }
 
     public List<TaskData> FindAllTasks() 
@@ -71,6 +70,8 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
             Debug.Log("rand: " + rand);
             //synchronized lists of player's tasks' IDs
             myTasks.Add().Value = playerTasks[i].ID;
+
+            // OnValueChanged called only on server!! CHANGE!!!
             myTasks[i].ValueChanged += OnValueChanged;
         }
         //let know clients that tasks been assigned so they can update theirs UI
@@ -83,7 +84,6 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
         copy.ID = original.ID;
         copy.Description = original.Description;
         copy.TaskTime = original.TaskTime;
-        copy.Completed = false;
         return copy;
     }
 
@@ -108,7 +108,7 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
         Debug.Log("ID of finished task: "+ taskID);
         try 
         {
-            playerTasks.Find(x => x.ID == taskID).Completed = true;
+            //playerTasks.Find(x => x.ID == taskID).Completed = true;
             myTasks[playerTasks.FindIndex(x => x.ID == taskID)].Value = -1;
 
             // foreach (ElympicsInt state in myTasks)

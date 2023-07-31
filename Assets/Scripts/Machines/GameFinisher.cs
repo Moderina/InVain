@@ -21,7 +21,6 @@ public class GameFinisher : ElympicsMonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        
         if(currentPlayer == null && col.transform.tag == "Work") 
         {
             currentPlayer = col.transform;
@@ -48,17 +47,17 @@ public class GameFinisher : ElympicsMonoBehaviour
         }
     }
 
-    private bool CanFinish()
-    {
-        return currentPlayer.GetComponentInParent<TaskManager>().AreTasksCompleted();
-    }
-
     void OnTriggerExit2D(Collider2D col)
     {
         if (currentPlayer != null && col.transform == currentPlayer) {
             currentPlayer = null;
             hasKey = false;
         }
+    }
+
+    private bool CanFinish()
+    {
+        return currentPlayer.GetComponentInParent<TaskManager>().AreTasksCompleted();
     }
 
     private void Win()

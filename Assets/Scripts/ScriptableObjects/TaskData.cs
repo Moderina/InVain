@@ -9,7 +9,8 @@ public class TaskData : ScriptableObject
     public int ID; //{get; private set;}
     public string Description;
     public int TaskTime;
-    public bool Completed = false;
+
+    public List<ItemData> requirements = new List<ItemData>();
     // private void OnEnable() 
     // {
     //     ID = nextID++;

@@ -8,33 +8,30 @@ using System;
 
 public class Machine : ElympicsMonoBehaviour, IObservable
 {
-    public Canvas TasksUI;
-    public GameObject TasksPanel;
-    public GameObject _TaskPrefab;
+    [SerializeField] private Canvas TasksUI;
+    [SerializeField] private GameObject TasksPanel;
+    [SerializeField] private GameObject _TaskPrefab;
 
     public List<TaskData> machineTasks = new List<TaskData>();
 
-    private ElympicsInt taskIndex = new ElympicsInt();
-    public ElympicsFloat progress = new ElympicsFloat();
-
+    private ElympicsInt taskIndex = new ElympicsInt(-1);
+    private ElympicsFloat progress = new ElympicsFloat(0);
 
     Slider slider;
     private Transform currentPlayer;
 
     void Start()
     {
-        progress.Value = 0;
-        taskIndex.Value = -1;
         LoadTaskUI();
         TasksUI.gameObject.SetActive(false);
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        
         if(currentPlayer == null && col.transform.tag == "Work") 
         {
             currentPlayer = col.transform;
+            currentPlayer.Find("Canvas").Find("Missing").gameObject.SetActive(false);
             slider = currentPlayer.Find("Canvas").Find("Slider").GetComponent<Slider>();
 
             //turn on UI only for interacting player
@@ -61,9 +58,10 @@ public class Machine : ElympicsMonoBehaviour, IObservable
             }
             
             //if task chosen, let work
-            if(taskIndex.Value != -1)
+            if(taskIndex.Value != -1 && HasItems())
             {
-                currentPlayer.Find("Canvas").gameObject.SetActive(true);
+                //currentPlayer.Find("Canvas").gameObject.SetActive(true);
+                slider.gameObject.SetActive(true);
                 if(col.transform.parent.GetComponent<Actions>().IsWorking()) 
                 {
                     progress.Value += Time.deltaTime;
@@ -83,7 +81,11 @@ public class Machine : ElympicsMonoBehaviour, IObservable
             }
             else 
             {
-                currentPlayer.Find("Canvas").gameObject.SetActive(false);
+                slider.gameObject.SetActive(false);
+                if (taskIndex.Value != -1 && !HasItems())
+                {
+                    currentPlayer.Find("Canvas").Find("Missing").gameObject.SetActive(true);
+                }
             }
 
         }
@@ -91,16 +93,29 @@ public class Machine : ElympicsMonoBehaviour, IObservable
 
     void OnTriggerExit2D(Collider2D col)
     {
-        if (col.transform.tag == "Work") {
+        // if (col.transform.tag == "Work") {
+        if (currentPlayer != null && col.transform == currentPlayer) 
+        {
             currentPlayer = null;
-            Debug.Log("end progress:" + progress.Value);
             taskIndex.Value = -1;
             progress.Value = 0;
             slider.value = 0;
-            col.transform.Find("Canvas").gameObject.SetActive(false);
+            col.transform.Find("Canvas").Find("Missing").gameObject.SetActive(false);
+            slider.gameObject.SetActive(false);
+            //col.transform.Find("Canvas").gameObject.SetActive(false);
             TasksUI.gameObject.SetActive(false);
             Debug.Log("leftAREA");
         }
+    }
+
+    private bool HasItems()
+    {
+        var requirements = machineTasks.Find(x => x.ID == taskIndex.Value).requirements;
+        foreach(ItemData item in requirements)
+        {
+            if (!currentPlayer.GetComponentInParent<InventoryManager>().HasItem(item.ID)) return false;
+        }
+        return true;
     }
 
     private void TaskCompleted()
@@ -116,8 +131,8 @@ public class Machine : ElympicsMonoBehaviour, IObservable
         {
             var taskui = Instantiate(_TaskPrefab);
             taskui.transform.Find("Name").gameObject.GetComponent<TextMeshProUGUI>().text = machineTasks[i].Description;
-            taskui.transform.SetParent(TasksPanel.transform);
             taskui.name = machineTasks[i].ID.ToString();
+            taskui.transform.SetParent(TasksPanel.transform);
             taskui.GetComponent<Button>().onClick.AddListener(delegate() 
             {
                 int.TryParse(taskui.name, out int index);
@@ -129,7 +144,7 @@ public class Machine : ElympicsMonoBehaviour, IObservable
     public void TaskClicked(int index)
     {
         currentPlayer.parent.GetComponent<Inputs>().inputStruct.taskID = index;
-        taskIndex.Value = index;
+        //taskIndex.Value = index;
         //slider.maxValue = machineTasks[index].TaskTime;
         TasksUI.gameObject.SetActive(false);
     }
