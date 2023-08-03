@@ -76,6 +76,7 @@ public class Machine : ElympicsMonoBehaviour, IObservable
                 {
                     Debug.Log("Task Completed");
                     TaskCompleted();
+                    RemoveItems();
                     taskIndex.Value = -1;
                 }
             }
@@ -116,6 +117,15 @@ public class Machine : ElympicsMonoBehaviour, IObservable
             if (!currentPlayer.GetComponentInParent<InventoryManager>().HasItem(item.ID)) return false;
         }
         return true;
+    }
+
+    private void RemoveItems()
+    {
+        var requirements = machineTasks.Find(x => x.ID == taskIndex.Value).requirements;
+        foreach(ItemData item in requirements)
+        {
+            currentPlayer.GetComponentInParent<InventoryManager>().RemoveItem(item.ID);
+        }
     }
 
     private void TaskCompleted()

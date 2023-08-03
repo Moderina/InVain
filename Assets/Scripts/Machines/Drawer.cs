@@ -37,6 +37,7 @@ public class Drawer : ElympicsMonoBehaviour, IObservable
         }
     }
 
+    //Server
     void OnTriggerStay2D(Collider2D col)
     {
         //dont let other players to interact now
