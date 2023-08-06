@@ -507,7 +507,7 @@ MonoBehaviour:
   - {fileID: 9215040457264031738}
   m_Bounds:
     m_Center: {x: -0.07390326, y: 0.9172718, z: 0}
-    m_Extent: {x: 0.5807735, y: 0.93109494, z: 0}
+    m_Extent: {x: 0.5807735, y: 0.931095, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -701,7 +701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 11
+  networkId: 15
   predictableFor:
     playerIndex: 0
   isUpdatableForNonOwners: 0
@@ -766,7 +766,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5180941438748306454}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a97149ec6cab30f4e83999edaaccbf10, type: 3}
   m_Name: 
@@ -876,6 +876,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7a0294957302d446bb474554d40d040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Inventory: {fileID: 0}
+  _prefab: {fileID: 0}
 --- !u!114 &7802619429865863952
 MonoBehaviour:
   m_ObjectHideFlags: 0

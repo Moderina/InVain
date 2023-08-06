@@ -13,6 +13,7 @@ public class CameraMove : ElympicsMonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(Elympics.IsServer) return;
         var players = GameObject.FindGameObjectsWithTag("Player");
         foreach(GameObject player in players)
         {
@@ -28,6 +29,7 @@ public class CameraMove : ElympicsMonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Elympics.IsServer) return;
         Vector3 movePosition = target.position + offset;
         transform.position = Vector3.SmoothDamp(transform.position, movePosition, ref velocity, dumping);
     }

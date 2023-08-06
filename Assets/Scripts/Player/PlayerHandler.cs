@@ -1,7 +1,8 @@
 using UnityEngine;
 using Elympics;
 
-public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable {
+public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable 
+{
 	[SerializeField] private Inputs inputs;
 	[SerializeField] private GothMovement movement;
 	[SerializeField] private Jump jump;
@@ -26,15 +27,14 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable {
 
 		if(ElympicsBehaviour.TryGetInput(PredictableFor, out var inputReader)) 
         {
-			float x,y,z;
-			inputReader.Read(out currentInput.direction);
-			inputReader.Read(out currentInput.jump);
+            inputReader.Read(out currentInput.direction);
+            inputReader.Read(out currentInput.jump);
             inputReader.Read(out taskID);
 			inputReader.Read(out currentInput.work);
 			inputReader.Read(out wantsToFinish);
-			inputReader.Read(out x);
-			inputReader.Read(out y);
-			inputReader.Read(out z);
+			inputReader.Read(out float x);
+			inputReader.Read(out float y);
+			inputReader.Read(out float z);
 			currentInput.mousePos = new Vector3(x,y,z);
 		}
 
