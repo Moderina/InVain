@@ -15,12 +15,14 @@ public class GameInitializer : ElympicsMonoBehaviour, IUpdatable, IInitializable
 
 	public ElympicsBool isStarting = new(false);
 
+	[SerializeField] private GameObject _GamePlayerPrefab;
+
     public void Initialize()
 	{
 		Debug.Log("nose bleed");
 		// if(!Elympics.IsServer) return;
 
-		var players = GameObject.FindGameObjectsWithTag("Player");
+		var players = GameObject.FindGameObjectsWithTag("LobbyPlayer");
 		foreach(GameObject player in players)
 		{
 			Debug.Log((int)Elympics.Player);
@@ -35,6 +37,7 @@ public class GameInitializer : ElympicsMonoBehaviour, IUpdatable, IInitializable
 	public void InitializeMatch()
 	{
 		//OnMatchInitializedAssignedCallback = OnMatchInitializedCallback;
+		Debug.Log("bleed");
 		gameInitializationEnabled.Value = true;
 		CurrentTimeToStartMatch.Value = timeToStartMatch;
 		GameObject.Find("MainUI").transform.Find("StartGame").gameObject.SetActive(false);
@@ -51,6 +54,47 @@ public class GameInitializer : ElympicsMonoBehaviour, IUpdatable, IInitializable
 				OnMatchInitializedAssignedCallback?.Invoke();
 
 				gameInitializationEnabled.Value = false;
+				GameObject.Find("Lobby").SetActive(false);
+
+				GameObject[] players = GameObject.FindGameObjectsWithTag("LobbyPlayer");
+				if(Elympics.IsServer)
+				{
+					Debug.Log(players.Length);
+					foreach(GameObject player in players)
+					{
+						var ID = player.GetComponent<ElympicsBehaviour>().PredictableFor;
+						player.SetActive(false);
+						GameObject gamePlayer = ElympicsInstantiate("GamePlayer", ElympicsPlayer.FromIndex((int)ID));
+
+						// try{
+						// 	player.GetComponent<LobbyPlayer>().enabled = false;
+						// }
+						// catch{Debug.Log(player.name);}
+						// //Destroy(player.GetComponent<LobbyPlayer>());
+						// player.AddComponent<PlayerHandler>();
+					}
+				}
+				else
+				{
+					foreach(GameObject player in players)
+					{
+						player.SetActive(false);
+						// if(Elympics.Player == player.GetComponent<ElympicsBehaviour>().PredictableFor)
+						// {
+						// 	try{
+						// 		player.GetComponent<LobbyPlayer>().enabled = false;
+						// 	}
+						// 	catch{Debug.Log(player.name);}
+						// 	//Destroy(player.GetComponent<LobbyPlayer>());
+						// 	player.AddComponent<PlayerHandler>();
+						// }
+					}
+
+					// Camera.main.GetComponent<CameraMove>().enabled = true;
+				}
+
+
+				
 			}
 		}
 	}

@@ -9,6 +9,7 @@ TagManager:
   - Work
   - Machine
   - Drawer
+  - LobbyPlayer
   layers:
   - Default
   - TransparentFX

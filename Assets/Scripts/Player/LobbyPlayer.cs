@@ -10,7 +10,7 @@ public struct LobbyInputs
     public int playerclass;
 }
 
-public class LobbyPlayer : ElympicsMonoBehaviour, IInputHandler, IUpdatable 
+public class LobbyPlayer : ElympicsMonoBehaviour, IInputHandler, IUpdatable, IObservable
 {
     [SerializeField] private GameInitializer gameInitializer;
 
@@ -26,7 +26,7 @@ public class LobbyPlayer : ElympicsMonoBehaviour, IInputHandler, IUpdatable
         lobbyInputs.playerclass = 0;
     }
 
-    private void Update() {
+    public void Update() {
 		if(Elympics.Player != PredictableFor) return;
 		inputs.UpdateInput();
 	}
@@ -72,8 +72,9 @@ public class LobbyPlayer : ElympicsMonoBehaviour, IInputHandler, IUpdatable
         movement.Movement(currentInput.direction, currentInput.jump, currentInput.mousePos);
 		jump.OnJumpInput(currentInput.jump);
         
-        if (lobbyInputs.gameReady != lobbyInputsServer.gameReady && lobbyInputs.gameReady == true)
+        if ((lobbyInputs.gameReady != lobbyInputsServer.gameReady) && lobbyInputs.gameReady == true)
         {
+            Debug.Log("Starting game");
             StartGame();
         }
         if(lobbyInputs.playerclass != lobbyInputsServer.playerclass)

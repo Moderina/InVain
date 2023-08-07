@@ -12,7 +12,15 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable
     public int taskID = -1;
 	public bool wantsToFinish = false;
 
-	private void Update() {
+	public void Start()
+	{
+		inputs = GetComponent<Inputs>();
+		movement = GetComponent<GothMovement>();
+		jump = GetComponent<Jump>();
+		actions = GetComponent<Actions>();
+	}
+
+	public void Update() {
 		if(Elympics.Player != PredictableFor) return;
 		inputs.UpdateInput();
 	}
@@ -27,6 +35,7 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable
 
 		if(ElympicsBehaviour.TryGetInput(PredictableFor, out var inputReader)) 
         {
+			Debug.Log("reading");
             inputReader.Read(out currentInput.direction);
             inputReader.Read(out currentInput.jump);
             inputReader.Read(out taskID);
