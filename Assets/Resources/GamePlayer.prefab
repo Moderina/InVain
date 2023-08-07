@@ -822,16 +822,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerRigidBody: {fileID: 8539342622071891550}
   playerCollider: {fileID: 3556858970211562440}
-  jumpVelocity: 0
-  defaultGravity: 0
-  lowJumpMultiplier: 0
-  highJumpMultiplier: 0
-  fallingMultiplier: 0
+  jumpVelocity: 6
+  defaultGravity: 1
+  lowJumpMultiplier: 1
+  highJumpMultiplier: 1
+  fallingMultiplier: -9
   groundMask:
     serializedVersion: 2
-    m_Bits: 0
-  coyoteTime: 0
-  jumpBufferDuration: 0
+    m_Bits: 1
+  coyoteTime: 0.1
+  jumpBufferDuration: 0.2
 --- !u!114 &5272230217081051942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -877,7 +877,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Inventory: {fileID: 0}
-  _prefab: {fileID: 0}
+  _prefab: {fileID: 6812056396344402728, guid: 72fa8feb453b04a469aee0fe02ee18f6, type: 3}
 --- !u!114 &7802619429865863952
 MonoBehaviour:
   m_ObjectHideFlags: 0

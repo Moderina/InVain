@@ -114,14 +114,14 @@ public class Jump : ElympicsMonoBehaviour
 
     private Vector2 PlayerSizeScaled => Vector2.Scale(transform.localScale, playerCollider.size);
 
-    private void OnCollisionEnter2D(Collision2D col) 
+    public void OnCollisionEnter2D(Collision2D col) 
     {
         if (col.gameObject.CompareTag("Ground")) 
         {
 			jumping = false; 
 		}
     }
-    private void OnCollisionExit2D(Collision2D col)
+    public void OnCollisionExit2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Ground")) 
         {

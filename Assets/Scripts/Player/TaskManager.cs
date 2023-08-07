@@ -18,9 +18,10 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
     // list with tasks' IDs 
     public ElympicsList<ElympicsInt> myTasks = new ElympicsList<ElympicsInt>(() => new ElympicsInt());
     
-    void Start()
+    public void Start()
     {
         tasksReady.ValueChanged += UpdateTaskUI;
+        TaskPanel = GameObject.Find("MainUI").transform.Find("TaskPanel").gameObject;
         finished.ValueChanged += GameFinished;
         //gather all tasks from all machines
         allTasks = FindAllTasks();
@@ -30,7 +31,7 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
         if (Elympics.IsServer) ChooseTasks(allTasks);   
     }
 
-    void Update()
+    public void Update()
     {
         if (Elympics.Player != PredictableFor) return;
         for (int i=0; i<myTasks.Count; i++)
@@ -90,6 +91,7 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
     
     private void UpdateTaskUI(bool lastValue, bool newValue)
     {
+        Debug.Log("not afraid to die");
         if (Elympics.Player != PredictableFor) return;
         TaskPanel.SetActive(true);
         var child = TaskPanel.transform.GetChild(0);

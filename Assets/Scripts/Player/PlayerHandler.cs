@@ -18,6 +18,8 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable
 		movement = GetComponent<GothMovement>();
 		jump = GetComponent<Jump>();
 		actions = GetComponent<Actions>();
+		if(Elympics.Player != PredictableFor) return;
+		Camera.main.GetComponent<CameraMove>().enabled = true;
 	}
 
 	public void Update() {
@@ -35,7 +37,6 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable
 
 		if(ElympicsBehaviour.TryGetInput(PredictableFor, out var inputReader)) 
         {
-			Debug.Log("reading");
             inputReader.Read(out currentInput.direction);
             inputReader.Read(out currentInput.jump);
             inputReader.Read(out taskID);

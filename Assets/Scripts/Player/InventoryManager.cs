@@ -14,9 +14,10 @@ public class InventoryManager : ElympicsMonoBehaviour, IObservable
     private ElympicsList<ElympicsInt> myItems = new ElympicsList<ElympicsInt>(() => new ElympicsInt());
 
     private ElympicsInt inventoryChange = new ElympicsInt(0);
-    void Start()
+    public void Start()
     {
         inventoryChange.ValueChanged += UpdateInventoryUI;
+        Inventory = GameObject.Find("MainUI").transform.Find("ItemsPanel").gameObject;
         var drawers = GameObject.FindGameObjectsWithTag("Drawer");
         foreach(GameObject drawer in drawers)
         {

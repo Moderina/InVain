@@ -14,7 +14,7 @@ public class Inputs : MonoBehaviour
 {
     public InputStruct inputStruct;
 
-    void Start() {inputStruct.taskID = -1;}
+    public void Start() {inputStruct.taskID = -1;}
 
     public void UpdateInput() 
     {

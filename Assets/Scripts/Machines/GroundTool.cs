@@ -10,7 +10,7 @@ public class GroundTool : MonoBehaviour
     {
         transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = data.sprite;
     }
-    void OnTriggerEnter2D(Collision2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         if (col.transform.tag == "Work")
         {

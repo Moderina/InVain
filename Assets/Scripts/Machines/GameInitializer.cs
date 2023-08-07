@@ -63,9 +63,10 @@ public class GameInitializer : ElympicsMonoBehaviour, IUpdatable, IInitializable
 					foreach(GameObject player in players)
 					{
 						var ID = player.GetComponent<ElympicsBehaviour>().PredictableFor;
+						var trans = player.transform;
 						player.SetActive(false);
 						GameObject gamePlayer = ElympicsInstantiate("GamePlayer", ElympicsPlayer.FromIndex((int)ID));
-
+						gamePlayer.transform.position = trans.position;
 						// try{
 						// 	player.GetComponent<LobbyPlayer>().enabled = false;
 						// }
