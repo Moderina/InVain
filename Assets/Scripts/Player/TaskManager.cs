@@ -18,9 +18,12 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
     // list with tasks' IDs 
     public ElympicsList<ElympicsInt> myTasks = new ElympicsList<ElympicsInt>(() => new ElympicsInt());
     
-    public void Start()
+    public void Initialize()
     {
         tasksReady.ValueChanged += UpdateTaskUI;
+    }
+    public void Start()
+    {
         TaskPanel = GameObject.Find("MainUI").transform.Find("TaskPanel").gameObject;
         finished.ValueChanged += GameFinished;
         //gather all tasks from all machines
@@ -29,6 +32,10 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
 
         //randomly pick some tasks for player
         if (Elympics.IsServer) ChooseTasks(allTasks);   
+        else if (Elympics.Player == PredictableFor){
+            while(tasksReady.Value == false) {}
+            UpdateTaskUI(false, true);
+        }
     }
 
     public void Update()
@@ -67,7 +74,7 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
                 i--;
                 continue;
             }
-            playerTasks.Add(CreateCopy(allTasks[rand]));
+            playerTasks.Add(allTasks[rand]);
             Debug.Log("rand: " + rand);
             //synchronized lists of player's tasks' IDs
             myTasks.Add().Value = playerTasks[i].ID;
