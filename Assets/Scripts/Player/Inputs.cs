@@ -28,7 +28,7 @@ public class Inputs : MonoBehaviour
     public InputStruct GetInput() 
     {
         InputStruct returnstruct = inputStruct;
-        inputStruct.direction = 0;
+        // inputStruct.direction = 0;
         inputStruct.jump = 0;
         inputStruct.taskID = -1;
         inputStruct.work = false;

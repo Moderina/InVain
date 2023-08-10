@@ -19,7 +19,7 @@ public class GameFinisher : ElympicsMonoBehaviour
         allPlayers = FindObjectsOfType<TaskManager>();
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    public void OnTriggerEnter2D(Collider2D col)
     {
         if(currentPlayer == null && col.transform.tag == "Work") 
         {
@@ -28,7 +28,7 @@ public class GameFinisher : ElympicsMonoBehaviour
         }
     }
 
-    void OnTriggerStay2D(Collider2D col)
+    public void OnTriggerStay2D(Collider2D col)
     {
         if(col.transform == currentPlayer)
         {
@@ -47,7 +47,7 @@ public class GameFinisher : ElympicsMonoBehaviour
         }
     }
 
-    void OnTriggerExit2D(Collider2D col)
+    public void OnTriggerExit2D(Collider2D col)
     {
         if (currentPlayer != null && col.transform == currentPlayer) {
             currentPlayer = null;

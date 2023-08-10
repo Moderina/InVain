@@ -8,13 +8,13 @@ public class PlayersInitializer : MonoBehaviour, IServerHandlerGuid
     public void OnPlayerConnected(ElympicsPlayer player)
     {
         Debug.Log("bitch im here to kick your ass");
-        GetComponent<GameInitializer>().numberofPlayers += 1;
+        GetComponent<GameInitializer>().numberofPlayers.Value += 1;
     }
 
     public void OnPlayerDisconnected(ElympicsPlayer player)
     {
         Debug.Log("player disconnected " + player);
-        GetComponent<GameInitializer>().numberofPlayers -= 1;
+        GetComponent<GameInitializer>().numberofPlayers.Value -= 1;
     }
 
     public void OnServerInit(InitialMatchPlayerDatasGuid initialMatchPlayerDatas)

@@ -11,7 +11,7 @@ public class GameInitializer : ElympicsMonoBehaviour, IUpdatable, IInitializable
 
 	private ElympicsBool gameInitializationEnabled = new(false);
 
-	public int numberofPlayers = 0;
+	public ElympicsInt numberofPlayers = new(0);
 
 	[SerializeField] private GameObject _GamePlayerPrefab;
 
@@ -34,7 +34,7 @@ public class GameInitializer : ElympicsMonoBehaviour, IUpdatable, IInitializable
 	//public void InitializeMatch(Action OnMatchInitializedCallback)
 	public void InitializeMatch()
 	{
-		if(numberofPlayers < 1) return;
+		if(numberofPlayers.Value < 1) return;
 		gameInitializationEnabled.Value = true;
 		CurrentTimeToStartMatch.Value = timeToStartMatch;
 		GameObject.Find("MainUI").transform.Find("StartGame").gameObject.SetActive(false);
@@ -56,25 +56,23 @@ public class GameInitializer : ElympicsMonoBehaviour, IUpdatable, IInitializable
 				if(Elympics.IsServer)
 				{
 					Debug.Log(players.Length);
-					foreach(GameObject player in players)
+					// foreach(GameObject player in players)
+					for(int i = 0; i < numberofPlayers.Value; i++)
 					{
+						var player = players[i];
 						var ID = player.GetComponent<ElympicsBehaviour>().PredictableFor;
 						var trans = player.transform;
 						player.SetActive(false);
 						GameObject gamePlayer = ElympicsInstantiate("GamePlayer", ElympicsPlayer.FromIndex((int)ID));
 						gamePlayer.transform.position = trans.position;
-						// try{
-						// 	player.GetComponent<LobbyPlayer>().enabled = false;
-						// }
-						// catch{Debug.Log(player.name);}
-						// //Destroy(player.GetComponent<LobbyPlayer>());
-						// player.AddComponent<PlayerHandler>();
 					}
 				}
 				else
 				{
-					foreach(GameObject player in players)
+					for(int i = 0; i < numberofPlayers.Value; i++)
+					// foreach(GameObject player in players)
 					{
+						var player = players[i];
 						player.SetActive(false);
 						// if(Elympics.Player == player.GetComponent<ElympicsBehaviour>().PredictableFor)
 						// {

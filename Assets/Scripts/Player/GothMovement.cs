@@ -5,8 +5,6 @@ public class GothMovement : ElympicsMonoBehaviour {
     public float accel = 50f;
     public float friction = 10f;
     public float maxVel = 5f;
-    public float jumpVel = 15f;
-    private bool jumping = true;
     [SerializeField] private Rigidbody2D rb;
 
     [SerializeField] private GameObject sprite;
@@ -47,12 +45,6 @@ public class GothMovement : ElympicsMonoBehaviour {
                 sprite.transform.localScale = new Vector3(1, 1, 1);
             }
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.CompareTag("Ground")) {
-			jumping = false; 
-		}
     }
 
     void OnDrawGizmos() {
