@@ -45,6 +45,7 @@ public class LobbyPlayer : ElympicsMonoBehaviour, IInputHandler, IUpdatable, IOb
 		inputSerializer.Write(currentInputs.mousePos.z);
 		inputSerializer.Write(lobbyInputs.gameReady);
 		inputSerializer.Write(lobbyInputs.playerclass);
+        lobbyInputs.gameReady = false;
 	}
 
 
@@ -93,6 +94,7 @@ public class LobbyPlayer : ElympicsMonoBehaviour, IInputHandler, IUpdatable, IOb
     private void StartGame()
     {
         gameInitializer.InitializeMatch();
+        lobbyInputsServer.gameReady = false;
     }
 
     public void OnInputForBot(IInputWriter inputSerializer)

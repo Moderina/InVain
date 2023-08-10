@@ -9,11 +9,9 @@ public class GameInitializer : ElympicsMonoBehaviour, IUpdatable, IInitializable
 	[SerializeField] private float timeToStartMatch = 5.0f;
 	public ElympicsFloat CurrentTimeToStartMatch { get; } = new ElympicsFloat(0.0f);
 
-	private Action OnMatchInitializedAssignedCallback = null;
-
 	private ElympicsBool gameInitializationEnabled = new(false);
 
-	public ElympicsBool isStarting = new(false);
+	public int numberofPlayers = 0;
 
 	[SerializeField] private GameObject _GamePlayerPrefab;
 
@@ -36,8 +34,7 @@ public class GameInitializer : ElympicsMonoBehaviour, IUpdatable, IInitializable
 	//public void InitializeMatch(Action OnMatchInitializedCallback)
 	public void InitializeMatch()
 	{
-		//OnMatchInitializedAssignedCallback = OnMatchInitializedCallback;
-		Debug.Log("bleed");
+		if(numberofPlayers < 1) return;
 		gameInitializationEnabled.Value = true;
 		CurrentTimeToStartMatch.Value = timeToStartMatch;
 		GameObject.Find("MainUI").transform.Find("StartGame").gameObject.SetActive(false);
@@ -51,10 +48,9 @@ public class GameInitializer : ElympicsMonoBehaviour, IUpdatable, IInitializable
 			CurrentTimeToStartMatch.Value -= Elympics.TickDuration;
 			if (CurrentTimeToStartMatch.Value < 0.0f)
 			{
-				OnMatchInitializedAssignedCallback?.Invoke();
-
 				gameInitializationEnabled.Value = false;
-				GameObject.Find("Lobby").SetActive(false);
+				GameObject.Find("Lobby").transform.Find("RightWall").gameObject.SetActive(false);
+				GameObject.Find("Lobby").transform.Find("LeftWall").gameObject.SetActive(false);
 
 				GameObject[] players = GameObject.FindGameObjectsWithTag("LobbyPlayer");
 				if(Elympics.IsServer)
