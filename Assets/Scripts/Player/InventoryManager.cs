@@ -18,11 +18,12 @@ public class InventoryManager : ElympicsMonoBehaviour, IObservable
     {
         inventoryChange.ValueChanged += UpdateInventoryUI;
         Inventory = GameObject.Find("MainUI").transform.Find("ItemsPanel").gameObject;
-        var drawers = GameObject.FindGameObjectsWithTag("Drawer");
-        foreach(GameObject drawer in drawers)
-        {
-            allItems.AddRange(drawer.GetComponent<Drawer>().drawerItems);
-        }
+        // var drawers = GameObject.FindGameObjectsWithTag("Drawer");
+        // foreach(GameObject drawer in drawers)
+        // {
+        //     allItems.AddRange(drawer.GetComponent<Drawer>().drawerItems);
+        // }
+        allItems = GameObject.FindGameObjectWithTag("Printer").GetComponent<ItemPrinter>().allItems;
     }
 
     void Update()

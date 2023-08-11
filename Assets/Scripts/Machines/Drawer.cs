@@ -13,13 +13,18 @@ public class Drawer : ElympicsMonoBehaviour, IObservable
     [SerializeField] private GameObject _ItemPrefab;
 
     public List<ItemData> drawerItems = new List<ItemData>();
+    private List<ElympicsInt> avaiableItems = new List<ElympicsInt>();
     private ElympicsInt itemIndex = new ElympicsInt(-1);
 
     private Transform currentPlayer;
 
     void Start()
     {
-        LoadItemUI();
+        foreach (ItemData itemData in drawerItems)
+        {
+            int num = UnityEngine.Random.Range(0,5);
+            avaiableItems.Add(new ElympicsInt(num));
+        }
         ItemsUI.gameObject.SetActive(false);
     }
 
@@ -33,6 +38,7 @@ public class Drawer : ElympicsMonoBehaviour, IObservable
             //turn on UI only for interacting player
             var player = currentPlayer.parent.GetComponent<ElympicsBehaviour>();
             if(Elympics.Player != player.PredictableFor) return;
+            LoadItemUI();
             ItemsUI.gameObject.SetActive(true);
         }
     }
@@ -43,7 +49,7 @@ public class Drawer : ElympicsMonoBehaviour, IObservable
         //dont let other players to interact now
         if (col.transform == currentPlayer) 
         {
-            //check if task chosen
+            //check if item chosen
             var taskID = currentPlayer.parent.GetComponent<PlayerHandler>().taskID;
             if (taskID != -1)
             {
@@ -52,11 +58,12 @@ public class Drawer : ElympicsMonoBehaviour, IObservable
                 Debug.Log("Taskindex: " + itemIndex);
             }
             
-            //if task chosen, let work
+            //if item chosen, let pick up
             if(itemIndex.Value != -1)
             {
                 //currentPlayer.Find("Canvas").gameObject.SetActive(true);
                 currentPlayer.GetComponentInParent<InventoryManager>().AddItem(itemIndex.Value);
+                avaiableItems[itemIndex.Value].Value = avaiableItems[itemIndex.Value].Value -1;
                 itemIndex.Value = -1;
             }
         }
@@ -69,6 +76,7 @@ public class Drawer : ElympicsMonoBehaviour, IObservable
         {
             currentPlayer = null;
             itemIndex.Value = -1;
+            UnloadItemUI();
             ItemsUI.gameObject.SetActive(false);
             Debug.Log("leftAREA");
         }
@@ -79,6 +87,7 @@ public class Drawer : ElympicsMonoBehaviour, IObservable
     {
         for(int i=0; i<drawerItems.Count; i++)
         {
+            if (avaiableItems[i].Value < 1) return;
             var taskui = Instantiate(_ItemPrefab);
             taskui.transform.Find("Name").gameObject.GetComponent<TextMeshProUGUI>().text = drawerItems[i].Name;
             taskui.name = drawerItems[i].ID.ToString();
@@ -88,6 +97,16 @@ public class Drawer : ElympicsMonoBehaviour, IObservable
                 int.TryParse(taskui.name, out int index);
                 ItemClicked(index);
             });
+        }
+    }
+
+    private void UnloadItemUI()
+    {
+        while(ItemsPanel.transform.childCount > 0)
+        {
+            Transform lastChild = ItemsPanel.transform.GetChild(ItemsPanel.transform.childCount - 1);
+            lastChild.SetParent(null);
+            Destroy(lastChild.gameObject);
         }
     }
 

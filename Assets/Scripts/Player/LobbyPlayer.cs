@@ -93,8 +93,10 @@ public class LobbyPlayer : ElympicsMonoBehaviour, IInputHandler, IUpdatable, IOb
 
     private void StartGame()
     {
+        Debug.Log("bout to init");
         gameInitializer.InitializeMatch();
         lobbyInputsServer.gameReady = false;
+        Debug.Log("inited");
     }
 
     public void OnInputForBot(IInputWriter inputSerializer)

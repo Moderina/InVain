@@ -623,7 +623,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5617193678860479977
 Transform:
   m_ObjectHideFlags: 0
@@ -701,7 +701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 20
+  networkId: 36
   predictableFor:
     playerIndex: 0
   isUpdatableForNonOwners: 0
@@ -804,7 +804,6 @@ MonoBehaviour:
   accel: 50
   friction: 10
   maxVel: 5
-  jumpVel: 15
   rb: {fileID: 8539342622071891550}
   sprite: {fileID: 3381240911354446517}
   head: {fileID: 9215040457264031738}
@@ -852,7 +851,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5180941438748306454}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e6a570a935c85241b0d7e9fd3788545, type: 3}
   m_Name: 
@@ -871,7 +870,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5180941438748306454}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7a0294957302d446bb474554d40d040, type: 3}
   m_Name: 

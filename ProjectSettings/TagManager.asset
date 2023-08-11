@@ -10,6 +10,7 @@ TagManager:
   - Machine
   - Drawer
   - LobbyPlayer
+  - Printer
   layers:
   - Default
   - TransparentFX

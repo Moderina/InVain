@@ -4,7 +4,7 @@ using UnityEngine;
 using Elympics;
 using System;
 
-public class GameInitializer : ElympicsMonoBehaviour, IUpdatable, IInitializable
+public class GameInitializer : ElympicsMonoBehaviour, IInitializable
 {
 	[SerializeField] private float timeToStartMatch = 5.0f;
 	public ElympicsFloat CurrentTimeToStartMatch { get; } = new ElympicsFloat(0.0f);
@@ -25,7 +25,7 @@ public class GameInitializer : ElympicsMonoBehaviour, IUpdatable, IInitializable
 		{
 			Debug.Log((int)Elympics.Player);
 		}
-		if((int)Elympics.Player == 0)
+		if((int)Elympics.Player == 0 || (int)Elympics.Player == 1)
 		{
 			GameObject.Find("MainUI").transform.Find("StartGame").gameObject.SetActive(true);
 		}
@@ -64,6 +64,7 @@ public class GameInitializer : ElympicsMonoBehaviour, IUpdatable, IInitializable
 						var trans = player.transform;
 						player.SetActive(false);
 						GameObject gamePlayer = ElympicsInstantiate("GamePlayer", ElympicsPlayer.FromIndex((int)ID));
+						gamePlayer.SetActive(true);
 						gamePlayer.transform.position = trans.position;
 					}
 				}

@@ -8,4 +8,5 @@ public class ItemData : ScriptableObject
     public int ID;
     public string Name;
     public Sprite sprite;
+    public int printingTime;
 }

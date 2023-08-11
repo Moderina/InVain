@@ -17,7 +17,6 @@ public class CameraMove : ElympicsMonoBehaviour
         var players = GameObject.FindGameObjectsWithTag("Player");
         foreach(GameObject player in players)
         {
-            Debug.Log(player.GetComponent<ElympicsBehaviour>().PredictableFor + " TTT " + Elympics.Player);
             if(player.GetComponent<ElympicsBehaviour>().PredictableFor == Elympics.Player)
             {
                 target = player.transform;
@@ -26,11 +25,19 @@ public class CameraMove : ElympicsMonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(Elympics.IsServer) return;
         Vector3 movePosition = target.position + offset;
         transform.position = Vector3.SmoothDamp(transform.position, movePosition, ref velocity, dumping);
     }
+
+    // public void ElympicsUpdate()
+    // {
+    //     Debug.Log("camera");
+    //     if(Elympics.IsServer && target == null) return;
+    //     Vector3 movePosition = target.position + offset;
+    //     transform.position = Vector3.SmoothDamp(transform.position, movePosition, ref velocity, dumping);
+
+    // }
 }

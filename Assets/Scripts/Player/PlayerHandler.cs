@@ -18,6 +18,8 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable
 		movement = GetComponent<GothMovement>();
 		jump = GetComponent<Jump>();
 		actions = GetComponent<Actions>();
+		GetComponent<TaskManager>().enabled = true;
+		GetComponent<InventoryManager>().enabled = true;
 		if(Elympics.Player != PredictableFor) return;
 		Camera.main.GetComponent<CameraMove>().enabled = true;
 	}
