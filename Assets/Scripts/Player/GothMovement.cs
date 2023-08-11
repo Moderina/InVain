@@ -1,7 +1,8 @@
 using UnityEngine;
 using Elympics;
 
-public class GothMovement : ElympicsMonoBehaviour {
+public class GothMovement : ElympicsMonoBehaviour 
+{
     public float accel = 50f;
     public float friction = 10f;
     public float maxVel = 5f;
@@ -11,7 +12,7 @@ public class GothMovement : ElympicsMonoBehaviour {
     [SerializeField] private Transform head;
     private int faceDir = 1;
 
-    private void Start() { rb = GetComponent<Rigidbody2D>(); }
+    public void Start() { rb = GetComponent<Rigidbody2D>(); }
 
     public void Movement(int direction, int jump, Vector3 mousePos) {
         rb.AddForce(new Vector2(direction * accel, 0));

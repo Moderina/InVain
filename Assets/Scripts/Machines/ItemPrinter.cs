@@ -61,6 +61,8 @@ public class ItemPrinter : ElympicsMonoBehaviour, IUpdatable
         // if (col.transform == currentPlayer) 
         // {
             //check if item chosen
+            Debug.Log(col.name);
+            Debug.Log(col.transform.parent.name);
             var taskID = col.transform.parent.GetComponent<PlayerHandler>().taskID;
             if (taskID != -1)
             {

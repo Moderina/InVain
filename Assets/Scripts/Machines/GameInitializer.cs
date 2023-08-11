@@ -4,7 +4,7 @@ using UnityEngine;
 using Elympics;
 using System;
 
-public class GameInitializer : ElympicsMonoBehaviour, IInitializable
+public class GameInitializer : ElympicsMonoBehaviour, IUpdatable, IInitializable
 {
 	[SerializeField] private float timeToStartMatch = 5.0f;
 	public ElympicsFloat CurrentTimeToStartMatch { get; } = new ElympicsFloat(0.0f);
@@ -25,7 +25,7 @@ public class GameInitializer : ElympicsMonoBehaviour, IInitializable
 		{
 			Debug.Log((int)Elympics.Player);
 		}
-		if((int)Elympics.Player == 0 || (int)Elympics.Player == 1)
+		if((int)Elympics.Player == 0)
 		{
 			GameObject.Find("MainUI").transform.Find("StartGame").gameObject.SetActive(true);
 		}
@@ -53,6 +53,11 @@ public class GameInitializer : ElympicsMonoBehaviour, IInitializable
 				GameObject.Find("Lobby").transform.Find("LeftWall").gameObject.SetActive(false);
 
 				GameObject[] players = GameObject.FindGameObjectsWithTag("LobbyPlayer");
+				players = Sort(players);
+				foreach(GameObject player in players)
+				{
+					Debug.Log(player.name + player.GetComponent<ElympicsBehaviour>().PredictableFor);
+				}
 				if(Elympics.IsServer)
 				{
 					Debug.Log(players.Length);
@@ -61,7 +66,9 @@ public class GameInitializer : ElympicsMonoBehaviour, IInitializable
 					{
 						var player = players[i];
 						var ID = player.GetComponent<ElympicsBehaviour>().PredictableFor;
+						Debug.Log(i + ": PredictableFor " + ID);
 						var trans = player.transform;
+						player.GetComponent<ElympicsBehaviour>().enabled = false;
 						player.SetActive(false);
 						GameObject gamePlayer = ElympicsInstantiate("GamePlayer", ElympicsPlayer.FromIndex((int)ID));
 						gamePlayer.SetActive(true);
@@ -93,6 +100,21 @@ public class GameInitializer : ElympicsMonoBehaviour, IInitializable
 				
 			}
 		}
+	}
+
+	private GameObject[] Sort(GameObject[] players)
+	{
+		for(int i = 0; i < players.Length; i++)
+		{
+			for(int j = i+1; j < players.Length; j++)
+			{
+				if ((int)players[j].GetComponent<ElympicsBehaviour>().PredictableFor < (int)players[i].GetComponent<ElympicsBehaviour>().PredictableFor)
+				{
+                    (players[j], players[i]) = (players[i], players[j]);
+                }
+            }
+		}
+		return players;
 	}
 
 }

@@ -16,14 +16,13 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
     private List<TaskData> playerTasks = new List<TaskData>();
 
     // list with tasks' IDs 
+    // public List<ElympicsInt> myTasks = new List<ElympicsInt>();
     public ElympicsList<ElympicsInt> myTasks = new ElympicsList<ElympicsInt>(() => new ElympicsInt());
-    
-    public void Initialize()
-    {
-        tasksReady.ValueChanged += UpdateTaskUI;
-    }
+
     public void Start()
     {
+        tasksReady.ValueChanged += UpdateTaskUI;
+        Debug.Log("starting taskmanager");
         TaskPanel = GameObject.Find("MainUI").transform.Find("TaskPanel").gameObject;
         finished.ValueChanged += GameFinished;
         //gather all tasks from all machines
@@ -33,7 +32,7 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
         //randomly pick some tasks for player
         if (Elympics.IsServer) ChooseTasks(allTasks);   
         else if (Elympics.Player == PredictableFor){
-            while(tasksReady.Value == false) {}
+            // while(tasksReady.Value == false) {}
             UpdateTaskUI(false, true);
         }
     }
@@ -78,6 +77,7 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
             Debug.Log("rand: " + rand);
             //synchronized lists of player's tasks' IDs
             myTasks.Add().Value = playerTasks[i].ID;
+            // myTasks.Add(new ElympicsInt(playerTasks[i].ID));
 
             // OnValueChanged called only on server!! CHANGE!!!
             myTasks[i].ValueChanged += OnValueChanged;

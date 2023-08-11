@@ -10,7 +10,7 @@ public struct LobbyInputs
     public int playerclass;
 }
 
-public class LobbyPlayer : ElympicsMonoBehaviour, IInputHandler, IUpdatable, IObservable
+public class LobbyPlayer : ElympicsMonoBehaviour, IInputHandler, IUpdatable
 {
     [SerializeField] private GameInitializer gameInitializer;
 
@@ -23,7 +23,9 @@ public class LobbyPlayer : ElympicsMonoBehaviour, IInputHandler, IUpdatable, IOb
     public void Start()
     {
         lobbyInputs.gameReady = false;
+        lobbyInputsServer.gameReady = false;
         lobbyInputs.playerclass = 0;
+        lobbyInputsServer.playerclass = 0;
     }
 
     public void Update() {

@@ -3506,7 +3506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 21
+  networkId: 19
   predictableFor:
     playerIndex: 4
   isUpdatableForNonOwners: 0
@@ -3601,7 +3601,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 25
+  networkId: 23
   predictableFor:
     playerIndex: -3
   isUpdatableForNonOwners: 0
@@ -4391,7 +4391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 20
+  networkId: 18
   predictableFor:
     playerIndex: -2
   isUpdatableForNonOwners: 0
@@ -5248,7 +5248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 14
+  networkId: 12
   predictableFor:
     playerIndex: -2
   isUpdatableForNonOwners: 0
@@ -5466,7 +5466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 13
+  networkId: 11
   predictableFor:
     playerIndex: -2
   isUpdatableForNonOwners: 0
@@ -6467,7 +6467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 24
+  networkId: 22
   predictableFor:
     playerIndex: 5
   isUpdatableForNonOwners: 0
@@ -6781,6 +6781,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2302576099153469726, guid: f96262bc694c229408688203398b88ed, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7529846740173844773, guid: f96262bc694c229408688203398b88ed, type: 3}
       propertyPath: m_Name
       value: Elympics
@@ -6983,7 +6987,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 26
+  networkId: 24
   predictableFor:
     playerIndex: -2
   isUpdatableForNonOwners: 0
@@ -7524,7 +7528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 23
+  networkId: 21
   predictableFor:
     playerIndex: -2
   isUpdatableForNonOwners: 0
@@ -7608,7 +7612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 11
+  networkId: 10
   predictableFor:
     playerIndex: -2
   isUpdatableForNonOwners: 0
@@ -7692,7 +7696,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 19
+  networkId: 17
   predictableFor:
     playerIndex: -2
   isUpdatableForNonOwners: 0
@@ -8055,7 +8059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 16
+  networkId: 14
   predictableFor:
     playerIndex: -2
   isUpdatableForNonOwners: 0
@@ -9129,7 +9133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 15
+  networkId: 13
   predictableFor:
     playerIndex: 2
   isUpdatableForNonOwners: 0
@@ -10870,7 +10874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 12
+  networkId: 26
   predictableFor:
     playerIndex: -2
   isUpdatableForNonOwners: 0
@@ -11441,7 +11445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 18
+  networkId: 16
   predictableFor:
     playerIndex: 3
   isUpdatableForNonOwners: 0
@@ -11949,7 +11953,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 17
+  networkId: 15
   predictableFor:
     playerIndex: -2
   isUpdatableForNonOwners: 0
@@ -12127,7 +12131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 10
+  networkId: 25
   predictableFor:
     playerIndex: 1
   isUpdatableForNonOwners: 0
@@ -12257,7 +12261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 22
+  networkId: 20
   predictableFor:
     playerIndex: -2
   isUpdatableForNonOwners: 0
