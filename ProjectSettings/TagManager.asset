@@ -11,6 +11,8 @@ TagManager:
   - Drawer
   - LobbyPlayer
   - Printer
+  - Weapon
+  - Computers
   layers:
   - Default
   - TransparentFX

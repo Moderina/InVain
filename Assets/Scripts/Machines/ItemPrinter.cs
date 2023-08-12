@@ -89,9 +89,10 @@ public class ItemPrinter : ElympicsMonoBehaviour, IUpdatable
         // }
     }
 
-    public void OnTriggerExit2D()
+    public void OnTriggerExit2D(Collider2D col)
     {
-        var player = currentPlayer.parent.GetComponent<ElympicsBehaviour>();
+        if(col.transform.tag != "Work") return;
+        var player = col.transform.parent.GetComponent<ElympicsBehaviour>();
         if(Elympics.Player != player.PredictableFor) return;
         ItemsUI.gameObject.SetActive(false);
     }

@@ -844,6 +844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWorking: 0
+  sprite: {fileID: 471712865364979473}
 --- !u!114 &8477579895606986754
 MonoBehaviour:
   m_ObjectHideFlags: 0
