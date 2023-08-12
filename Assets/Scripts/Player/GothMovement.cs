@@ -1,7 +1,7 @@
 using UnityEngine;
 using Elympics;
 
-public class GothMovement : ElympicsMonoBehaviour 
+public class GothMovement : ElympicsMonoBehaviour
 {
     public float accel = 50f;
     public float friction = 10f;
@@ -18,6 +18,7 @@ public class GothMovement : ElympicsMonoBehaviour
         rb.AddForce(new Vector2(direction * accel, 0));
         rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxVel, maxVel), rb.velocity.y);
         rb.AddForce(new Vector2(-rb.velocity.x * friction, 0));
+        Camera.main.GetComponent<CameraMove>().UpdateTransform();
 
         // if (!jumping && jump > 0) {
         //     rb.AddForce(new Vector2(0, jumpVel), ForceMode2D.Impulse);

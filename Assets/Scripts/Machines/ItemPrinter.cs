@@ -30,6 +30,7 @@ public class ItemPrinter : ElympicsMonoBehaviour, IUpdatable
         {
             if (itemTime < 0)
             {
+                Debug.Log("item ready!");
                 itemReady.Value = true;
             }
             else
@@ -57,30 +58,42 @@ public class ItemPrinter : ElympicsMonoBehaviour, IUpdatable
     void OnTriggerStay2D(Collider2D col)
     {
         if(col.transform.tag != "Work") return;
+        if(itemIndex.Value != -1 && itemReady.Value == false) 
+        {
+            ItemsUI.gameObject.SetActive(false);
+            return;
+        }
+        currentPlayer = col.transform;
         //dont let other players to interact now
         // if (col.transform == currentPlayer) 
         // {
             //check if item chosen
-            Debug.Log(col.name);
-            Debug.Log(col.transform.parent.name);
-            var taskID = col.transform.parent.GetComponent<PlayerHandler>().taskID;
-            if (taskID != -1)
-            {
-                itemTime = allItems.Find(x => x.ID == taskID).printingTime;
-                itemReady.Value = false;
-                itemIndex.Value = taskID;
-                col.transform.parent.GetComponent<PlayerHandler>().taskID = -1;
-                Debug.Log("Taskindex: " + itemIndex);
-            }
-            
-            //if item chosen, let pick up
-            if(itemReady.Value)
-            {
-                currentPlayer.GetComponentInParent<InventoryManager>().AddItem(itemIndex.Value);
-                itemReady.Value = false;
-                itemIndex.Value = -1;
-            }
+        var taskID = col.transform.parent.GetComponent<PlayerHandler>().taskID;
+        if (taskID != -1)
+        {
+            itemTime = allItems.Find(x => x.ID == taskID).printingTime;
+            itemReady.Value = false;
+            itemIndex.Value = taskID;
+            col.transform.parent.GetComponent<PlayerHandler>().taskID = -1;
+            Debug.Log("ITEMindex: " + itemIndex);
+        }
+        
+        //if item chosen, let pick up
+        if(itemReady.Value)
+        {
+            Debug.Log("ill give you");
+            col.transform.GetComponentInParent<InventoryManager>().AddItem(itemIndex.Value);
+            itemReady.Value = false;
+            itemIndex.Value = -1;
+        }
         // }
+    }
+
+    public void OnTriggerExit2D()
+    {
+        var player = currentPlayer.parent.GetComponent<ElympicsBehaviour>();
+        if(Elympics.Player != player.PredictableFor) return;
+        ItemsUI.gameObject.SetActive(false);
     }
 
     private void LoadItemUI()

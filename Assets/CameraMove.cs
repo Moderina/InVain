@@ -11,7 +11,7 @@ public class CameraMove : ElympicsMonoBehaviour
 
     private Vector3 velocity = Vector3.zero;
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         if(Elympics.IsServer) return;
         var players = GameObject.FindGameObjectsWithTag("Player");
@@ -32,12 +32,10 @@ public class CameraMove : ElympicsMonoBehaviour
         transform.position = Vector3.SmoothDamp(transform.position, movePosition, ref velocity, dumping);
     }
 
-    // public void ElympicsUpdate()
-    // {
-    //     Debug.Log("camera");
-    //     if(Elympics.IsServer && target == null) return;
-    //     Vector3 movePosition = target.position + offset;
-    //     transform.position = Vector3.SmoothDamp(transform.position, movePosition, ref velocity, dumping);
-
-    // }
+    public void UpdateTransform()
+    {
+        if(target == null) return;
+        Vector3 movePosition = target.position + offset;
+        transform.position = Vector3.SmoothDamp(transform.position, movePosition, ref velocity, dumping);
+    }
 }

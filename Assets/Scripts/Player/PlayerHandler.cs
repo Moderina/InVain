@@ -30,6 +30,7 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable
 	}
 
 	public void ElympicsUpdate() {
+		Debug.Log("where am i");
 		InputStruct currentInput;
 		currentInput.direction = 0;
 		currentInput.jump = 0;

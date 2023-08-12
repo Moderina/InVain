@@ -20,6 +20,7 @@ public class Drawer : ElympicsMonoBehaviour, IObservable
 
     void Start()
     {
+        //put random ammount of items in the drawer
         foreach (ItemData itemData in drawerItems)
         {
             int num = UnityEngine.Random.Range(0,5);
@@ -38,6 +39,7 @@ public class Drawer : ElympicsMonoBehaviour, IObservable
             //turn on UI only for interacting player
             var player = currentPlayer.parent.GetComponent<ElympicsBehaviour>();
             if(Elympics.Player != player.PredictableFor) return;
+            //load updated UI with currently avaiable items
             LoadItemUI();
             ItemsUI.gameObject.SetActive(true);
         }
@@ -50,18 +52,13 @@ public class Drawer : ElympicsMonoBehaviour, IObservable
         if (col.transform == currentPlayer) 
         {
             //check if item chosen
+            //same variable is used to store taskID and itemID in player's script
             var taskID = currentPlayer.parent.GetComponent<PlayerHandler>().taskID;
             if (taskID != -1)
             {
                 itemIndex.Value = taskID;
                 currentPlayer.parent.GetComponent<PlayerHandler>().taskID = -1;
                 Debug.Log("Taskindex: " + itemIndex);
-            }
-            
-            //if item chosen, let pick up
-            if(itemIndex.Value != -1)
-            {
-                //currentPlayer.Find("Canvas").gameObject.SetActive(true);
                 currentPlayer.GetComponentInParent<InventoryManager>().AddItem(itemIndex.Value);
                 avaiableItems[itemIndex.Value].Value = avaiableItems[itemIndex.Value].Value -1;
                 itemIndex.Value = -1;
@@ -71,7 +68,6 @@ public class Drawer : ElympicsMonoBehaviour, IObservable
 
     void OnTriggerExit2D(Collider2D col)
     {
-        // if (col.transform.tag == "Work") {
         if (currentPlayer != null && col.transform == currentPlayer) 
         {
             currentPlayer = null;
