@@ -34,6 +34,8 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable
 		currentInput.direction = 0;
 		currentInput.jump = 0;
 		currentInput.work = false;
+		currentInput.abilityKey = false;
+		currentInput.ability = -1;
 		currentInput.shoot = false;
 		wantsToFinish = false;
 		currentInput.mousePos = transform.position + transform.right;
@@ -44,6 +46,8 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable
             inputReader.Read(out currentInput.jump);
             inputReader.Read(out taskID);
 			inputReader.Read(out currentInput.work);
+			inputReader.Read(out currentInput.abilityKey);
+			inputReader.Read(out currentInput.ability);
 			inputReader.Read(out currentInput.shoot);
 			inputReader.Read(out wantsToFinish);
 			inputReader.Read(out float x);
@@ -56,6 +60,7 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable
 		jump.OnJumpInput(currentInput.jump);
 		actions.UpdateActions(currentInput.work);
 		actions.UpdateShoot(currentInput.shoot, currentInput.mousePos);
+		actions.UpdateAbility(currentInput.abilityKey, currentInput.ability);
 	}
 
 	public void OnInputForClient(IInputWriter inputSerializer) {
@@ -64,6 +69,8 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable
 		inputSerializer.Write(currentInputs.jump);
         inputSerializer.Write(currentInputs.taskID);
 		inputSerializer.Write(currentInputs.work);
+		inputSerializer.Write(currentInputs.abilityKey);
+		inputSerializer.Write(currentInputs.ability);
 		inputSerializer.Write(currentInputs.shoot);
 		inputSerializer.Write(currentInputs.wantsToFinish);
 		inputSerializer.Write(currentInputs.mousePos.x);

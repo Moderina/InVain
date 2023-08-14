@@ -6,6 +6,12 @@ public class Actions : MonoBehaviour
 {
     [SerializeField] private bool isWorking = false;
     [SerializeField] private Transform sprite;
+    public bool abilityKey;
+    public int ability;
+
+    public delegate void AbilityEventDelegate();
+
+    public event AbilityEventDelegate OnAbilityTriggered;
 
     public void UpdateActions(bool work) 
     {
@@ -24,5 +30,12 @@ public class Actions : MonoBehaviour
             Debug.Log("inside");
             sprite.GetChild(2).GetComponent<Pistol>().Shoot(mouse);
         }
+    }
+
+    public void UpdateAbility(bool abilityKey, int ability)
+    {
+        this.ability = ability;
+        this.abilityKey = abilityKey;
+        if (abilityKey) OnAbilityTriggered?.Invoke();
     }
 }

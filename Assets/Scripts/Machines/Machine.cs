@@ -18,6 +18,7 @@ public class Machine : ElympicsMonoBehaviour, IObservable
     public List<SabotageData> machineSabotage = new List<SabotageData>();
     private MachineData machineData;
     public ElympicsBool isBroken = new ElympicsBool(false);
+    public ElympicsBool prankBroken = new ElympicsBool(false);
 
     private ElympicsInt taskIndex = new ElympicsInt(-1);
     private ElympicsFloat progress = new ElympicsFloat(0);
@@ -30,6 +31,8 @@ public class Machine : ElympicsMonoBehaviour, IObservable
         SetMachineData();
         LoadTaskUI();
         TasksUI.gameObject.SetActive(false);
+        if(Elympics.IsServer)
+        prankBroken.ValueChanged += PrankSet;
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -56,6 +59,14 @@ public class Machine : ElympicsMonoBehaviour, IObservable
     void OnTriggerStay2D(Collider2D col)
     {
         //dont let other players to interact now
+        if (isBroken.Value) 
+        {
+            slider.gameObject.SetActive(false);
+            TasksUI.gameObject.SetActive(true);
+            TasksPanel.SetActive(false);
+            Broken.SetActive(true);
+            return;
+        }
         if (col.transform == currentPlayer) 
         {
             //check if task chosen
@@ -64,22 +75,29 @@ public class Machine : ElympicsMonoBehaviour, IObservable
             {
                 taskIndex.Value = taskID;
                 currentPlayer.parent.GetComponent<PlayerHandler>().taskID = -1;
+                //if prank is set abort task execution and set restart timer
+                if(prankBroken.Value)
+                {
+                    prankBroken.Value = false;
+                    isBroken.Value = true;
+                    return;
+                }
+                //if task is sabotaging
                 if (taskID < 100)
                 {
                     slider.maxValue = machineTasks.Find(x => x.ID == taskIndex.Value).TaskTime;
                     Debug.Log("Taskindex: " + taskIndex.Value);
                 }
+                //if normal task
                 else
                 {
                     slider.maxValue = machineSabotage.Find(x => x.ID == taskIndex.Value).TaskTime;
                     Debug.Log("Taskindex: " + taskIndex.Value);
                 }
             }
-            
             //if task chosen, let work
             if(taskIndex.Value != -1 && HasItems())
             {
-                //currentPlayer.Find("Canvas").gameObject.SetActive(true);
                 slider.gameObject.SetActive(true);
                 if(col.transform.parent.GetComponent<Actions>().IsWorking()) 
                 {
@@ -98,10 +116,9 @@ public class Machine : ElympicsMonoBehaviour, IObservable
                     RemoveItems();
                     if (taskIndex.Value > 99 && Elympics.IsServer)
                     {
-                        Debug.Log("sabotaging");
                         isBroken.Value = true;
                         machineData.timeDown.Value -= machineSabotage.Find(x => x.ID == taskIndex.Value).TaskTime;
-                        StartCoroutine(TimeDown());
+                        StartCoroutine("TimeDown");
                     }
                     taskIndex.Value = -1;
                 }
@@ -131,7 +148,19 @@ public class Machine : ElympicsMonoBehaviour, IObservable
             slider.gameObject.SetActive(false);
             Broken.SetActive(false);
             TasksUI.gameObject.SetActive(false);
-            Debug.Log("leftAREA");
+        }
+    }
+
+    private void PrankSet(bool oldv, bool newv)
+    {
+        if (newv)
+        {
+            StopCoroutine("TimeDown");
+            isBroken.Value = false;
+        }
+        else
+        {
+            StartCoroutine("TimeDown");
         }
     }
 
@@ -233,7 +262,6 @@ public class Machine : ElympicsMonoBehaviour, IObservable
     public void TaskClicked(int index)
     {
         currentPlayer.parent.GetComponent<Inputs>().inputStruct.taskID = index;
-        Debug.Log("kitchen:" + index);
         //taskIndex.Value = index;
         //slider.maxValue = machineTasks[index].TaskTime;
         TasksUI.gameObject.SetActive(false);
