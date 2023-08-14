@@ -33,7 +33,7 @@ public class GothMovement : ElympicsMonoBehaviour
         var direction = (mousePos - headpos).normalized;
         if (faceDir > 0) {
             var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            head.eulerAngles = new Vector3(0, 0, angle + 90);
+            head.eulerAngles = new Vector3(0, 0, angle);
             if (angle > 90 || angle < -90)
             {
                 faceDir = -faceDir;
@@ -41,7 +41,7 @@ public class GothMovement : ElympicsMonoBehaviour
             }
         } else {
             var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 180;
-            head.eulerAngles = new Vector3(0, 0, angle - 90);
+            head.eulerAngles = new Vector3(0, 0, angle);
             if (angle < -90 && angle > -270) {
                 faceDir = -faceDir;
                 sprite.transform.localScale = new Vector3(1, 1, 1);

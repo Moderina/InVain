@@ -7,6 +7,7 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable
 	[SerializeField] private GothMovement movement;
 	[SerializeField] private Jump jump;
 	[SerializeField] private Actions actions;
+	[SerializeField] private AnimationStateController animationSC;
 
 	//TODO: przeniesc taskID i wantsToFinish do Actions.cs
     public int taskID = -1;

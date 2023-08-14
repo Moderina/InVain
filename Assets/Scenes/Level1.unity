@@ -682,6 +682,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 018870b4050381242a23862ddb937555, type: 2}
   isBroken:
     currentValue: 0
+  prankBroken:
+    currentValue: 0
 --- !u!114 &72831731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15022,6 +15024,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 75d5d65cb5e5bf94ab336cd363c93bf4, type: 2}
   machineSabotage: []
   isBroken:
+    currentValue: 0
+  prankBroken:
     currentValue: 0
 --- !u!4 &6880625712317088278
 Transform:
