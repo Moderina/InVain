@@ -8,13 +8,14 @@ using UnityEngine.UI;
 public class ItemPrinter : ElympicsMonoBehaviour, IUpdatable
 {
     [SerializeField] private Canvas ItemsUI;
+    [SerializeField] private TextMeshProUGUI timer;
     [SerializeField] private GameObject ItemsPanel;
     [SerializeField] private GameObject _ItemPrefab;
 
     public List<ItemData> allItems = new List<ItemData>();
 
     private ElympicsInt itemIndex = new ElympicsInt(-1);
-    private float itemTime = 0f;
+    private ElympicsFloat itemTime = new ElympicsFloat(0f);
     private ElympicsBool itemReady = new ElympicsBool(false);
 
     private Transform currentPlayer;
@@ -28,18 +29,35 @@ public class ItemPrinter : ElympicsMonoBehaviour, IUpdatable
     {
         if (itemIndex.Value != -1)
         {
-            if (itemTime < 0)
+            if (itemTime.Value < 0)
             {
-                Debug.Log("item ready!");
                 itemReady.Value = true;
+                timer.transform.parent.gameObject.SetActive(false);
             }
             else
             {
-                itemTime -= Elympics.TickDuration;
-                Debug.Log(itemTime);
+                itemTime.Value -= Elympics.TickDuration;
             }
         }
     }
+
+    //UI updated hre cu doenst work in ElympicsUpdate for clients
+    public void Update()
+    {
+        if (Elympics.IsServer) return;
+        if (itemIndex.Value != -1)
+        {
+            if (itemTime.Value < 0)
+            {
+                timer.transform.parent.gameObject.SetActive(false);
+            }
+            else
+            {
+                timer.text = ((int)itemTime.Value).ToString();
+            }
+        }
+    }
+
 
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -61,17 +79,15 @@ public class ItemPrinter : ElympicsMonoBehaviour, IUpdatable
         if(itemIndex.Value != -1 && itemReady.Value == false) 
         {
             ItemsUI.gameObject.SetActive(false);
+            timer.transform.parent.gameObject.SetActive(true);
             return;
         }
         currentPlayer = col.transform;
-        //dont let other players to interact now
-        // if (col.transform == currentPlayer) 
-        // {
-            //check if item chosen
+        //check if item chosen
         var taskID = col.transform.parent.GetComponent<PlayerHandler>().taskID;
         if (taskID != -1)
         {
-            itemTime = allItems.Find(x => x.ID == taskID).printingTime;
+            itemTime.Value = allItems.Find(x => x.ID == taskID).printingTime;
             itemReady.Value = false;
             itemIndex.Value = taskID;
             col.transform.parent.GetComponent<PlayerHandler>().taskID = -1;
@@ -86,7 +102,6 @@ public class ItemPrinter : ElympicsMonoBehaviour, IUpdatable
             itemReady.Value = false;
             itemIndex.Value = -1;
         }
-        // }
     }
 
     public void OnTriggerExit2D(Collider2D col)
@@ -116,8 +131,6 @@ public class ItemPrinter : ElympicsMonoBehaviour, IUpdatable
         public void ItemClicked(int index)
     {
         currentPlayer.parent.GetComponent<Inputs>().inputStruct.taskID = index;
-        //taskIndex.Value = index;
-        //slider.maxValue = machineTasks[index].TaskTime;
         ItemsUI.gameObject.SetActive(false);
     }
 }

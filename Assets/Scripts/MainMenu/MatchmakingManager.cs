@@ -38,7 +38,6 @@ public class MatchmakingManager : MonoBehaviour
             string queueName = GetQueueName();
             infoText.gameObject.SetActive(true);
             ElympicsLobbyClient.Instance.PlayOnlineInRegion(null, null, null, queueName);
-            joinBtn.interactable = false;
             Debug.Log("im back");
         }
     }
@@ -55,7 +54,6 @@ public class MatchmakingManager : MonoBehaviour
                 infoText.gameObject.SetActive(true);
                 ElympicsLobbyClient.Instance.PlayOnlineInRegion(null, null, null, $"{queueName}:{code}");
                 Debug.Log($"{queueName}:{code}");
-                joinBtn2.interactable = false;
                 Debug.Log("im back");
             }
         }
@@ -88,6 +86,8 @@ public class MatchmakingManager : MonoBehaviour
     private void DisplayMatchmakingStarted()
     {
         infoText.text = "Looking for match";
+        joinBtn2.interactable = false;
+        joinBtn.interactable = false;
     }
 
     
@@ -99,6 +99,8 @@ public class MatchmakingManager : MonoBehaviour
     private void DisplayMatchmakingError()
     {
         infoText.text = "Couldnt join any match";
+        joinBtn2.interactable = true;
+        joinBtn.interactable = true;
     }
 
     public void DropdownChanged(int num)

@@ -12,6 +12,7 @@ public class GunPickUp : MonoBehaviour
         Debug.Log(col.name);
         if (col.tag == "Player") 
         {
+            if (col.transform.GetChild(0).childCount > 3) return;
             this.transform.parent.SetParent(col.transform.GetChild(0));
             if (col.transform.GetChild(0).localScale.x == -1)
             {
@@ -25,14 +26,20 @@ public class GunPickUp : MonoBehaviour
         }
         else if (col.tag == "Work")
         {
+            if (col.transform.parent.GetChild(0).childCount > 3) return;
             this.transform.parent.SetParent(col.transform.parent.GetChild(0));
-            Debug.Log(col.transform.parent.GetChild(0).position.x);
             if (col.transform.parent.GetChild(0).localScale.x == -1)
             {
                 Vector3 newScale = transform.parent.localScale;
                 newScale.x *= -1;
                 transform.parent.localScale = newScale;
                 newScale = transform.parent.localPosition;
+                newScale.x = 1;
+                transform.parent.localPosition = newScale;
+            }
+            else 
+            {
+                Vector3 newScale = transform.parent.localPosition;
                 newScale.x = 1;
                 transform.parent.localPosition = newScale;
             }

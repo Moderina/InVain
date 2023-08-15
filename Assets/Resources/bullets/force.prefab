@@ -149,6 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 2465904784890152071}
+  time: 10
+  power: 5
 --- !u!114 &3635474292974944241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 28
+  networkId: 20
   predictableFor:
     playerIndex: -2
   isUpdatableForNonOwners: 0

@@ -58,15 +58,6 @@ public class Machine : ElympicsMonoBehaviour, IObservable
 
     void OnTriggerStay2D(Collider2D col)
     {
-        //dont let other players to interact now
-        if (isBroken.Value) 
-        {
-            slider.gameObject.SetActive(false);
-            TasksUI.gameObject.SetActive(true);
-            TasksPanel.SetActive(false);
-            Broken.SetActive(true);
-            return;
-        }
         if (col.transform == currentPlayer) 
         {
             //check if task chosen
@@ -80,6 +71,8 @@ public class Machine : ElympicsMonoBehaviour, IObservable
                 {
                     prankBroken.Value = false;
                     isBroken.Value = true;
+                    OnTriggerExit2D(col);
+                    OnTriggerEnter2D(col);
                     return;
                 }
                 //if task is sabotaging
@@ -98,7 +91,8 @@ public class Machine : ElympicsMonoBehaviour, IObservable
             //if task chosen, let work
             if(taskIndex.Value != -1 && HasItems())
             {
-                if (Elympics.Player == PredictableFor)
+                var player = currentPlayer.parent.GetComponent<ElympicsBehaviour>();
+                if(Elympics.Player == player.PredictableFor)
                     slider.gameObject.SetActive(true);
                 if(col.transform.parent.GetComponent<Actions>().IsWorking()) 
                 {

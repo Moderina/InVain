@@ -27,7 +27,6 @@ public class GameEffects : MonoBehaviour
                 PreMatch();
                 break;
             case 1:
-            Debug.Log("gejm");
                 break;
         }
     }

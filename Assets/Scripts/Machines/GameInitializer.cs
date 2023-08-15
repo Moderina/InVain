@@ -67,7 +67,7 @@ public class GameInitializer : ElympicsMonoBehaviour, IUpdatable, IInitializable
 						var trans = player.transform;
 						player.GetComponent<ElympicsBehaviour>().enabled = false;
 						player.SetActive(false);
-						GameObject gamePlayer = ElympicsInstantiate("Scientist_LuckyPockets", ElympicsPlayer.FromIndex((int)ID));
+						GameObject gamePlayer = ElympicsInstantiate("Scientist_PartyBreaker", ElympicsPlayer.FromIndex((int)ID));
 						gamePlayer.SetActive(true);
 						gamePlayer.transform.position = trans.position;
 					}
