@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 2465904784890152071}
   time: 10
-  power: 5
+  power: 15
 --- !u!114 &3635474292974944241
 MonoBehaviour:
   m_ObjectHideFlags: 0

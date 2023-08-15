@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6880625711502455870}
   - component: {fileID: 6880625711502455871}
   m_Layer: 7
-  m_Name: Mixer
+  m_Name: oldMixer
   m_TagString: Machine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,13 +76,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TasksUI: {fileID: 6880625711725209258}
   TasksPanel: {fileID: 6880625712878466716}
+  Broken: {fileID: 0}
   _TaskPrefab: {fileID: 2205772343798246295, guid: 822f3ac5ab965024d88f81e0f6ee6a94, type: 3}
   machineTasks:
   - {fileID: 11400000, guid: 9ea91e8d96d4f004a9b48b75c96a100b, type: 2}
   - {fileID: 11400000, guid: 75d5d65cb5e5bf94ab336cd363c93bf4, type: 2}
   - {fileID: 11400000, guid: 3ec90319989572844ad6f5dddfaadb5b, type: 2}
   - {fileID: 11400000, guid: 58895d27900153348bff404746435152, type: 2}
-  progress:
+  machineSabotage: []
+  isBroken:
+    currentValue: 0
+  prankBroken:
     currentValue: 0
 --- !u!114 &6880625711502455871
 MonoBehaviour:
@@ -97,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 10
+  networkId: 33
   predictableFor:
     playerIndex: -2
   isUpdatableForNonOwners: 0

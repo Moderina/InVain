@@ -116,6 +116,7 @@ public class Machine : ElympicsMonoBehaviour, IObservable
                         StartCoroutine("TimeDown");
                     }
                     taskIndex.Value = -1;
+                    return;
                 }
             }
             else 

@@ -23,6 +23,8 @@ public class GameManager : ElympicsMonoBehaviour, IInitializable
     public void ChangeGameState(GameState newGameState)
 	{
 		CurrentGameState.Value = (int)newGameState;
+        GetComponent<GameFinisher>().allPlayers = FindObjectsOfType<TaskManager>();
+        Debug.Log("NUMBER PLAYUERS: " + GetComponent<GameFinisher>().allPlayers.Length);
 	}
 
     public void Update()
