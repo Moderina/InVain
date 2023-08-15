@@ -94,7 +94,7 @@ public class ItemPrinter : ElympicsMonoBehaviour, IUpdatable
             Debug.Log("ITEMindex: " + itemIndex);
         }
         
-        //if item chosen, let pick up
+        //if item ready, let pick up
         if(itemReady.Value)
         {
             Debug.Log("ill give you");

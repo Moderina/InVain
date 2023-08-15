@@ -28,7 +28,15 @@ public class GameEffects : MonoBehaviour
                 break;
             case 1:
                 break;
+            case 2:
+                End();
+                break;
         }
+    }
+
+    private void End()
+    {
+        GameObject.Find("QuitMenu").SetActive(true);
     }
 
     private void PreMatch()

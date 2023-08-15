@@ -74,7 +74,9 @@ public class GameFinisher : ElympicsMonoBehaviour
                 // }
             }
             if(!Elympics.IsServer) return;
+            GetComponent<GameManager>().ChangeGameState(GameState.MatchEnded);
             StartCoroutine(GetComponent<GameManager>().WaitToEnd());
+            // Elympics.EndGame();
             this.gameObject.SetActive(false);
         }
     }

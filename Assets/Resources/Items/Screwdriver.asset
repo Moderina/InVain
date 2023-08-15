@@ -15,4 +15,4 @@ MonoBehaviour:
   ID: 0
   Name: Screwdriver
   sprite: {fileID: 21300000, guid: 9823957f5ceb2bd46a6e0e3f994afd3c, type: 3}
-  printingTime: 2
+  printingTime: 3

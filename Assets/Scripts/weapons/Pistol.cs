@@ -21,7 +21,7 @@ public class Pistol : ElympicsMonoBehaviour, IUpdatable
             var bullet = ElympicsInstantiate("bullets/force", ElympicsPlayer.World);
             bullet.transform.position = bulletPoint.position;
             bullet.GetComponent<Rigidbody2D>().AddForce(force * 5, ForceMode2D.Impulse);
-            time = reloadTime;
+            time = bullet.GetComponent<Bullet>().cooldown;
         }
         lastInput = newInput;
 

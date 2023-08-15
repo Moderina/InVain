@@ -7,6 +7,7 @@ public class Bullet : ElympicsMonoBehaviour, IUpdatable
 {
     public Rigidbody2D rb;
     public float time = 10f;
+    public float cooldown = 1f;
     public int power = 2;
 
     public void ElympicsUpdate()
