@@ -6,8 +6,9 @@ using System;
 
 public class GameInitializer : ElympicsMonoBehaviour, IUpdatable, IInitializable
 {
+	[SerializeField] private GameEffects gameEffects;
 	[SerializeField] private float timeToStartMatch = 5.0f;
-	public ElympicsFloat CurrentTimeToStartMatch { get; } = new ElympicsFloat(0.0f);
+	public ElympicsFloat CurrentTimeToStartMatch { get; } = new ElympicsFloat(100.0f);
 
 	private ElympicsBool gameInitializationEnabled = new(false);
 
@@ -21,10 +22,6 @@ public class GameInitializer : ElympicsMonoBehaviour, IUpdatable, IInitializable
 		// if(!Elympics.IsServer) return;
 
 		var players = GameObject.FindGameObjectsWithTag("LobbyPlayer");
-		foreach(GameObject player in players)
-		{
-			Debug.Log((int)Elympics.Player);
-		}
 		if((int)Elympics.Player == 0)
 		{
 			GameObject.Find("MainUI").transform.Find("StartGame").gameObject.SetActive(true);
@@ -74,6 +71,7 @@ public class GameInitializer : ElympicsMonoBehaviour, IUpdatable, IInitializable
 						gamePlayer.SetActive(true);
 						gamePlayer.transform.position = trans.position;
 					}
+					GetComponent<GameManager>().ChangeGameState(GameState.GameplayMatchRunning);
 				}
 				else
 				{

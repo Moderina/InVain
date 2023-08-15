@@ -98,7 +98,8 @@ public class Machine : ElympicsMonoBehaviour, IObservable
             //if task chosen, let work
             if(taskIndex.Value != -1 && HasItems())
             {
-                slider.gameObject.SetActive(true);
+                if (Elympics.Player == PredictableFor)
+                    slider.gameObject.SetActive(true);
                 if(col.transform.parent.GetComponent<Actions>().IsWorking()) 
                 {
                     progress.Value += Time.deltaTime;

@@ -73,9 +73,10 @@ public class GameFinisher : ElympicsMonoBehaviour
                     Debug.Log("cant take much more");
                 // }
             }
-            if(!Elympics.IsServer) return;
-            GetComponent<GameManager>().WaitToEnd();
             this.gameObject.SetActive(false);
+            if(!Elympics.IsServer) return;
+            StartCoroutine(GetComponent<GameManager>().WaitToEnd());
+            
         }
     }
 }
