@@ -25,10 +25,9 @@ public class Actions : MonoBehaviour
 
     public void UpdateShoot(bool shoot, Vector3 mouse)
     {
-        if (shoot && sprite.childCount == 3 && sprite.GetChild(2).tag == "Weapon")
+        if (sprite.childCount == 4 && sprite.GetChild(3).tag == "Weapon")
         {
-            Debug.Log("inside");
-            sprite.GetChild(2).GetComponent<Pistol>().Shoot(mouse);
+            sprite.GetChild(3).GetComponent<Pistol>().Shoot(mouse, shoot);
         }
     }
 

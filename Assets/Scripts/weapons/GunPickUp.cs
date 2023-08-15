@@ -19,7 +19,7 @@ public class GunPickUp : MonoBehaviour
                 newScale.x *= -1;
                 transform.parent.localScale = newScale;
                 newScale = transform.parent.localPosition;
-                newScale.x *= -1;
+                newScale.x = -1;
                 transform.parent.localPosition = newScale;
             }
         }
@@ -33,7 +33,7 @@ public class GunPickUp : MonoBehaviour
                 newScale.x *= -1;
                 transform.parent.localScale = newScale;
                 newScale = transform.parent.localPosition;
-                newScale.x *= -1;
+                newScale.x = 1;
                 transform.parent.localPosition = newScale;
             }
         }

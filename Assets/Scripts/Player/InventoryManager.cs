@@ -83,4 +83,9 @@ public class InventoryManager : ElympicsMonoBehaviour, IObservable
             }
         }
     }
+
+    public int GetItemsCount()
+    {
+        return allItems.Count;
+    }
 }

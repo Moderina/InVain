@@ -5,7 +5,7 @@ public class GothMovement : ElympicsMonoBehaviour
 {
     public float accel = 50f;
     public float friction = 10f;
-    public float maxVel = 5f;
+    public float maxVel = 8f;
     [SerializeField] private Rigidbody2D rb;
 
     [SerializeField] private GameObject sprite;
