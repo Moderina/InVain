@@ -16,7 +16,7 @@ public class GothMovement : ElympicsMonoBehaviour
 
     public void Movement(int direction, int jump, Vector3 mousePos) {
         rb.AddForce(new Vector2(direction * accel, 0));
-        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxVel, maxVel), rb.velocity.y);
+        // rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxVel, maxVel), rb.velocity.y);
         rb.AddForce(new Vector2(-rb.velocity.x * friction, 0));
         Camera.main.GetComponent<CameraMove>().UpdateTransform();
 
