@@ -17,10 +17,10 @@ public class Pistol : ElympicsMonoBehaviour, IUpdatable
         if (!Elympics.IsServer || time > 0) return;
         if (newInput && !lastInput)
         {
-            Vector2 force = new Vector2(mouse.x - bulletPoint.position.x, mouse.y - bulletPoint.position.y);
+            Vector2 force = new Vector2(mouse.x - bulletPoint.position.x, mouse.y - bulletPoint.position.y).normalized;
             var bullet = ElympicsInstantiate("bullets/force", ElympicsPlayer.World);
             bullet.transform.position = bulletPoint.position;
-            bullet.GetComponent<Rigidbody2D>().AddForce(force * 5, ForceMode2D.Impulse);
+            bullet.GetComponent<Rigidbody2D>().AddForce(force * speed, ForceMode2D.Impulse);
             time = bullet.GetComponent<Bullet>().cooldown;
         }
         lastInput = newInput;

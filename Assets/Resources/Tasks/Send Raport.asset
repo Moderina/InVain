@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 17
   Description: Send Raport
-  TaskTime: 5
+  width: 1
+  ammount: 2
   requirements: []

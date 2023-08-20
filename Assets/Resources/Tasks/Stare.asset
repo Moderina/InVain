@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 0
   Description: Stare
-  TaskTime: 2
-  Completed: 0
+  width: 0.4
+  ammount: 2
+  requirements: []

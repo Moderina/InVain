@@ -15,4 +15,5 @@ MonoBehaviour:
   ID: 16
   Description: Disinfect Vehicle
   TaskTime: 10
-  requirements: []
+  requirements:
+  - {fileID: 11400000, guid: daedaa76ec8380645829f299be61e80e, type: 2}

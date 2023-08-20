@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 6
   Description: Harvest Fruits
-  TaskTime: 5
+  width: 1
+  ammount: 2
   requirements: []

@@ -76,6 +76,7 @@ public class Jump : ElympicsMonoBehaviour
         }
         else if (playerRigidBody.velocity.y < 0)
         {
+            Debug.Log("falling");
             //Faster falling
             gravityMultiplier = fallingMultiplier;
         }
@@ -116,6 +117,8 @@ public class Jump : ElympicsMonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D col) 
     {
+        List<ContactPoint2D> contacts = new List<ContactPoint2D>();
+        if (playerCollider.GetContacts(contacts) == 0) return;
         if (col.gameObject.CompareTag("Ground")) 
         {
 			jumping = false; 

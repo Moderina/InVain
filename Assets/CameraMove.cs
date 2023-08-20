@@ -25,7 +25,7 @@ public class CameraMove : ElympicsMonoBehaviour
         }
     }
 
-    void Update()
+    void LateUpdate()
     {
         if(Elympics.IsServer) return;
         Vector3 movePosition = target.position + offset;

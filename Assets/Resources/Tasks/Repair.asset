@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 3
   Description: Repair
-  TaskTime: 4
+  width: 1
+  ammount: 2
   requirements:
   - {fileID: 11400000, guid: c57a444f217c3fd46bcb2f4e3aba4b48, type: 2}

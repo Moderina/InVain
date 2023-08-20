@@ -91,7 +91,7 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
         TaskData copy = ScriptableObject.CreateInstance<TaskData>();
         copy.ID = original.ID;
         copy.Description = original.Description;
-        copy.TaskTime = original.TaskTime;
+        // copy.TaskTime = original.TaskTime;
         return copy;
     }
 

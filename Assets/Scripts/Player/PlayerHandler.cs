@@ -56,7 +56,7 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable
 			inputReader.Read(out float z);
 			currentInput.mousePos = new Vector3(x,y,z);
 		}
-
+		if (currentInput.work) Debug.Log("lov eme");
 		movement.Movement(currentInput.direction, currentInput.jump, currentInput.mousePos);
 		jump.OnJumpInput(currentInput.jump);
 		actions.UpdateActions(currentInput.work);

@@ -24,7 +24,7 @@ public class Inputs : MonoBehaviour
         inputStruct.mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         inputStruct.direction = (int)Input.GetAxisRaw("Horizontal");
         if (Input.GetButtonDown("Jump")) inputStruct.jump=1;
-        inputStruct.work = Input.GetKey(KeyCode.E);
+        if(Input.GetKeyDown(KeyCode.E)) inputStruct.work = true;
         inputStruct.abilityKey = Input.GetKey(KeyCode.F);
         // inputStruct.shoot = Input.GetMouseButton(0);
         inputStruct.shoot = Input.GetButton("Fire1");

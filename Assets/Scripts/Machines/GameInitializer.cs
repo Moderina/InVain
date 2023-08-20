@@ -18,7 +18,6 @@ public class GameInitializer : ElympicsMonoBehaviour, IUpdatable, IInitializable
 
     public void Initialize()
 	{
-		Debug.Log("nose bleed");
 		// if(!Elympics.IsServer) return;
 
 		var players = GameObject.FindGameObjectsWithTag("LobbyPlayer");
@@ -51,19 +50,18 @@ public class GameInitializer : ElympicsMonoBehaviour, IUpdatable, IInitializable
 
 				GameObject[] players = GameObject.FindGameObjectsWithTag("LobbyPlayer");
 				players = Sort(players);
-				foreach(GameObject player in players)
-				{
-					Debug.Log(player.name + player.GetComponent<ElympicsBehaviour>().PredictableFor);
-				}
+				// foreach(GameObject player in players)
+				// {
+				// 	Debug.Log(player.name + player.GetComponent<ElympicsBehaviour>().PredictableFor);
+				// }
 				if(Elympics.IsServer)
 				{
-					Debug.Log(players.Length);
 					// foreach(GameObject player in players)
 					for(int i = 0; i < numberofPlayers.Value; i++)
 					{
 						var player = players[i];
 						var ID = player.GetComponent<ElympicsBehaviour>().PredictableFor;
-						Debug.Log(i + ": PredictableFor " + ID);
+						// Debug.Log(i + ": PredictableFor " + ID);
 						var trans = player.transform;
 						player.GetComponent<ElympicsBehaviour>().enabled = false;
 						player.SetActive(false);
@@ -80,18 +78,7 @@ public class GameInitializer : ElympicsMonoBehaviour, IUpdatable, IInitializable
 					{
 						var player = players[i];
 						player.SetActive(false);
-						// if(Elympics.Player == player.GetComponent<ElympicsBehaviour>().PredictableFor)
-						// {
-						// 	try{
-						// 		player.GetComponent<LobbyPlayer>().enabled = false;
-						// 	}
-						// 	catch{Debug.Log(player.name);}
-						// 	//Destroy(player.GetComponent<LobbyPlayer>());
-						// 	player.AddComponent<PlayerHandler>();
-						// }
 					}
-
-					// Camera.main.GetComponent<CameraMove>().enabled = true;
 				}
 
 

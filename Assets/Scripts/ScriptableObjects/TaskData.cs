@@ -8,7 +8,8 @@ public class TaskData : ScriptableObject
     // private static int nextID = 0;
     public int ID; //{get; private set;}
     public string Description;
-    public int TaskTime;
+    public float width;
+    public int ammount;
 
     public List<ItemData> requirements = new List<ItemData>();
     // private void OnEnable() 

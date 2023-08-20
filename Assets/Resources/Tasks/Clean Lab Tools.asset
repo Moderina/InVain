@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 9
   Description: Clean Lab Tools
-  TaskTime: 10
+  width: 1
+  ammount: 2
   requirements: []

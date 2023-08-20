@@ -62,7 +62,7 @@ public class GameFinisher : ElympicsMonoBehaviour
 
     private void Win()
     {
-        if (numberOfWinners.Value == allPlayers.Length-1) 
+        if (numberOfWinners.Value == allPlayers.Length-1 || numberOfWinners.Value == allPlayers.Length) 
         {
             //currentPlayer.GetComponentInParent<PlayerHandler>().enabled = false;
             foreach(TaskManager player in allPlayers)
@@ -77,7 +77,8 @@ public class GameFinisher : ElympicsMonoBehaviour
             GetComponent<GameManager>().ChangeGameState(GameState.MatchEnded);
             StartCoroutine(GetComponent<GameManager>().WaitToEnd());
             // Elympics.EndGame();
-            this.gameObject.SetActive(false);
+            // this.gameObject.SetActive(false);
+            GetComponent<GameFinisher>().enabled = false;
         }
     }
 }

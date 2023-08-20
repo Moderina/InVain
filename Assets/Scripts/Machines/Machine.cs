@@ -9,8 +9,9 @@ using Unity.VisualScripting;
 
 public class Machine : ElympicsMonoBehaviour, IObservable
 {
-    [SerializeField] private Canvas TasksUI;
+    [SerializeField] private Canvas MachineUI;
     [SerializeField] private GameObject TasksPanel;
+    [SerializeField] private SliderSliding sliderSliding;
     [SerializeField] private GameObject Broken;
     [SerializeField] private GameObject _TaskPrefab;
 
@@ -21,6 +22,7 @@ public class Machine : ElympicsMonoBehaviour, IObservable
     public ElympicsBool prankBroken = new ElympicsBool(false);
 
     private ElympicsInt taskIndex = new ElympicsInt(-1);
+    private ElympicsInt ammount = new ElympicsInt(0);
     private ElympicsFloat progress = new ElympicsFloat(0);
 
     Slider slider;
@@ -29,8 +31,7 @@ public class Machine : ElympicsMonoBehaviour, IObservable
     void Start()
     {
         SetMachineData();
-        LoadTaskUI();
-        TasksUI.gameObject.SetActive(false);
+        MachineUI.gameObject.SetActive(false);
         if(Elympics.IsServer)
         prankBroken.ValueChanged += PrankSet;
     }
@@ -42,17 +43,17 @@ public class Machine : ElympicsMonoBehaviour, IObservable
             currentPlayer = col.transform;
             currentPlayer.Find("Canvas").Find("Missing").gameObject.SetActive(false);
             slider = currentPlayer.Find("Canvas").Find("Slider").GetComponent<Slider>();
-
             //turn on UI only for interacting player
             var player = currentPlayer.parent.GetComponent<ElympicsBehaviour>();
             if(Elympics.Player != player.PredictableFor) return;
-            TasksUI.gameObject.SetActive(true);
             TasksPanel.SetActive(true);
             if (isBroken.Value) 
             {
+                MachineUI.gameObject.SetActive(true);
                 Broken.SetActive(true);
                 TasksPanel.SetActive(false);
             }
+            LoadTaskUI();
         }
     }
 
@@ -78,7 +79,8 @@ public class Machine : ElympicsMonoBehaviour, IObservable
                 //if task is sabotaging
                 if (taskID < 100)
                 {
-                    slider.maxValue = machineTasks.Find(x => x.ID == taskIndex.Value).TaskTime;
+                    // slider.maxValue = machineTasks.Find(x => x.ID == taskIndex.Value).TaskTime;
+                    sliderSliding.SetTask(machineTasks.Find(x => x.ID == taskIndex.Value).width);
                     Debug.Log("Taskindex: " + taskIndex.Value);
                 }
                 //if normal task
@@ -91,24 +93,31 @@ public class Machine : ElympicsMonoBehaviour, IObservable
             //if task chosen, let work
             if(taskIndex.Value != -1 && HasItems())
             {
-                var player = currentPlayer.parent.GetComponent<ElympicsBehaviour>();
-                if(Elympics.Player == player.PredictableFor)
-                    slider.gameObject.SetActive(true);
-                if(col.transform.parent.GetComponent<Actions>().IsWorking()) 
+                // var player = currentPlayer.parent.GetComponent<ElympicsBehaviour>();
+                // if(Elympics.Player == player.PredictableFor)
+                //     slider.gameObject.SetActive(true);
+                if(currentPlayer.parent.GetComponent<Actions>().IsWorking()) 
                 {
-                    progress.Value += Time.deltaTime;
+                    // progress.Value += Time.deltaTime;
+                    if(sliderSliding.IsInside())
+                    {
+                        ammount.Value += 1;
+                        Debug.Log("We got the moves");
+                    }
                 }
-                else 
-                {
-                    progress.Value = 0;
-                }
+                // else 
+                // {
+                //     progress.Value = 0;
+                // }
                 //Debug.Log(progress);
                 slider.value = progress.Value;
-                if (progress.Value > slider.maxValue)
+                // if (progress.Value > slider.maxValue)
+                if(ammount.Value == machineTasks.Find(x => x.ID == taskIndex.Value).ammount)
                 {
                     Debug.Log("Task Completed");
                     TaskCompleted();
                     RemoveItems();
+                    MachineUI.gameObject.SetActive(false);
                     if (taskIndex.Value > 99 && Elympics.IsServer)
                     {
                         isBroken.Value = true;
@@ -143,7 +152,10 @@ public class Machine : ElympicsMonoBehaviour, IObservable
             col.transform.Find("Canvas").Find("Missing").gameObject.SetActive(false);
             slider.gameObject.SetActive(false);
             Broken.SetActive(false);
-            TasksUI.gameObject.SetActive(false);
+            CleanUI();
+            TasksPanel.gameObject.SetActive(false);
+            var player = col.transform.parent.GetComponent<ElympicsBehaviour>();
+            if(Elympics.Player != player.PredictableFor) return;
         }
     }
 
@@ -227,10 +239,15 @@ public class Machine : ElympicsMonoBehaviour, IObservable
     #region Machine Tasks UI
     public void LoadTaskUI() 
     {
+        CleanUI();
         for(int i=0; i<machineTasks.Count; i++)
         {
             var taskui = Instantiate(_TaskPrefab);
-            taskui.transform.Find("Name").gameObject.GetComponent<TextMeshProUGUI>().text = machineTasks[i].Description;
+            taskui.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = machineTasks[i].Description;
+            if (machineTasks[i].requirements.Count == 1)
+                taskui.transform.GetChild(1).GetComponent<Image>().sprite = machineTasks[i].requirements[0].sprite;
+            else
+                taskui.transform.GetChild(1).gameObject.SetActive(false);
             taskui.name = machineTasks[i].ID.ToString();
             taskui.transform.SetParent(TasksPanel.transform);
             taskui.GetComponent<Button>().onClick.AddListener(delegate() 
@@ -242,7 +259,11 @@ public class Machine : ElympicsMonoBehaviour, IObservable
         for(int i=0; i<machineSabotage.Count; i++)
         {
             var taskui = Instantiate(_TaskPrefab);
-            taskui.transform.Find("Name").gameObject.GetComponent<TextMeshProUGUI>().text = machineSabotage[i].Description;
+            taskui.transform.Find("TaskName").gameObject.GetComponent<TextMeshProUGUI>().text = machineSabotage[i].Description;
+            if (machineSabotage[i].requirements.Count == 1)
+                taskui.transform.Find("ToolIcon").gameObject.GetComponent<Image>().sprite = machineSabotage[i].requirements[0].sprite;
+            else
+                taskui.transform.Find("ToolIcon").gameObject.SetActive(false);
             taskui.name = machineSabotage[i].ID.ToString();
             taskui.transform.SetParent(TasksPanel.transform);
             taskui.GetComponent<Image>().color = Color.red;
@@ -255,12 +276,24 @@ public class Machine : ElympicsMonoBehaviour, IObservable
         }
     }
 
+    private void CleanUI()
+    {
+        Debug.Log("cleaning ui:" + TasksPanel.transform.childCount);
+        while (TasksPanel.transform.childCount > 0)
+        {
+            Transform lastChild = TasksPanel.transform.GetChild(TasksPanel.transform.childCount - 1);
+            lastChild.SetParent(null);
+            Destroy(lastChild.gameObject);
+        }
+    }
+
     public void TaskClicked(int index)
     {
         currentPlayer.parent.GetComponent<Inputs>().inputStruct.taskID = index;
         //taskIndex.Value = index;
         //slider.maxValue = machineTasks[index].TaskTime;
-        TasksUI.gameObject.SetActive(false);
+        MachineUI.gameObject.SetActive(true);
+        TasksPanel.gameObject.SetActive(false);
     }
     #endregion
 }

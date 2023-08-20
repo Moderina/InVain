@@ -1264,7 +1264,7 @@ MonoBehaviour:
   defaultGravity: 1
   lowJumpMultiplier: 1
   highJumpMultiplier: 1
-  fallingMultiplier: -9
+  fallingMultiplier: -20
   groundMask:
     serializedVersion: 2
     m_Bits: 1

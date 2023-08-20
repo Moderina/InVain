@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 11
   Description: Add Fuel
-  TaskTime: 5
-  requirements: []
+  width: 1
+  ammount: 2
+  requirements:
+  - {fileID: 11400000, guid: 4f3c46bbdea0748439281bdde713eca8, type: 2}

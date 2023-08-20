@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 8
   Description: Analyzing Samples
-  TaskTime: 15
-  requirements: []
+  width: 1
+  ammount: 2
+  requirements:
+  - {fileID: 11400000, guid: 2930b8e3c2ce30c41a3af3851fe61486, type: 2}
