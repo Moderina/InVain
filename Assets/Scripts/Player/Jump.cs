@@ -76,7 +76,6 @@ public class Jump : ElympicsMonoBehaviour
         }
         else if (playerRigidBody.velocity.y < 0)
         {
-            Debug.Log("falling");
             //Faster falling
             gravityMultiplier = fallingMultiplier;
         }
@@ -92,6 +91,7 @@ public class Jump : ElympicsMonoBehaviour
         }
 
         playerRigidBody.velocity += gravityMultiplier * defaultGravity * Elympics.TickDuration * Vector2.up;
+        //playerRigidBody.velocity += new Vector2(1, gravityMultiplier * defaultGravity * Elympics.TickDuration);
 
         coyoteTimeCounter -= Elympics.TickDuration;
         jumpBufferCounter -= Elympics.TickDuration;

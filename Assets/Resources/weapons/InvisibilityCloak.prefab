@@ -102,7 +102,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.8365736, a: 1}
+  m_Color: {r: 0.47921857, g: 0.8396226, b: 0.53635204, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -134,13 +134,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7824918765993582895}
-  - component: {fileID: 2555800310528270730}
+  - component: {fileID: -2216855986656074858}
   - component: {fileID: 7824918765993582894}
-  - component: {fileID: 7824918765993582893}
+  - component: {fileID: 3699495248958591287}
   - component: {fileID: 7824918765993582888}
-  - component: {fileID: 2304988169975830386}
+  - component: {fileID: 864538792902381147}
   m_Layer: 0
-  m_Name: sneakers
+  m_Name: InvisibilityCloak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,7 +154,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7824918765993582892}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.94, y: 2.66, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -162,7 +162,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &2555800310528270730
+--- !u!50 &-2216855986656074858
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 98
+  networkId: 96
   predictableFor:
     playerIndex: -2
   isUpdatableForNonOwners: 0
@@ -212,7 +212,7 @@ MonoBehaviour:
   - stageDurationInMiliseconds: 1000
     frequencyInMiliseconds: 1000
     maxStageDurationInMiliseconds: 5000
---- !u!114 &7824918765993582893
+--- !u!114 &3699495248958591287
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -221,11 +221,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7824918765993582892}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68e3a272aac6cae4c8455184738e5a25, type: 3}
+  m_Script: {fileID: 11500000, guid: 31a9075fdeb271c4bb2d45023c132171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  speed: 1.2
+  sprite: {fileID: 0}
+  duration: 10
 --- !u!114 &7824918765993582888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,9 +238,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a938f6643cb5fa243b0fe51f5a1a1c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  live: 5
+  live: 20
   kill: 0
---- !u!114 &2304988169975830386
+--- !u!114 &864538792902381147
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

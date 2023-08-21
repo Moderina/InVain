@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Elympics;
+using UnityEditor;
 
 public class Bullet : ElympicsMonoBehaviour, IUpdatable
 {
+    [SerializeField] private MonoScript script;
     public Rigidbody2D rb;
     public float time = 10f;
     public float cooldown = 1f;
@@ -19,6 +21,7 @@ public class Bullet : ElympicsMonoBehaviour, IUpdatable
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        Debug.Log("im in!");
         if(col.tag == "Machine") return;
         if(col.tag == "Drawer") return;
         if(col.tag == "Printer") return;

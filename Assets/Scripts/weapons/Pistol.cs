@@ -18,10 +18,11 @@ public class Pistol : ElympicsMonoBehaviour, IUpdatable
         if (newInput && !lastInput)
         {
             Vector2 force = new Vector2(mouse.x - bulletPoint.position.x, mouse.y - bulletPoint.position.y).normalized;
-            var bullet = ElympicsInstantiate("bullets/force", ElympicsPlayer.World);
+            var bullet = ElympicsInstantiate("bullets/"+bulletType, ElympicsPlayer.World);
             bullet.transform.position = bulletPoint.position;
             bullet.GetComponent<Rigidbody2D>().AddForce(force * speed, ForceMode2D.Impulse);
-            time = bullet.GetComponent<Bullet>().cooldown;
+            //time = bullet.GetComponent<Bullet>().cooldown;
+            time = reloadTime;
         }
         lastInput = newInput;
 

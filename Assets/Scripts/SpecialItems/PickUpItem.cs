@@ -1,21 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PickUpItem : MonoBehaviour
 {
+    public Transform point;
+    public void Update()
+    {
+        if(point != null)
+        {
+            Debug.Log("setting new posiotion");
+            transform.SetParent(point);
+            transform.position = point.position;
+            transform.Translate(0,1,0);
+            point = null;
+        }
+    }
     public void OnTriggerEnter2D(Collider2D col)
     {
         Debug.Log(col.name);
         if (col.tag == "Player") 
         {
             this.transform.parent.SetParent(col.transform);
+            this.transform.parent.GetComponent<Die>().LiveTimeStart();
+            gameObject.SetActive(false);
+            return;
         }
-        else if (col.tag == "Work")
+        if (col.tag == "Work")
         {
             this.transform.parent.SetParent(col.transform.parent);
+            this.transform.parent.GetComponent<Die>().LiveTimeStart();
+            gameObject.SetActive(false);
+            return;
         }
-        this.transform.parent.GetComponent<Die>().LiveTimeStart();
-        gameObject.SetActive(false);
+        
     }
 }

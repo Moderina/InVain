@@ -23,6 +23,7 @@ public class Spawner : ElympicsMonoBehaviour, IUpdatable
                 int rand = Random.Range(0, spawnable.Count);
                 string nazwa = "weapons/" + spawnable[rand].name;
                 GameObject item = ElympicsInstantiate(nazwa, ElympicsPlayer.World);
+                item.transform.position = point.position;
                 item.transform.SetParent(point);
             }
             timer = 0;
