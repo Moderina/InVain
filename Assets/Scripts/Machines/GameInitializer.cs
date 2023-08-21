@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Elympics;
 using System;
+using TMPro;
 
 public class GameInitializer : ElympicsMonoBehaviour, IUpdatable, IInitializable
 {
@@ -64,10 +65,12 @@ public class GameInitializer : ElympicsMonoBehaviour, IUpdatable, IInitializable
 						// Debug.Log(i + ": PredictableFor " + ID);
 						var trans = player.transform;
 						player.GetComponent<ElympicsBehaviour>().enabled = false;
-						player.SetActive(false);
+						
 						GameObject gamePlayer = ElympicsInstantiate("Scientist_PartyBreaker", ElympicsPlayer.FromIndex((int)ID));
 						gamePlayer.SetActive(true);
 						gamePlayer.transform.position = trans.position;
+						gamePlayer.GetComponent<PlayerHandler>().playername.Value = player.transform.GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>().text;
+						player.SetActive(false);
 					}
 					GetComponent<GameManager>().ChangeGameState(GameState.GameplayMatchRunning);
 				}

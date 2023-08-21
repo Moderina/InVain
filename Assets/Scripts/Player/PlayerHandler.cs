@@ -1,5 +1,7 @@
 using UnityEngine;
 using Elympics;
+using System;
+using TMPro;
 
 public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable 
 {
@@ -8,6 +10,7 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable
 	[SerializeField] private Jump jump;
 	[SerializeField] private Actions actions;
 	[SerializeField] private AnimationStateController animationSC;
+	public ElympicsString playername = new ElympicsString();
 
 	//TODO: przeniesc taskID i wantsToFinish do Actions.cs
     public int taskID = -1;
@@ -15,6 +18,7 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable
 
 	public void Start()
 	{
+		playername.ValueChanged += OnClientNameChanged;
 		inputs = GetComponent<Inputs>();
 		movement = GetComponent<GothMovement>();
 		jump = GetComponent<Jump>();
@@ -25,7 +29,7 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable
 		Camera.main.GetComponent<CameraMove>().enabled = true;
 	}
 
-	public void Update() {
+    public void Update() {
 		if(Elympics.Player != PredictableFor) return;
 		inputs.UpdateInput();
 	}
@@ -82,4 +86,11 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable
 	public void OnInputForBot(IInputWriter inputSerializer) {
 		//throw new System.NotImplementedException();
 	}
+
+	
+    private void OnClientNameChanged(string lastValue, string newValue)
+    {
+		Debug.Log("CHAGED");
+        transform.GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>().text = newValue;
+    }
 }
