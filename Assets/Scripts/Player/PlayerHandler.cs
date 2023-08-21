@@ -3,14 +3,14 @@ using Elympics;
 using System;
 using TMPro;
 
-public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable 
+public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable, IObservable
 {
 	[SerializeField] private Inputs inputs;
 	[SerializeField] private GothMovement movement;
 	[SerializeField] private Jump jump;
 	[SerializeField] private Actions actions;
 	[SerializeField] private AnimationStateController animationSC;
-	public ElympicsString playername = new ElympicsString();
+	public ElympicsString playername = new ElympicsString("");
 
 	//TODO: przeniesc taskID i wantsToFinish do Actions.cs
     public int taskID = -1;
@@ -18,6 +18,7 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable
 
 	public void Start()
 	{
+		Debug.Log("jebac starego");
 		playername.ValueChanged += OnClientNameChanged;
 		inputs = GetComponent<Inputs>();
 		movement = GetComponent<GothMovement>();
@@ -25,11 +26,13 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable
 		actions = GetComponent<Actions>();
 		GetComponent<TaskManager>().enabled = true;
 		GetComponent<InventoryManager>().enabled = true;
+		transform.GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>().text = playername.Value;
 		if(Elympics.Player != PredictableFor) return;
 		Camera.main.GetComponent<CameraMove>().enabled = true;
 	}
 
     public void Update() {
+		Debug.Log(playername.Value);
 		if(Elympics.Player != PredictableFor) return;
 		inputs.UpdateInput();
 	}
