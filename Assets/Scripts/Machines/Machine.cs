@@ -9,6 +9,7 @@ using Unity.VisualScripting;
 
 public class Machine : ElympicsMonoBehaviour, IObservable
 {
+    [SerializeField] private MachineLook machineLook;
     [SerializeField] private Canvas MachineUI;
     [SerializeField] private GameObject TasksPanel;
     [SerializeField] private SliderSliding sliderSliding;
@@ -154,6 +155,7 @@ public class Machine : ElympicsMonoBehaviour, IObservable
             Broken.SetActive(false);
             CleanUI();
             TasksPanel.gameObject.SetActive(false);
+            MachineUI.gameObject.SetActive(false);
             var player = col.transform.parent.GetComponent<ElympicsBehaviour>();
             if(Elympics.Player != player.PredictableFor) return;
         }
@@ -278,7 +280,7 @@ public class Machine : ElympicsMonoBehaviour, IObservable
 
     private void CleanUI()
     {
-        Debug.Log("cleaning ui:" + TasksPanel.transform.childCount);
+        //Debug.Log("cleaning ui:" + TasksPanel.transform.childCount);
         while (TasksPanel.transform.childCount > 0)
         {
             Transform lastChild = TasksPanel.transform.GetChild(TasksPanel.transform.childCount - 1);

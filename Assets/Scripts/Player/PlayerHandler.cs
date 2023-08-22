@@ -18,7 +18,6 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable, I
 
 	public void Start()
 	{
-		Debug.Log("jebac starego");
 		playername.ValueChanged += OnClientNameChanged;
 		inputs = GetComponent<Inputs>();
 		movement = GetComponent<GothMovement>();
@@ -32,7 +31,6 @@ public class PlayerHandler : ElympicsMonoBehaviour, IInputHandler, IUpdatable, I
 	}
 
     public void Update() {
-		Debug.Log(playername.Value);
 		if(Elympics.Player != PredictableFor) return;
 		inputs.UpdateInput();
 	}

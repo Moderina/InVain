@@ -607,6 +607,8 @@ GameObject:
   - component: {fileID: 8051880701421276839}
   - component: {fileID: 6349705918947586862}
   - component: {fileID: 38226360403182829}
+  - component: {fileID: 5187096037545692919}
+  - component: {fileID: 1873573379176875461}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -696,6 +698,47 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5187096037545692919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2768142968561087325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 334c2a3facb248ac8c1a599797c52dae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceNetworkId: 0
+  networkId: 97
+  predictableFor:
+    playerIndex: -2
+  isUpdatableForNonOwners: 0
+  visibleFor:
+    playerIndex: -3
+  stateFrequencyStages:
+  - stageDurationInMiliseconds: 500
+    frequencyInMiliseconds: 30
+    maxStageDurationInMiliseconds: 5000
+  - stageDurationInMiliseconds: 1000
+    frequencyInMiliseconds: 200
+    maxStageDurationInMiliseconds: 5000
+  - stageDurationInMiliseconds: 1000
+    frequencyInMiliseconds: 1000
+    maxStageDurationInMiliseconds: 5000
+--- !u!114 &1873573379176875461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2768142968561087325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f422823cf7c74d30b6473ef0e0097292, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3025944057932810675
 GameObject:
   m_ObjectHideFlags: 0
@@ -1411,6 +1454,8 @@ MonoBehaviour:
   jump: {fileID: 8807956302478863186}
   actions: {fileID: 5272230217081051942}
   animationSC: {fileID: 2317216489005439724}
+  playername:
+    currentValue: 
   taskID: 0
   wantsToFinish: 0
 --- !u!114 &6633586253121470541

@@ -22,12 +22,11 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
     public void Start()
     {
         tasksReady.ValueChanged += UpdateTaskUI;
-        Debug.Log("starting taskmanager");
         TaskPanel = GameObject.Find("MainUI").transform.Find("TaskPanel").gameObject;
         finished.ValueChanged += GameFinished;
         //gather all tasks from all machines
         allTasks = FindAllTasks();
-        Debug.Log(string.Join(", ", allTasks));
+        //Debug.Log(string.Join(", ", allTasks));
 
         //randomly pick some tasks for player
         if (Elympics.IsServer) ChooseTasks(allTasks);   
@@ -74,7 +73,6 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
                 continue;
             }
             playerTasks.Add(allTasks[rand]);
-            Debug.Log("rand: " + rand);
             //synchronized lists of player's tasks' IDs
             myTasks.Add().Value = playerTasks[i].ID;
             // myTasks.Add(new ElympicsInt(playerTasks[i].ID));
@@ -98,14 +96,12 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
     
     private void UpdateTaskUI(bool lastValue, bool newValue)
     {
-        Debug.Log("not afraid to die");
         if (Elympics.Player != PredictableFor) return;
         TaskPanel.SetActive(true);
         var child = TaskPanel.transform.GetChild(0);
         foreach (ElympicsInt id in myTasks)
         {
             string name = allTasks.Find(x => x.ID == id.Value).Description;
-            Debug.Log(name);
             var ntask = Instantiate(child);
             ntask.GetComponent<TextMeshProUGUI>().text = name;
             ntask.transform.SetParent(TaskPanel.transform);
@@ -156,7 +152,7 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
 
     private void OnValueChanged(int lastValue, int newValue)
     {
-        Debug.Log("task completed, changed to -1");
+        //Debug.Log("task completed, changed to -1");
 
     }
 

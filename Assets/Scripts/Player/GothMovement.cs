@@ -11,11 +11,12 @@ public class GothMovement : ElympicsMonoBehaviour
     [SerializeField] private GameObject sprite;
     [SerializeField] private Transform head;
     private int faceDir = 1;
+    public int inverted = 1;
 
     public void Start() { rb = GetComponent<Rigidbody2D>(); }
 
     public void Movement(int direction, int jump, Vector3 mousePos) {
-        rb.AddForce(new Vector2(direction * accel, 0));
+        rb.AddForce(new Vector2(direction * accel * inverted, 0));
         // rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxVel, maxVel), rb.velocity.y);
         rb.AddForce(new Vector2(-rb.velocity.x * friction, 0));
         Camera.main.GetComponent<CameraMove>().UpdateTransform();

@@ -6,6 +6,7 @@ using Elympics;
 public class InvisibilityCloak : ElympicsMonoBehaviour, IUpdatable
 {
     [SerializeField] private GameObject sprite;
+    [SerializeField] private GameObject nick;
     public float duration = 10;
     private bool invisible = false;
     void Start()
@@ -23,6 +24,7 @@ public class InvisibilityCloak : ElympicsMonoBehaviour, IUpdatable
             {
                 if(transform.parent.tag != "Player") return;
                 sprite = transform.parent.GetChild(0).gameObject;
+                nick = transform.parent.GetChild(2).gameObject;
             }
             catch{}
         }
@@ -31,6 +33,7 @@ public class InvisibilityCloak : ElympicsMonoBehaviour, IUpdatable
             if(!invisible)
             {
                 sprite.SetActive(false);
+                nick.SetActive(false);
                 invisible = true;
             }
             else
@@ -39,6 +42,7 @@ public class InvisibilityCloak : ElympicsMonoBehaviour, IUpdatable
                 if(duration < 0)
                 {
                     sprite.SetActive(true);
+                    nick.SetActive(true);
                     transform.SetParent(null);
                     ElympicsDestroy(gameObject);
                 }

@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 92
+  networkId: 99
   predictableFor:
     playerIndex: -2
   isUpdatableForNonOwners: 0
@@ -333,6 +333,7 @@ GameObject:
   - component: {fileID: 5875188229694396881}
   - component: {fileID: 5875188229694396879}
   - component: {fileID: 5875188229694396882}
+  - component: {fileID: 1660442938076105208}
   - component: {fileID: 5875188229694396883}
   m_Layer: 0
   m_Name: Machine
@@ -396,6 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7b9ab4bb27c87a4b89680d96ca5e6a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  machineLook: {fileID: 1660442938076105208}
   MachineUI: {fileID: 5875188229471505222}
   TasksPanel: {fileID: 0}
   sliderSliding: {fileID: 6720879935891930518}
@@ -407,6 +409,20 @@ MonoBehaviour:
     currentValue: 0
   prankBroken:
     currentValue: 0
+--- !u!114 &1660442938076105208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5875188229694396878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8facaf3497c88ed4cb76d5a4b50a9075, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  machine: {fileID: 0}
+  spriteRenderer: {fileID: 4116313465196487593}
 --- !u!114 &5875188229694396883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,7 +436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 93
+  networkId: 98
   predictableFor:
     playerIndex: -2
   isUpdatableForNonOwners: 0
@@ -748,7 +764,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 92
+  networkId: 97
   predictableFor:
     playerIndex: -2
   isUpdatableForNonOwners: 0
