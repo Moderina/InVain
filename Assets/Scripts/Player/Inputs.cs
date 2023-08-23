@@ -29,6 +29,7 @@ public class Inputs : MonoBehaviour
         // inputStruct.shoot = Input.GetMouseButton(0);
         inputStruct.shoot = Input.GetButton("Fire1");
         inputStruct.wantsToFinish = Input.GetKey(KeyCode.Y);
+        if(OverUI(inputStruct.mousePos)) inputStruct.shoot = false;
     }
 
     public InputStruct GetInput() 
@@ -43,5 +44,19 @@ public class Inputs : MonoBehaviour
         inputStruct.shoot = false;
         inputStruct.mousePos = transform.position + transform.right;
         return returnstruct;
+    }
+
+        private bool OverUI(UnityEngine.Vector3 mouse)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(mouse);
+        RaycastHit hitInfo;
+        Debug.Log(Physics.Raycast(ray));
+        LayerMask layerMask = 5;
+        if(Physics.Raycast(ray, out hitInfo, layerMask))
+        {
+            Debug.Log(hitInfo.transform.name);
+            if(hitInfo.transform.tag == "UI") return true;
+        }
+        return false;
     }
 }

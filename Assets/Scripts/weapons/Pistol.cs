@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Elympics;
+using System;
 
 public class Pistol : ElympicsMonoBehaviour, IUpdatable
 {
@@ -27,6 +28,7 @@ public class Pistol : ElympicsMonoBehaviour, IUpdatable
         lastInput = newInput;
 
     }
+
 
     public void ElympicsUpdate()
     {

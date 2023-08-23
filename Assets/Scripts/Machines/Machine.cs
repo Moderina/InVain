@@ -55,6 +55,7 @@ public class Machine : ElympicsMonoBehaviour, IObservable
                 TasksPanel.SetActive(false);
             }
             LoadTaskUI();
+            machineLook.OnMachineInteracted(false);
         }
     }
 
@@ -153,11 +154,12 @@ public class Machine : ElympicsMonoBehaviour, IObservable
             col.transform.Find("Canvas").Find("Missing").gameObject.SetActive(false);
             slider.gameObject.SetActive(false);
             Broken.SetActive(false);
-            CleanUI();
-            TasksPanel.gameObject.SetActive(false);
+            //CleanUI();
+            // TasksPanel.gameObject.SetActive(false);
             MachineUI.gameObject.SetActive(false);
             var player = col.transform.parent.GetComponent<ElympicsBehaviour>();
             if(Elympics.Player != player.PredictableFor) return;
+            machineLook.OnMachineInteracted(true);
         }
     }
 

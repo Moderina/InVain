@@ -39,13 +39,22 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
     public void Update()
     {
         if (Elympics.Player != PredictableFor) return;
+        if(myTasks.Count == 0) return;
         for (int i=0; i<myTasks.Count; i++)
         {
             if(myTasks[i].Value == -1)
             {
                 TaskPanel.transform.GetChild(i+1).GetComponent<TextMeshProUGUI>().color = Color.green;
-            }
+            }     
         }
+        for (int i=0; i<myTasks.Count; i++)
+        {
+            if(myTasks[i].Value != -1)
+            {
+                return;
+            }  
+        }
+        TaskPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.green;
     }
 
     public List<TaskData> FindAllTasks() 

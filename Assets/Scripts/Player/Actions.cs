@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 
 public class Actions : MonoBehaviour
@@ -23,10 +24,10 @@ public class Actions : MonoBehaviour
     }
 
 
-    public void UpdateShoot(bool shoot, Vector3 mouse)
-    {
+    public void UpdateShoot(bool shoot, UnityEngine.Vector3 mouse)
+    {        
         if (sprite.childCount == 4 && sprite.GetChild(3).tag == "Weapon")
-        {
+        {       
             sprite.GetChild(3).GetComponent<Pistol>().Shoot(mouse, shoot);
         }
     }
@@ -37,4 +38,7 @@ public class Actions : MonoBehaviour
         this.abilityKey = abilityKey;
         if (abilityKey) OnAbilityTriggered?.Invoke();
     }
+
+
+
 }
