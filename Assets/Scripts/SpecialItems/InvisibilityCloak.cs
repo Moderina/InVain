@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class InvisibilityCloak : ElympicsMonoBehaviour, IUpdatable
 {
     public Image itemSprite, cooldown;
+    public SpriteRenderer ownSprite;
     [SerializeField] private GameObject sprite;
     [SerializeField] private GameObject nick;
     public ElympicsBool taken = new ElympicsBool(false);
@@ -14,8 +15,8 @@ public class InvisibilityCloak : ElympicsMonoBehaviour, IUpdatable
     private bool invisible = false;
     public void Start()
     {
-        itemSprite = GameObject.Find("ItemTimer").GetComponent<Image>();
-        cooldown = GameObject.Find("ImageCooldown").GetComponent<Image>();
+        itemSprite = GameObject.Find("MainUI").transform.Find("ItemTimer").GetComponent<Image>();
+        cooldown = itemSprite.transform.Find("ImageCooldown").GetComponent<Image>();
     }
 
     public void Update()
@@ -23,7 +24,7 @@ public class InvisibilityCloak : ElympicsMonoBehaviour, IUpdatable
         if(!taken.Value) return;
         var player = transform.parent.GetComponent<ElympicsBehaviour>().PredictableFor;
         if(player != Elympics.Player) return;
-        itemSprite.sprite = transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+        itemSprite.sprite = ownSprite.sprite;
         cooldown.sprite = itemSprite.sprite;
         cooldown.fillAmount = duration.Value / 10;
     }

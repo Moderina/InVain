@@ -22,19 +22,19 @@ public class PickUpItem : MonoBehaviour
         Debug.Log(col.name);
         if (col.tag == "Player") 
         {
-            if (col.transform.childCount > 4) return;
+            if (col.transform.childCount > 3) return;
             if (col.transform.GetChild(0).childCount > 3) return;
             this.transform.parent.SetParent(col.transform);
-            this.transform.parent.GetComponent<Die>().LiveTimeStart();
+            // this.transform.parent.GetComponent<Die>().LiveTimeStart();
             gameObject.SetActive(false);
             return;
         }
         if (col.tag == "Work")
         {
-            if (col.transform.parent.childCount > 4) return;
+            if (col.transform.parent.childCount > 3) return;
             if (col.transform.parent.GetChild(0).childCount > 3) return;
             this.transform.parent.SetParent(col.transform.parent);
-            this.transform.parent.GetComponent<Die>().LiveTimeStart();
+            // this.transform.parent.GetComponent<Die>().LiveTimeStart();
             gameObject.SetActive(false);
             return;
         }
