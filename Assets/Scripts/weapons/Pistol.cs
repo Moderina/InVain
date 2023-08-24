@@ -8,10 +8,13 @@ public class Pistol : ElympicsMonoBehaviour, IUpdatable
 {
     [SerializeField] private string bulletType;
     [SerializeField] private Transform bulletPoint;
+    [SerializeField] private int bulletammount = 5;
     [SerializeField] private int speed = 5;
     [SerializeField] private float reloadTime = 0.2f;
     private bool lastInput = false;
     private float time = 0f;
+    private int bulletsShot = 0;
+    private bool toDestroy = false;
 
     public void Shoot(Vector3 mouse, bool newInput)
     {
@@ -24,6 +27,7 @@ public class Pistol : ElympicsMonoBehaviour, IUpdatable
             bullet.GetComponent<Rigidbody2D>().AddForce(force * speed, ForceMode2D.Impulse);
             //time = bullet.GetComponent<Bullet>().cooldown;
             time = reloadTime;
+            if(++bulletsShot == bulletammount) toDestroy = true;
         }
         lastInput = newInput;
 
@@ -33,5 +37,6 @@ public class Pistol : ElympicsMonoBehaviour, IUpdatable
     public void ElympicsUpdate()
     {
         time -= Elympics.TickDuration;
+        if(toDestroy) ElympicsDestroy(gameObject);
     }
 }

@@ -2,16 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Elympics;
+using UnityEngine.UI;
 
 public class InvisibilityCloak : ElympicsMonoBehaviour, IUpdatable
 {
+    public Image itemSprite, cooldown;
     [SerializeField] private GameObject sprite;
     [SerializeField] private GameObject nick;
-    public float duration = 10;
+    public ElympicsBool taken = new ElympicsBool(false);
+    public ElympicsFloat duration = new ElympicsFloat(10);
     private bool invisible = false;
-    void Start()
+    public void Start()
     {
-        
+        itemSprite = GameObject.Find("ItemTimer").GetComponent<Image>();
+        cooldown = GameObject.Find("ImageCooldown").GetComponent<Image>();
+    }
+
+    public void Update()
+    {
+        if(!taken.Value) return;
+        var player = transform.parent.GetComponent<ElympicsBehaviour>().PredictableFor;
+        if(player != Elympics.Player) return;
+        itemSprite.sprite = transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+        cooldown.sprite = itemSprite.sprite;
+        cooldown.fillAmount = duration.Value / 10;
     }
 
     // Update is called once per frame
@@ -30,6 +44,7 @@ public class InvisibilityCloak : ElympicsMonoBehaviour, IUpdatable
         }
         else 
         {
+            taken.Value = true;
             if(!invisible)
             {
                 sprite.SetActive(false);
@@ -38,8 +53,8 @@ public class InvisibilityCloak : ElympicsMonoBehaviour, IUpdatable
             }
             else
             {
-                duration -= Elympics.TickDuration;
-                if(duration < 0)
+                duration.Value -= Elympics.TickDuration;
+                if(duration.Value < 0)
                 {
                     sprite.SetActive(true);
                     nick.SetActive(true);

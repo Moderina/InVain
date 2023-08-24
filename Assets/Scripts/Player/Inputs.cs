@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public struct InputStruct 
 {
@@ -29,7 +31,7 @@ public class Inputs : MonoBehaviour
         // inputStruct.shoot = Input.GetMouseButton(0);
         inputStruct.shoot = Input.GetButton("Fire1");
         inputStruct.wantsToFinish = Input.GetKey(KeyCode.Y);
-        if(OverUI(inputStruct.mousePos)) inputStruct.shoot = false;
+        if(OverUI(Input.mousePosition)) inputStruct.shoot = false;
     }
 
     public InputStruct GetInput() 
@@ -48,14 +50,26 @@ public class Inputs : MonoBehaviour
 
         private bool OverUI(UnityEngine.Vector3 mouse)
     {
-        Ray ray = Camera.main.ScreenPointToRay(mouse);
-        RaycastHit hitInfo;
-        Debug.Log(Physics.Raycast(ray));
-        LayerMask layerMask = 5;
-        if(Physics.Raycast(ray, out hitInfo, layerMask))
+        // Ray ray = Camera.main.ScreenPointToRay(mouse);
+        // RaycastHit hitInfo;
+        
+        // LayerMask layerMask = 5;
+        // if(Physics.Raycast(ray, out hitInfo, layerMask))
+        // {
+        //     Debug.Log(hitInfo.transform.name);
+        //     if(hitInfo.transform.tag == "UI") return true;
+        // }
+        // return false;
+
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = mouse;
+        List<RaycastResult> raysastResults = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, raysastResults);
+        for (int index = 0; index < raysastResults.Count; index++)
         {
-            Debug.Log(hitInfo.transform.name);
-            if(hitInfo.transform.tag == "UI") return true;
+            RaycastResult curRaysastResult = raysastResults[index];
+            if (curRaysastResult.gameObject.layer == 5)
+                return true;
         }
         return false;
     }
