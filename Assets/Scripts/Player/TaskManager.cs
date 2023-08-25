@@ -162,7 +162,15 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
             WIN.GetComponent<TextMeshProUGUI>().text = "your vain won";
             WIN.GetComponent<TextMeshProUGUI>().color = Color.green;
         }
-
+        TaskManager[] allPlayers = FindObjectsOfType<TaskManager>();
+        foreach(TaskManager player in allPlayers)
+        {
+            if(!player.AreTasksCompleted()) 
+            {
+                Camera.main.GetComponent<CameraMove>().ChangeTarget(player.transform);
+                return;
+            }
+        }
 
     }
 

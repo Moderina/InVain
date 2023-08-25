@@ -192,6 +192,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allPlayers: []
+  startEnd:
+    currentValue: 0
 --- !u!114 &9459028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,6 +333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameInitializer: {fileID: 9459034}
   gameManager: {fileID: 9459033}
+  gameFinisher: {fileID: 9459027}
   textUI: {fileID: 534273060}
   lobbyLight: {fileID: 1515623768}
 --- !u!1 &11364751
@@ -16940,7 +16943,7 @@ GameObject:
   - component: {fileID: 1725303417}
   - component: {fileID: 1725303416}
   m_Layer: 0
-  m_Name: Light 2D
+  m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -9,10 +10,11 @@ public class GameEffects : MonoBehaviour
 {
     [SerializeField] private GameInitializer gameInitializer;
     [SerializeField] private GameManager gameManager;
-
+    [SerializeField] private GameFinisher gameFinisher;
     [SerializeField] private TextMeshProUGUI textUI;
     [SerializeField] private Light2D lobbyLight;
 
+    private float fadeTime = 2;
     private int lastRememberedNumber = -1;
     void Start()
     {
@@ -31,6 +33,11 @@ public class GameEffects : MonoBehaviour
             case 2:
                 End();
                 break;
+        }
+        if (gameFinisher.startEnd.Value == true)
+        {
+            LoadCutScene();
+            fadeTime -= Time.deltaTime;
         }
     }
 
@@ -62,8 +69,15 @@ public class GameEffects : MonoBehaviour
         if (lastValue == 0)
         {
             textUI.transform.parent.gameObject.SetActive(false);
-            GameObject.Find("Light 2D").GetComponent<Light2D>().intensity = 1;
+            GameObject.Find("Light").GetComponent<Light2D>().intensity = 1;
             lobbyLight.intensity = 0f;
         }
+    }
+
+
+    private void LoadCutScene()
+    {
+        Light2D light = GameObject.Find("Light").GetComponent<Light2D>();
+        light.intensity = fadeTime / 2;
     }
 }

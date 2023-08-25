@@ -4,13 +4,16 @@ using UnityEngine;
 using Elympics;
 using TMPro;
 using System;
+using UnityEngine.Rendering.Universal;
 
-public class GameFinisher : ElympicsMonoBehaviour
+public class GameFinisher : ElympicsMonoBehaviour, IUpdatable
 {
     public TaskManager[] allPlayers = null;
     private Transform currentPlayer;
     private bool hasKey;
     private float timeToEnd = -1;
+    public ElympicsBool startEnd = new ElympicsBool(false);
+    private float fadeTime = 2;
 
     private ElympicsInt numberOfWinners = new ElympicsInt(0);
 
@@ -28,6 +31,11 @@ public class GameFinisher : ElympicsMonoBehaviour
             timeToEnd -= Elympics.TickDuration;
         }
         else
+        {
+            startEnd.Value = true;
+            timeToEnd = 10;
+        }
+        if(startEnd.Value == true && timeToEnd < 0)
         {
             Elympics.EndGame();
         }
