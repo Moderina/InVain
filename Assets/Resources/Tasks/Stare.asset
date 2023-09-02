@@ -16,4 +16,5 @@ MonoBehaviour:
   Description: Stare
   width: 0.4
   ammount: 2
-  requirements: []
+  requirements:
+  - {fileID: 11400000, guid: 4f3c46bbdea0748439281bdde713eca8, type: 2}

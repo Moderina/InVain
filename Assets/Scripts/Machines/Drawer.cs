@@ -8,12 +8,14 @@ using UnityEngine.UI;
 
 public class Drawer : ElympicsMonoBehaviour, IObservable
 {
-    [SerializeField] private Canvas ItemsUI;
+    [SerializeField] private MachineLook machineLook;
+    // [SerializeField] private Canvas ItemsUI;
     [SerializeField] private GameObject ItemsPanel;
     [SerializeField] private GameObject _ItemPrefab;
 
     public List<ItemData> drawerItems = new List<ItemData>();
-    private List<ElympicsInt> avaiableItems = new List<ElympicsInt>();
+    // private ElympicsInt[] avaiableItems;
+    private ElympicsList<ElympicsInt> avaiableItems = new ElympicsList<ElympicsInt>(() => new ElympicsInt());
     private ElympicsInt itemIndex = new ElympicsInt(-1);
 
     private Transform currentPlayer;
@@ -21,12 +23,26 @@ public class Drawer : ElympicsMonoBehaviour, IObservable
     void Start()
     {
         //put random ammount of items in the drawer
-        foreach (ItemData itemData in drawerItems)
+        // avaiableItems = new ElympicsInt[drawerItems.Count];
+        // Debug.Log("yyy " + avaiableItems.Length);
+        // Debug.Log("uuu " + drawerItems.Count);
+        // foreach (ItemData itemData in drawerItems)
+        // {
+        //     int num = UnityEngine.Random.Range(0,5);
+        //     avaiableItems.Add(new ElympicsInt(num));
+        // }
+        // if(transform.name != "Tool Drawer") return;
+        if(!Elympics.IsServer) return;
+        Debug.Log("i am the server");
+        for(int i=0; i<drawerItems.Count; i++)
         {
             int num = UnityEngine.Random.Range(0,5);
-            avaiableItems.Add(new ElympicsInt(num));
+            avaiableItems.Add().Value = num;
+            // avaiableItems[i] = new ElympicsInt(num);
+            // avaiableItems[i].Value = num;
+            Debug.Log("SSSSSSS" + avaiableItems[i].Value);
         }
-        ItemsUI.gameObject.SetActive(false);
+        // ItemsUI.gameObject.SetActive(false);
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -41,7 +57,8 @@ public class Drawer : ElympicsMonoBehaviour, IObservable
             if(Elympics.Player != player.PredictableFor) return;
             //load updated UI with currently avaiable items
             LoadItemUI();
-            ItemsUI.gameObject.SetActive(true);
+            // ItemsUI.gameObject.SetActive(true);
+            machineLook.OnMachineInteracted(false);
         }
     }
 
@@ -60,7 +77,12 @@ public class Drawer : ElympicsMonoBehaviour, IObservable
                 currentPlayer.parent.GetComponent<PlayerHandler>().taskID = -1;
                 Debug.Log("Taskindex: " + itemIndex);
                 currentPlayer.GetComponentInParent<InventoryManager>().AddItem(itemIndex.Value);
-                avaiableItems[itemIndex.Value].Value = avaiableItems[itemIndex.Value].Value -1;
+                try {
+                    var newindex = drawerItems.FindIndex(x => x.ID == itemIndex.Value);
+                    avaiableItems[newindex].Value -= 1;
+                }
+                catch {}
+                // avaiableItems[itemIndex.Value].Value = avaiableItems[itemIndex.Value].Value -1;
                 itemIndex.Value = -1;
             }
         }
@@ -72,8 +94,9 @@ public class Drawer : ElympicsMonoBehaviour, IObservable
         {
             currentPlayer = null;
             itemIndex.Value = -1;
-            UnloadItemUI();
-            ItemsUI.gameObject.SetActive(false);
+            // UnloadItemUI();
+            machineLook.OnMachineInteracted(true);
+            // ItemsUI.gameObject.SetActive(false);
             Debug.Log("leftAREA");
         }
     }
@@ -81,16 +104,20 @@ public class Drawer : ElympicsMonoBehaviour, IObservable
 
     private void LoadItemUI()
     {
+        Debug.Log("AAAAAAAAAAA" + drawerItems.Count);
+        UnloadItemUI();
         for(int i=0; i<drawerItems.Count; i++)
         {
-            if (avaiableItems[i].Value < 1) return;
-            var taskui = Instantiate(_ItemPrefab);
-            taskui.transform.Find("Name").gameObject.GetComponent<TextMeshProUGUI>().text = drawerItems[i].Name;
-            taskui.name = drawerItems[i].ID.ToString();
-            taskui.transform.SetParent(ItemsPanel.transform);
-            taskui.GetComponent<Button>().onClick.AddListener(delegate() 
+            if (avaiableItems[i].Value < 1) continue;
+            var itemui = Instantiate(_ItemPrefab);
+            // taskui.transform.Find("Name").gameObject.GetComponent<TextMeshProUGUI>().text = drawerItems[i].Name;
+            itemui.GetComponent<Image>().sprite = drawerItems[i].sprite;
+            itemui.name = drawerItems[i].ID.ToString();
+            Debug.Log("DDDDDDDDDDDDupa");
+            itemui.transform.SetParent(ItemsPanel.transform);
+            itemui.GetComponent<Button>().onClick.AddListener(delegate() 
             {
-                int.TryParse(taskui.name, out int index);
+                int.TryParse(itemui.name, out int index);
                 ItemClicked(index);
             });
         }
@@ -109,8 +136,9 @@ public class Drawer : ElympicsMonoBehaviour, IObservable
     public void ItemClicked(int index)
     {
         currentPlayer.parent.GetComponent<Inputs>().inputStruct.taskID = index;
+        machineLook.OnMachineInteracted(true);
         //taskIndex.Value = index;
         //slider.maxValue = machineTasks[index].TaskTime;
-        ItemsUI.gameObject.SetActive(false);
+        // ItemsUI.gameObject.SetActive(false);
     }
 }
