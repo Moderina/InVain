@@ -25,8 +25,6 @@ public class Machine : ElympicsMonoBehaviour, IObservable
     private ElympicsInt taskIndex = new ElympicsInt(-1);
     private ElympicsInt ammount = new ElympicsInt(0);
     private ElympicsFloat progress = new ElympicsFloat(0);
-
-    Slider slider;
     private Transform currentPlayer;
 
     void Start()
@@ -43,7 +41,6 @@ public class Machine : ElympicsMonoBehaviour, IObservable
         {
             currentPlayer = col.transform;
             currentPlayer.Find("Canvas").Find("Missing").gameObject.SetActive(false);
-            slider = currentPlayer.Find("Canvas").Find("Slider").GetComponent<Slider>();
             //turn on UI only for interacting player
             var player = currentPlayer.parent.GetComponent<ElympicsBehaviour>();
             if(Elympics.Player != player.PredictableFor) return;
@@ -88,7 +85,6 @@ public class Machine : ElympicsMonoBehaviour, IObservable
                 //if normal task
                 else
                 {
-                    slider.maxValue = machineSabotage.Find(x => x.ID == taskIndex.Value).TaskTime;
                     Debug.Log("Taskindex: " + taskIndex.Value);
                 }
             }
@@ -104,16 +100,8 @@ public class Machine : ElympicsMonoBehaviour, IObservable
                     if(sliderSliding.IsInside())
                     {
                         ammount.Value += 1;
-                        Debug.Log("We got the moves");
                     }
                 }
-                // else 
-                // {
-                //     progress.Value = 0;
-                // }
-                //Debug.Log(progress);
-                slider.value = progress.Value;
-                // if (progress.Value > slider.maxValue)
                 if(ammount.Value == machineTasks.Find(x => x.ID == taskIndex.Value).ammount)
                 {
                     Debug.Log("Task Completed");
@@ -132,7 +120,6 @@ public class Machine : ElympicsMonoBehaviour, IObservable
             }
             else 
             {
-                slider.gameObject.SetActive(false);
                 if (taskIndex.Value != -1 && !HasItems())
                 {
                     currentPlayer.Find("Canvas").Find("Missing").gameObject.SetActive(true);
@@ -150,9 +137,8 @@ public class Machine : ElympicsMonoBehaviour, IObservable
             currentPlayer = null;
             taskIndex.Value = -1;
             progress.Value = 0;
-            slider.value = 0;
+            ammount.Value = 0;
             col.transform.Find("Canvas").Find("Missing").gameObject.SetActive(false);
-            slider.gameObject.SetActive(false);
             Broken.SetActive(false);
             //CleanUI();
             // TasksPanel.gameObject.SetActive(false);

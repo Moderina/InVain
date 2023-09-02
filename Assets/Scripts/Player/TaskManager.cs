@@ -10,6 +10,7 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
     [SerializeField] private GameObject TaskPanel;
     [SerializeField] private int numberOfTasks = 2;
     
+    public ElympicsBool done = new ElympicsBool(false);
     public ElympicsBool finished = new ElympicsBool(false);
     private ElympicsBool tasksReady = new ElympicsBool(false);
     public List<TaskData> allTasks = new List<TaskData>();
@@ -24,6 +25,7 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
         tasksReady.ValueChanged += UpdateTaskUI;
         TaskPanel = GameObject.Find("MainUI").transform.Find("TaskPanel").gameObject;
         finished.ValueChanged += GameFinished;
+        done.ValueChanged += TasksRecorded;
         //gather all tasks from all machines
         allTasks = FindAllTasks();
         //Debug.Log(string.Join(", ", allTasks));
@@ -136,6 +138,12 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
         catch{}
     }
 
+    private void TasksRecorded(bool lastValue, bool newValue)
+    {
+        if(Elympics.Player != PredictableFor) return;
+        TaskPanel.SetActive(false);
+    }
+
     private void GameFinished(bool lastValue, bool newValue)
     {
         if(Elympics.Player != PredictableFor) return;
@@ -146,16 +154,23 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
         WIN.AddComponent<TextMeshProUGUI>();
         if (!AreTasksCompleted())
         {
-            WIN.GetComponent<TextMeshProUGUI>().text = "YOU LOST";
+            WIN.GetComponent<TextMeshProUGUI>().text = "your work was in vain";
             WIN.GetComponent<TextMeshProUGUI>().color = Color.blue;
         }
         else
         {
-            WIN.GetComponent<TextMeshProUGUI>().text = "YOU WON";
+            WIN.GetComponent<TextMeshProUGUI>().text = "your vain won";
             WIN.GetComponent<TextMeshProUGUI>().color = Color.green;
         }
-        //GetComponent<PlayerHandler>().enabled = false;
-
+        TaskManager[] allPlayers = FindObjectsOfType<TaskManager>();
+        foreach(TaskManager player in allPlayers)
+        {
+            if(!player.AreTasksCompleted()) 
+            {
+                Camera.main.GetComponent<CameraMove>().ChangeTarget(player.transform);
+                return;
+            }
+        }
 
     }
 

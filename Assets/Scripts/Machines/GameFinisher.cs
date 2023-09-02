@@ -4,19 +4,41 @@ using UnityEngine;
 using Elympics;
 using TMPro;
 using System;
+using UnityEngine.Rendering.Universal;
 
-public class GameFinisher : ElympicsMonoBehaviour
+public class GameFinisher : ElympicsMonoBehaviour, IUpdatable
 {
     public TaskManager[] allPlayers = null;
     private Transform currentPlayer;
     private bool hasKey;
-    [SerializeField] private GameObject Key;
+    private float timeToEnd = -1;
+    public ElympicsBool startEnd = new ElympicsBool(false);
+    private float fadeTime = 2;
 
     private ElympicsInt numberOfWinners = new ElympicsInt(0);
 
     public void Start()
     {
         allPlayers = FindObjectsOfType<TaskManager>();
+    }
+
+    public void ElympicsUpdate()
+    {
+        if(timeToEnd == -1) return;
+        if(timeToEnd > 0)
+        {
+            Debug.Log(timeToEnd);
+            timeToEnd -= Elympics.TickDuration;
+        }
+        else
+        {
+            startEnd.Value = true;
+            timeToEnd = 10;
+        }
+        if(startEnd.Value == true && timeToEnd < 0)
+        {
+            Elympics.EndGame();
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D col)
@@ -39,6 +61,7 @@ public class GameFinisher : ElympicsMonoBehaviour
                 hasKey = true;
                 numberOfWinners.Value += 1;
                 currentPlayer.GetComponentInParent<PlayerHandler>().wantsToFinish = false;
+                currentPlayer.GetComponentInParent<TaskManager>().done.Value = true;
                 var key = ElympicsInstantiate("Key", ElympicsPlayer.All);
                 key.AddComponent<Key>().OnCreate(currentPlayer);
                 Win();
@@ -62,8 +85,11 @@ public class GameFinisher : ElympicsMonoBehaviour
 
     private void Win()
     {
-        if (numberOfWinners.Value == allPlayers.Length-1 || numberOfWinners.Value == allPlayers.Length) 
+        if (numberOfWinners.Value == allPlayers.Length-1 || (numberOfWinners.Value == allPlayers.Length && allPlayers.Length == 1)) 
         {
+            Debug.Log("im inside");
+            if(!Elympics.IsServer) return;
+            timeToEnd = 5;
             //currentPlayer.GetComponentInParent<PlayerHandler>().enabled = false;
             foreach(TaskManager player in allPlayers)
             {
@@ -73,12 +99,7 @@ public class GameFinisher : ElympicsMonoBehaviour
                     Debug.Log("cant take much more");
                 // }
             }
-            if(!Elympics.IsServer) return;
-            GetComponent<GameManager>().ChangeGameState(GameState.MatchEnded);
-            StartCoroutine(GetComponent<GameManager>().WaitToEnd());
-            // Elympics.EndGame();
-            // this.gameObject.SetActive(false);
-            GetComponent<GameFinisher>().enabled = false;
+            //GetComponent<GameFinisher>().enabled = false;
         }
     }
 }

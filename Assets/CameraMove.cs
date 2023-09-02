@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Elympics;
+using System;
 
 public class CameraMove : ElympicsMonoBehaviour
 {
@@ -24,7 +25,6 @@ public class CameraMove : ElympicsMonoBehaviour
             }
         }
     }
-
     void LateUpdate()
     {
         if(Elympics.IsServer) return;
@@ -38,4 +38,10 @@ public class CameraMove : ElympicsMonoBehaviour
         Vector3 movePosition = target.position + offset;
         transform.position = Vector3.SmoothDamp(transform.position, movePosition, ref velocity, dumping);
     }
+
+    public void ChangeTarget(Transform target)
+    {
+        this.target = target;
+    }
+
 }

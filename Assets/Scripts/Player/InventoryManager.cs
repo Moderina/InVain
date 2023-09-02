@@ -28,7 +28,9 @@ public class InventoryManager : ElympicsMonoBehaviour, IObservable
 
     void Update()
     {
-        //Debug.Log(string.Join(", ", myItems));
+        if(Elympics.Player != PredictableFor) return;
+        if(transform.childCount == 4) GameObject.Find("MainUI").transform.Find("ItemTimer").gameObject.SetActive(true);
+        else GameObject.Find("MainUI").transform.Find("ItemTimer").gameObject.SetActive(false);
     }
 
     //Server
