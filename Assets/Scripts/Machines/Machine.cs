@@ -66,6 +66,7 @@ public class Machine : ElympicsMonoBehaviour, IObservable
             {
                 taskIndex.Value = taskID;
                 currentPlayer.parent.GetComponent<PlayerHandler>().taskID = -1;
+                ammount.Value = 0;
                 //if prank is set abort task execution and set restart timer
                 if(prankBroken.Value)
                 {
@@ -85,6 +86,7 @@ public class Machine : ElympicsMonoBehaviour, IObservable
                 //if normal task
                 else
                 {
+                    sliderSliding.SetTask(machineSabotage.Find(x => x.ID == taskIndex.Value).width);
                     Debug.Log("Taskindex: " + taskIndex.Value);
                 }
             }
@@ -102,7 +104,7 @@ public class Machine : ElympicsMonoBehaviour, IObservable
                         ammount.Value += 1;
                     }
                 }
-                if(ammount.Value == machineTasks.Find(x => x.ID == taskIndex.Value).ammount)
+                if(ammount.Value == machineTasks.Find(x => x.ID == taskIndex.Value).ammount || (machineTasks.Count != 0 && ammount.Value == machineSabotage.Find(x => x.ID == taskIndex.Value).ammount))
                 {
                     Debug.Log("Task Completed");
                     TaskCompleted();

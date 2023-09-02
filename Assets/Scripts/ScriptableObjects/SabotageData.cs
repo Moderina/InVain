@@ -9,5 +9,8 @@ public class SabotageData : ScriptableObject
     public string Description;
     public int TaskTime;
 
+    public float width;
+    public int ammount;
+
     public List<ItemData> requirements = new List<ItemData>();
 }
