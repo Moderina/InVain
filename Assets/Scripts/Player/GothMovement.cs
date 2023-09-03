@@ -10,7 +10,7 @@ public class GothMovement : ElympicsMonoBehaviour
 
     [SerializeField] private GameObject sprite;
     [SerializeField] private Transform head;
-    private int faceDir = 1;
+    public int faceDir = 1;
     public int inverted = 1;
 
     public void Start() { rb = GetComponent<Rigidbody2D>(); }

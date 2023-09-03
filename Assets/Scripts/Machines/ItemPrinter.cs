@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class ItemPrinter : ElympicsMonoBehaviour, IUpdatable
 {
+    [SerializeField] private PrinterLook printerLook;
     [SerializeField] private Canvas ItemsUI;
     [SerializeField] private TextMeshProUGUI timer;
     [SerializeField] private GameObject ItemsPanel;
@@ -69,13 +70,28 @@ public class ItemPrinter : ElympicsMonoBehaviour, IUpdatable
             var player = currentPlayer.parent.GetComponent<ElympicsBehaviour>();
             if(Elympics.Player != player.PredictableFor) return;
             if(itemIndex.Value != -1) return;
-            ItemsUI.gameObject.SetActive(true);
+            // ItemsUI.gameObject.SetActive(true);
+            if((currentPlayer.GetComponent<GothMovement>().faceDir == 1 && ItemsPanel.transform.position.x < 0)
+             || (currentPlayer.GetComponent<GothMovement>().faceDir == -1 && ItemsPanel.transform.position.x > 0))
+            {
+                var pos = ItemsPanel.transform.position;
+                pos.x *= -1;
+                ItemsPanel.transform.position = pos;
+            }
+            printerLook.OnPrinterInteracted(false);
         }
     }
     
     void OnTriggerStay2D(Collider2D col)
     {
         if(col.transform.tag != "Work") return;
+        if((currentPlayer.GetComponent<GothMovement>().faceDir == 1 && ItemsPanel.transform.position.x < 0)
+            || (currentPlayer.GetComponent<GothMovement>().faceDir == -1 && ItemsPanel.transform.position.x > 0))
+        {
+            var pos = ItemsPanel.transform.position;
+            pos.x *= -1;
+            ItemsPanel.transform.position = pos;
+        }
         if(itemIndex.Value != -1 && itemReady.Value == false) 
         {
             ItemsUI.gameObject.SetActive(false);
@@ -109,28 +125,31 @@ public class ItemPrinter : ElympicsMonoBehaviour, IUpdatable
         if(col.transform.tag != "Work") return;
         var player = col.transform.parent.GetComponent<ElympicsBehaviour>();
         if(Elympics.Player != player.PredictableFor) return;
-        ItemsUI.gameObject.SetActive(false);
+        // ItemsUI.gameObject.SetActive(false);
+        printerLook.OnPrinterInteracted(true);
     }
 
     private void LoadItemUI()
     {
         for(int i=0; i<allItems.Count; i++)
         {
-            var taskui = Instantiate(_ItemPrefab);
-            taskui.transform.Find("Name").gameObject.GetComponent<TextMeshProUGUI>().text = allItems[i].Name;
-            taskui.name = allItems[i].ID.ToString();
-            taskui.transform.SetParent(ItemsPanel.transform);
-            taskui.GetComponent<Button>().onClick.AddListener(delegate() 
+            var itemui = Instantiate(_ItemPrefab);
+            // taskui.transform.Find("Name").gameObject.GetComponent<TextMeshProUGUI>().text = allItems[i].Name;
+            itemui.GetComponent<Image>().sprite = allItems[i].sprite;
+            itemui.name = allItems[i].ID.ToString();
+            itemui.transform.SetParent(ItemsPanel.transform);
+            itemui.GetComponent<Button>().onClick.AddListener(delegate() 
             {
-                int.TryParse(taskui.name, out int index);
+                int.TryParse(itemui.name, out int index);
                 ItemClicked(index);
             });
         }
     }
 
-        public void ItemClicked(int index)
+    public void ItemClicked(int index)
     {
         currentPlayer.parent.GetComponent<Inputs>().inputStruct.taskID = index;
-        ItemsUI.gameObject.SetActive(false);
+        // ItemsUI.gameObject.SetActive(false);
+        printerLook.OnPrinterInteracted(true);
     }
 }

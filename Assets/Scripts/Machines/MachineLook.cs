@@ -18,7 +18,6 @@ public class MachineLook : ElympicsMonoBehaviour, IObservable
     }
 
     private IEnumerator ShowMachineUI(bool hiding)
-    // public void Update()
     {
         Debug.Log(taskPanel.transform.position);
         //taskPanel.transform.position = new Vector3()
