@@ -6,12 +6,13 @@ public class PrinterLook : MonoBehaviour
 {
     //Machine UI
     [SerializeField] GameObject taskPanel;
-    [SerializeField] private float duration = 0.5f;
+    [SerializeField] private float duration = 5f;
     private Vector3 startPos;
 
     void Start()
     {
-        startPos = transform.position;
+        startPos = taskPanel.GetComponent<RectTransform>().anchoredPosition;
+        Debug.Log("lonely" + taskPanel.GetComponent<RectTransform>().anchoredPosition);
     }
 
     public IEnumerator ShowPrinterUI(bool hiding)
@@ -19,7 +20,7 @@ public class PrinterLook : MonoBehaviour
         Vector3 endPosition;
 
         float elapsedTime = 0f;
-        if(transform.position.x > 0)
+        if(taskPanel.GetComponent<RectTransform>().anchoredPosition.x > 0)
         {
             endPosition = startPos;
             if(!hiding)
@@ -35,13 +36,14 @@ public class PrinterLook : MonoBehaviour
                 endPosition.x += 310f;
             }
         }
+        Debug.Log("dug this grave " + endPosition.x);
 
         while(elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
 
-            Vector3 lerpedPos = Vector3.Lerp(taskPanel.transform.position, endPosition, elapsedTime/duration);
-            taskPanel.transform.position = lerpedPos;
+            Vector3 lerpedPos = Vector3.Lerp(taskPanel.GetComponent<RectTransform>().anchoredPosition, endPosition, elapsedTime/duration);
+            taskPanel.GetComponent<RectTransform>().anchoredPosition = lerpedPos;
 
             yield return null;
         }

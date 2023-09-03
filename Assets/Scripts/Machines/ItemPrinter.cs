@@ -71,12 +71,14 @@ public class ItemPrinter : ElympicsMonoBehaviour, IUpdatable
             if(Elympics.Player != player.PredictableFor) return;
             if(itemIndex.Value != -1) return;
             // ItemsUI.gameObject.SetActive(true);
-            if((currentPlayer.GetComponent<GothMovement>().faceDir == 1 && ItemsPanel.transform.position.x < 0)
-             || (currentPlayer.GetComponent<GothMovement>().faceDir == -1 && ItemsPanel.transform.position.x > 0))
+            // if((currentPlayer.parent.GetComponent<GothMovement>().faceDir == 1 && ItemsPanel.transform.position.x < 0)
+            //  || (currentPlayer.parent.GetComponent<GothMovement>().faceDir == -1 && ItemsPanel.transform.position.x > 0))
+            if ((currentPlayer.parent.GetComponent<GothMovement>().faceDir == 1 && ItemsPanel.GetComponent<RectTransform>().anchoredPosition.x < 0)
+                || (currentPlayer.parent.GetComponent<GothMovement>().faceDir == -1 && ItemsPanel.GetComponent<RectTransform>().anchoredPosition.x > 0))
             {
-                var pos = ItemsPanel.transform.position;
+                var pos = ItemsPanel.GetComponent<RectTransform>().anchoredPosition;
                 pos.x *= -1;
-                ItemsPanel.transform.position = pos;
+                ItemsPanel.GetComponent<RectTransform>().anchoredPosition = pos;
             }
             printerLook.OnPrinterInteracted(false);
         }
@@ -85,12 +87,12 @@ public class ItemPrinter : ElympicsMonoBehaviour, IUpdatable
     void OnTriggerStay2D(Collider2D col)
     {
         if(col.transform.tag != "Work") return;
-        if((currentPlayer.GetComponent<GothMovement>().faceDir == 1 && ItemsPanel.transform.position.x < 0)
-            || (currentPlayer.GetComponent<GothMovement>().faceDir == -1 && ItemsPanel.transform.position.x > 0))
+        if ((currentPlayer.parent.GetComponent<GothMovement>().faceDir == 1 && ItemsPanel.GetComponent<RectTransform>().anchoredPosition.x < 0)
+            || (currentPlayer.parent.GetComponent<GothMovement>().faceDir == -1 && ItemsPanel.GetComponent<RectTransform>().anchoredPosition.x > 0))
         {
-            var pos = ItemsPanel.transform.position;
+            var pos = ItemsPanel.GetComponent<RectTransform>().anchoredPosition;
             pos.x *= -1;
-            ItemsPanel.transform.position = pos;
+            ItemsPanel.GetComponent<RectTransform>().anchoredPosition = pos;
         }
         if(itemIndex.Value != -1 && itemReady.Value == false) 
         {
@@ -134,6 +136,7 @@ public class ItemPrinter : ElympicsMonoBehaviour, IUpdatable
         for(int i=0; i<allItems.Count; i++)
         {
             var itemui = Instantiate(_ItemPrefab);
+            Debug.Log("item " + allItems[i].Name);
             // taskui.transform.Find("Name").gameObject.GetComponent<TextMeshProUGUI>().text = allItems[i].Name;
             itemui.GetComponent<Image>().sprite = allItems[i].sprite;
             itemui.name = allItems[i].ID.ToString();

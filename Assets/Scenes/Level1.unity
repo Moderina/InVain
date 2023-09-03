@@ -4860,6 +4860,7 @@ MonoBehaviour:
   rb: {fileID: 448696592}
   sprite: {fileID: 1821215827}
   head: {fileID: 1061097678}
+  faceDir: 1
   inverted: 1
 --- !u!114 &448696596
 MonoBehaviour:
@@ -8480,7 +8481,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 600, y: 0}
+  m_AnchoredPosition: {x: 650, y: 0}
   m_SizeDelta: {x: 300, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &796668902
@@ -9527,6 +9528,7 @@ MonoBehaviour:
   rb: {fileID: 908592968}
   sprite: {fileID: 1026103560}
   head: {fileID: 2029801811}
+  faceDir: 1
   inverted: 1
 --- !u!114 &908592972
 MonoBehaviour:
@@ -10458,6 +10460,7 @@ MonoBehaviour:
   rb: {fileID: 992456642}
   sprite: {fileID: 1217289272}
   head: {fileID: 2037762093}
+  faceDir: 1
   inverted: 1
 --- !u!114 &992456646
 MonoBehaviour:
@@ -11106,6 +11109,7 @@ MonoBehaviour:
   rb: {fileID: 1045241294}
   sprite: {fileID: 475397533}
   head: {fileID: 470884182}
+  faceDir: 1
   inverted: 1
 --- !u!114 &1045241298
 MonoBehaviour:
@@ -13196,6 +13200,7 @@ MonoBehaviour:
   rb: {fileID: 1258771171}
   sprite: {fileID: 1433770160}
   head: {fileID: 1429126089}
+  faceDir: 1
   inverted: 1
 --- !u!114 &1258771175
 MonoBehaviour:
@@ -16817,6 +16822,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1651328601}
   m_CullTransparentMesh: 1
+--- !u!1 &1653391213 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4947726079840171080, guid: 428e8c0026cf5264985d8b8fe2ce4afa, type: 3}
+  m_PrefabInstance: {fileID: 4947726078767343679}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1653391218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653391213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cfbba63e331f6441874f84801f8531d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  taskPanel: {fileID: 796668900}
+  duration: 0.5
 --- !u!1 &1664200608
 GameObject:
   m_ObjectHideFlags: 0
@@ -24545,6 +24569,7 @@ MonoBehaviour:
   rb: {fileID: 559778274398998122}
   sprite: {fileID: 1208041207388860409}
   head: {fileID: 1244870531621942819}
+  faceDir: 1
   inverted: 1
 --- !u!224 &3631525924764498548
 RectTransform:
@@ -26126,6 +26151,10 @@ PrefabInstance:
       propertyPath: _ItemPrefab
       value: 
       objectReference: {fileID: 3943611522155822986, guid: 801104f706b2c4d42b2ea0a77ff8b6a4, type: 3}
+    - target: {fileID: 4947726079840171079, guid: 428e8c0026cf5264985d8b8fe2ce4afa, type: 3}
+      propertyPath: printerLook
+      value: 
+      objectReference: {fileID: 1653391218}
     - target: {fileID: 4947726079840171080, guid: 428e8c0026cf5264985d8b8fe2ce4afa, type: 3}
       propertyPath: m_Name
       value: 3DPrinter
