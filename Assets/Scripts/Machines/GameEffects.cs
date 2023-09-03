@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Rendering.Universal;
 
 public class GameEffects : MonoBehaviour
@@ -16,6 +17,7 @@ public class GameEffects : MonoBehaviour
 
     private float fadeTime = 2;
     private int lastRememberedNumber = -1;
+    private bool phase = false;
     void Start()
     {
         gameManager.CurrentGameState.ValueChanged += StateChanged;
@@ -37,7 +39,8 @@ public class GameEffects : MonoBehaviour
         if (gameFinisher.startEnd.Value == true)
         {
             LoadCutScene();
-            fadeTime -= Time.deltaTime;
+            if(!phase) fadeTime -= Time.deltaTime;
+            if(phase) fadeTime += Time.deltaTime;
         }
     }
 
@@ -77,7 +80,22 @@ public class GameEffects : MonoBehaviour
 
     private void LoadCutScene()
     {
-        Light2D light = GameObject.Find("Light").GetComponent<Light2D>();
-        light.intensity = fadeTime / 2;
+        if(!phase)
+        {
+            Light2D light = GameObject.Find("Light").GetComponent<Light2D>();
+            light.intensity = fadeTime / 2;
+            if (light.intensity < 0)
+            {
+                phase = !phase;
+                GameObject.Find("MainUI").transform.GetChild(9).gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            var image = GameObject.Find("MainUI").transform.GetChild(9).GetComponent<Image>();
+            var tempcolor = image.color;
+            tempcolor.a = fadeTime / 2;
+            image.color = tempcolor;
+        }
     }
 }
