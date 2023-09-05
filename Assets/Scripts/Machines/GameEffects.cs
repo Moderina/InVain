@@ -15,6 +15,8 @@ public class GameEffects : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textUI;
     [SerializeField] private Light2D lobbyLight;
 
+    [SerializeField] private Sprite happy, burnt;
+
     private float fadeTime = 2;
     private int lastRememberedNumber = -1;
     private bool phase = false;
@@ -94,8 +96,29 @@ public class GameEffects : MonoBehaviour
         {
             var image = GameObject.Find("MainUI").transform.GetChild(9).GetComponent<Image>();
             var tempcolor = image.color;
-            tempcolor.a = fadeTime / 2;
-            image.color = tempcolor;
+            if (fadeTime < 2)
+            {
+                tempcolor.a = fadeTime / 2;
+                image.color = tempcolor;
+            }
+            else 
+            {
+                if (fadeTime > 5)
+                {
+                    image.sprite = burnt;
+                }
+                else
+                {
+                    if(Mathf.Sin(fadeTime*fadeTime) > 0.9)
+                    {
+                        image.sprite = burnt;
+                    }
+                    else
+                    {
+                        image.sprite = happy;
+                    }
+                }
+            }
         }
     }
 }

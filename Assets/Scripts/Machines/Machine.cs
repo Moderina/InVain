@@ -104,7 +104,7 @@ public class Machine : ElympicsMonoBehaviour, IObservable
                         ammount.Value += 1;
                     }
                 }
-                if(ammount.Value == machineTasks.Find(x => x.ID == taskIndex.Value).ammount || (machineTasks.Count != 0 && ammount.Value == machineSabotage.Find(x => x.ID == taskIndex.Value).ammount))
+                if(ammount.Value == machineTasks.Find(x => x.ID == taskIndex.Value).ammount || (machineSabotage.Count != 0 && ammount.Value == machineSabotage.Find(x => x.ID == taskIndex.Value).ammount))
                 {
                     Debug.Log("Task Completed");
                     TaskCompleted();

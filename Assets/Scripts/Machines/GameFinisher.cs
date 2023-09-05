@@ -27,7 +27,6 @@ public class GameFinisher : ElympicsMonoBehaviour, IUpdatable
         if(timeToEnd == -1) return;
         if(timeToEnd > 0)
         {
-            Debug.Log(timeToEnd);
             timeToEnd -= Elympics.TickDuration;
         }
         else
@@ -62,8 +61,8 @@ public class GameFinisher : ElympicsMonoBehaviour, IUpdatable
                 numberOfWinners.Value += 1;
                 currentPlayer.GetComponentInParent<PlayerHandler>().wantsToFinish = false;
                 currentPlayer.GetComponentInParent<TaskManager>().done.Value = true;
-                var key = ElympicsInstantiate("Key", ElympicsPlayer.All);
-                key.AddComponent<Key>().OnCreate(currentPlayer);
+                // var key = ElympicsInstantiate("Key", ElympicsPlayer.All);
+                // key.AddComponent<Key>().OnCreate(currentPlayer);
                 Win();
 
             }

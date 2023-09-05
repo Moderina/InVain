@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 6
   Description: Harvest Fruits
-  width: 1
-  ammount: 2
+  width: 1.8
+  ammount: 8
   requirements: []

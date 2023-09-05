@@ -39,6 +39,7 @@ public class PlayersWorkInfo : ElympicsMonoBehaviour
         {
             var nPlayerCard = Instantiate(playerCard);
             nPlayerCard.gameObject.SetActive(true);
+            nPlayerCard.GetChild(0).GetComponent<Image>().sprite = player.transform.GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().sprite;
             nPlayerCard.GetChild(1).GetComponent<TextMeshProUGUI>().text = player.transform.GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>().text;
             var alltasks = player.GetComponent<TaskManager>().allTasks;
             var playerTasks = player.GetComponent<TaskManager>().myTasks;

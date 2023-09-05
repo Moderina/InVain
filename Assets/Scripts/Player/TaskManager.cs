@@ -155,11 +155,13 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
         if (!AreTasksCompleted())
         {
             WIN.GetComponent<TextMeshProUGUI>().text = "your work was in vain";
+            // WIN.GetComponent<TextMeshProUGUI>().aligment = TextAligment.Center;
             WIN.GetComponent<TextMeshProUGUI>().color = Color.blue;
         }
         else
         {
             WIN.GetComponent<TextMeshProUGUI>().text = "your vain won";
+            // WIN.GetComponent<TextMeshProUGUI>().aligment = TextAligment.Center;
             WIN.GetComponent<TextMeshProUGUI>().color = Color.green;
         }
         TaskManager[] allPlayers = FindObjectsOfType<TaskManager>();

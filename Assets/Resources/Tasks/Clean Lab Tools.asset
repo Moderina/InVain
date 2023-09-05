@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 9
   Description: Clean Lab Tools
-  width: 1
-  ammount: 2
-  requirements: []
+  width: 0.8
+  ammount: 3
+  requirements:
+  - {fileID: 11400000, guid: c4ab6641711b9134b90de6a98edda5bf, type: 2}

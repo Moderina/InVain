@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 11
   Description: Add Fuel
-  width: 1
-  ammount: 2
+  width: 0.8
+  ammount: 5
   requirements:
   - {fileID: 11400000, guid: 4f3c46bbdea0748439281bdde713eca8, type: 2}

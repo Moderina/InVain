@@ -15,5 +15,5 @@ MonoBehaviour:
   ID: 10
   Description: Check Plant Health
   width: 1
-  ammount: 2
+  ammount: 6
   requirements: []

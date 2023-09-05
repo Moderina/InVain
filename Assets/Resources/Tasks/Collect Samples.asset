@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 4
   Description: Collect Samples
-  width: 3
-  ammount: 2
-  requirements: []
+  width: 0.5
+  ammount: 3
+  requirements:
+  - {fileID: 11400000, guid: 8ce42d3423f455548a9d56ee5d77061b, type: 2}

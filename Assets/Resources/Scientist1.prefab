@@ -902,7 +902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 39
+  networkId: 60
   predictableFor:
     playerIndex: -2
   isUpdatableForNonOwners: 0
@@ -1295,7 +1295,7 @@ GameObject:
   - component: {fileID: 6925226655149739134}
   - component: {fileID: 7802619429865863952}
   m_Layer: 7
-  m_Name: Scientist_PartyBreaker
+  m_Name: Scientist1
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1379,7 +1379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 37
+  networkId: 59
   predictableFor:
     playerIndex: 0
   isUpdatableForNonOwners: 0
@@ -1488,6 +1488,8 @@ MonoBehaviour:
   rb: {fileID: 8539342622071891550}
   sprite: {fileID: 3381240911354446517}
   head: {fileID: 9215040457264031738}
+  faceDir: 1
+  inverted: 1
 --- !u!114 &8807956302478863186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1542,6 +1544,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TaskPanel: {fileID: 0}
   numberOfTasks: 2
+  done:
+    currentValue: 0
   finished:
     currentValue: 0
   allTasks: []

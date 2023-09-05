@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 5
   Description: Water Plants
-  TaskTime: 10
-  requirements: []
+  width: 1.5
+  ammount: 7
+  requirements:
+  - {fileID: 11400000, guid: cc712020719a40d47b8357b6aa2ffe75, type: 2}

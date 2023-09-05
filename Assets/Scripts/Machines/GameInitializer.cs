@@ -15,7 +15,7 @@ public class GameInitializer : ElympicsMonoBehaviour, IUpdatable, IInitializable
 
 	public ElympicsInt numberofPlayers = new(0);
 
-	[SerializeField] private GameObject _GamePlayerPrefab;
+	[SerializeField] private GameObject[] _GamePlayerPrefab;
 
     public void Initialize()
 	{
@@ -65,8 +65,19 @@ public class GameInitializer : ElympicsMonoBehaviour, IUpdatable, IInitializable
 						// Debug.Log(i + ": PredictableFor " + ID);
 						var trans = player.transform;
 						player.GetComponent<ElympicsBehaviour>().enabled = false;
+						GameObject gamePlayer;
+						Debug.Log(player.name);
+						var name = player.name;
+						Debug.Log(name.Substring(name.Length-1));
+						if(name.Substring(name.Length-1) == "1") gamePlayer = ElympicsInstantiate("Scientist1", ElympicsPlayer.FromIndex((int)ID));
+						else if(name.Substring(name.Length-1) == "2") gamePlayer = ElympicsInstantiate("Scientist2", ElympicsPlayer.FromIndex((int)ID));
+						else if(name.Substring(name.Length-1) == "3") gamePlayer = ElympicsInstantiate("Scientist3", ElympicsPlayer.FromIndex((int)ID));
+						else if(name.Substring(name.Length-1) == "4") gamePlayer = ElympicsInstantiate("Scientist4", ElympicsPlayer.FromIndex((int)ID));
+						else if(name.Substring(name.Length-1) == "5") gamePlayer = ElympicsInstantiate("Scientist5", ElympicsPlayer.FromIndex((int)ID));
+						else if(name.Substring(name.Length-1) == "6") gamePlayer = ElympicsInstantiate("Scientist6", ElympicsPlayer.FromIndex((int)ID));
+						else gamePlayer = ElympicsInstantiate("Scientist1", ElympicsPlayer.FromIndex((int)ID));
 						
-						GameObject gamePlayer = ElympicsInstantiate("Scientist_PartyBreaker", ElympicsPlayer.FromIndex((int)ID));
+						// GameObject gamePlayer = ElympicsInstantiate("Scientist_PartyBreaker", ElympicsPlayer.FromIndex((int)ID));
 						gamePlayer.SetActive(true);
 						gamePlayer.transform.position = trans.position;
 						gamePlayer.GetComponent<PlayerHandler>().playername.Value = player.transform.GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>().text;

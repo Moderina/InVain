@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class ItemPrinter : ElympicsMonoBehaviour, IUpdatable
 {
     [SerializeField] private PrinterLook printerLook;
-    [SerializeField] private Canvas ItemsUI;
     [SerializeField] private TextMeshProUGUI timer;
     [SerializeField] private GameObject ItemsPanel;
     [SerializeField] private GameObject _ItemPrefab;
@@ -23,7 +22,6 @@ public class ItemPrinter : ElympicsMonoBehaviour, IUpdatable
     void Start()
     {
         LoadItemUI();
-        ItemsUI.gameObject.SetActive(false);
     }
 
     public void ElympicsUpdate()
@@ -96,7 +94,6 @@ public class ItemPrinter : ElympicsMonoBehaviour, IUpdatable
         }
         if(itemIndex.Value != -1 && itemReady.Value == false) 
         {
-            ItemsUI.gameObject.SetActive(false);
             timer.transform.parent.gameObject.SetActive(true);
             return;
         }
