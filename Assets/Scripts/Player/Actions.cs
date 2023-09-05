@@ -29,6 +29,7 @@ public class Actions : MonoBehaviour
         if (sprite.childCount == 4 && sprite.GetChild(3).tag == "Weapon")
         {       
             sprite.GetChild(3).GetComponent<Pistol>().Shoot(mouse, shoot);
+            if(sprite.childCount == 3) Debug.Log("kurwa ale mi sie nie chce");
         }
     }
 

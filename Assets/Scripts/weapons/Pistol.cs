@@ -8,7 +8,7 @@ public class Pistol : ElympicsMonoBehaviour, IUpdatable
 {
     [SerializeField] private string bulletType;
     [SerializeField] private Transform bulletPoint;
-    [SerializeField] private int bulletammount = 5;
+    public int bulletammount = 5;
     [SerializeField] private int speed = 5;
     [SerializeField] private float reloadTime = 0.2f;
     private bool lastInput = false;
@@ -37,6 +37,9 @@ public class Pistol : ElympicsMonoBehaviour, IUpdatable
     public void ElympicsUpdate()
     {
         time -= Elympics.TickDuration;
-        if(toDestroy) ElympicsDestroy(gameObject);
+        if(toDestroy) 
+        {
+            ElympicsDestroy(gameObject);
+        }
     }
 }
