@@ -36,7 +36,7 @@ public class MachineLook : ElympicsMonoBehaviour, IObservable
             else
             {
                 endPosition = startPos;
-                endPosition.y += 175f;
+                endPosition.y += 350f;
             }
             Vector3 lerpedPos = Vector3.Lerp(taskPanel.transform.position, endPosition, elapsedTime/duration);
             taskPanel.transform.position = lerpedPos;

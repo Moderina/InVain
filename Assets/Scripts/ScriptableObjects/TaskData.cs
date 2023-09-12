@@ -10,6 +10,7 @@ public class TaskData : ScriptableObject
     public string Description;
     public float width;
     public int ammount;
+    public Color color; 
 
     public List<ItemData> requirements = new List<ItemData>();
     // private void OnEnable() 

@@ -55,6 +55,7 @@ public class PlayersWorkInfo : ElympicsMonoBehaviour
                 }
             }
             // nPlayerCard.GetChild(2).GetChild(0).gameObject.SetActive(false);
+            nPlayerCard.transform.localScale = nPlayerCard.transform.localScale * 2;
             nPlayerCard.SetParent(infoTable);
         }
     }

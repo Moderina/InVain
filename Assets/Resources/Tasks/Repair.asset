@@ -16,5 +16,6 @@ MonoBehaviour:
   Description: Repair
   width: 1
   ammount: 2
+  color: {r: 0.99215686, g: 0.5764706, b: 0.105882354, a: 1}
   requirements:
   - {fileID: 11400000, guid: c57a444f217c3fd46bcb2f4e3aba4b48, type: 2}

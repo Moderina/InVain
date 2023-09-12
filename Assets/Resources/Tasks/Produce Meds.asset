@@ -16,4 +16,5 @@ MonoBehaviour:
   Description: Produce Meds
   width: 1.2
   ammount: 4
+  color: {r: 0.2, g: 0.77254903, b: 0.83137256, a: 1}
   requirements: []

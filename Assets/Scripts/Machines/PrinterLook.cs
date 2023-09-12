@@ -25,7 +25,7 @@ public class PrinterLook : MonoBehaviour
             endPosition = startPos;
             if(!hiding)
             {
-                endPosition.x -= 310f;
+                endPosition.x -= 300f;
             } 
         }
         else
@@ -33,7 +33,7 @@ public class PrinterLook : MonoBehaviour
             endPosition = -startPos;
             if(!hiding)
             {
-                endPosition.x += 310f;
+                endPosition.x += 300f;
             }
         }
         Debug.Log("dug this grave " + endPosition.x);

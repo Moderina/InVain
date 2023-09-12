@@ -16,5 +16,6 @@ MonoBehaviour:
   Description: Prepare Meals
   width: 1.6
   ammount: 6
+  color: {r: 0.44705883, g: 0.12941177, b: 0.8784314, a: 1}
   requirements:
   - {fileID: 11400000, guid: 32838a69890b80848815702b6e37c80b, type: 2}

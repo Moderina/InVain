@@ -16,5 +16,6 @@ MonoBehaviour:
   Description: Analyzing Samples
   width: 1
   ammount: 6
+  color: {r: 0.19893196, g: 0.7687692, b: 0.8301887, a: 1}
   requirements:
   - {fileID: 11400000, guid: 2930b8e3c2ce30c41a3af3851fe61486, type: 2}

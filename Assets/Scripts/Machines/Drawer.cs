@@ -115,6 +115,7 @@ public class Drawer : ElympicsMonoBehaviour, IObservable
             itemui.name = drawerItems[i].ID.ToString();
             Debug.Log("DDDDDDDDDDDDupa");
             itemui.transform.SetParent(ItemsPanel.transform);
+            itemui.transform.localScale = itemui.transform.localScale * 2;
             itemui.GetComponent<Button>().onClick.AddListener(delegate() 
             {
                 int.TryParse(itemui.name, out int index);

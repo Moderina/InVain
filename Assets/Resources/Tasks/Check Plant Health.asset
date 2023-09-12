@@ -16,4 +16,5 @@ MonoBehaviour:
   Description: Check Plant Health
   width: 1
   ammount: 6
+  color: {r: 0.15614095, g: 0.8113208, b: 0.39184424, a: 0.98039216}
   requirements: []

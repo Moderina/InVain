@@ -6,7 +6,7 @@ using System;
 
 public class Pistol : ElympicsMonoBehaviour, IUpdatable
 {
-    [SerializeField] private string bulletType;
+    public string bulletType;
     [SerializeField] private Transform bulletPoint;
     public int bulletammount = 5;
     [SerializeField] private int speed = 5;
@@ -19,6 +19,7 @@ public class Pistol : ElympicsMonoBehaviour, IUpdatable
     public void Shoot(Vector3 mouse, bool newInput)
     {
         if (!Elympics.IsServer || time > 0) return;
+        if (bulletType == "dzban") return;
         if (newInput && !lastInput)
         {
             Vector2 force = new Vector2(mouse.x - bulletPoint.position.x, mouse.y - bulletPoint.position.y).normalized;
@@ -27,7 +28,12 @@ public class Pistol : ElympicsMonoBehaviour, IUpdatable
             bullet.GetComponent<Rigidbody2D>().AddForce(force * speed, ForceMode2D.Impulse);
             //time = bullet.GetComponent<Bullet>().cooldown;
             time = reloadTime;
-            if(++bulletsShot == bulletammount) toDestroy = true;
+            if(++bulletsShot == bulletammount) 
+            {
+                toDestroy = true;
+                bulletType = "dzban";
+                bulletsShot = 0;
+            }
         }
         lastInput = newInput;
 
@@ -39,7 +45,9 @@ public class Pistol : ElympicsMonoBehaviour, IUpdatable
         time -= Elympics.TickDuration;
         if(toDestroy) 
         {
-            ElympicsDestroy(gameObject);
+            // ElympicsDestroy(gameObject);
+            ElympicsDestroy(transform.parent.parent.GetChild(3).gameObject);
+            toDestroy = false;
         }
     }
 }

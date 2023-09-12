@@ -23,7 +23,7 @@ public class PickUpItem : MonoBehaviour
         if (col.tag == "Player") 
         {
             if (col.transform.childCount > 3) return;
-            if (col.transform.GetChild(0).childCount > 3) return;
+            if (col.transform.GetChild(0).childCount > 4) return;
             this.transform.parent.SetParent(col.transform);
             // this.transform.parent.GetComponent<Die>().LiveTimeStart();
             gameObject.SetActive(false);
@@ -32,7 +32,7 @@ public class PickUpItem : MonoBehaviour
         if (col.tag == "Work")
         {
             if (col.transform.parent.childCount > 3) return;
-            if (col.transform.parent.GetChild(0).childCount > 3) return;
+            if (col.transform.parent.GetChild(0).childCount > 4) return;
             this.transform.parent.SetParent(col.transform.parent);
             // this.transform.parent.GetComponent<Die>().LiveTimeStart();
             gameObject.SetActive(false);

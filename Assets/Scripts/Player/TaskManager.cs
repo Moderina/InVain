@@ -47,6 +47,7 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
             if(myTasks[i].Value == -1)
             {
                 TaskPanel.transform.GetChild(i+1).GetComponent<TextMeshProUGUI>().color = Color.green;
+                TaskPanel.transform.GetChild(i+1).localScale *= 0.5f;
             }     
         }
         for (int i=0; i<myTasks.Count; i++)
@@ -114,7 +115,11 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
         {
             string name = allTasks.Find(x => x.ID == id.Value).Description;
             var ntask = Instantiate(child);
+            ntask.transform.localScale = ntask.transform.localScale * 2;
+            Debug.Log("ooooooooo" + ntask.transform.localScale);
             ntask.GetComponent<TextMeshProUGUI>().text = name;
+            ntask.GetComponent<TextMeshProUGUI>().color = allTasks.Find(x => x.ID == id.Value).color;
+            ntask.GetComponent<TextMeshProUGUI>().alpha = 255;
             ntask.transform.SetParent(TaskPanel.transform);
         }
     }

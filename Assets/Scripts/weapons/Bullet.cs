@@ -6,7 +6,6 @@ using UnityEditor;
 
 public class Bullet : ElympicsMonoBehaviour, IUpdatable
 {
-    [SerializeField] private MonoScript script;
     public Rigidbody2D rb;
     public float time = 10f;
     public float cooldown = 1f;

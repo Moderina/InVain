@@ -16,4 +16,5 @@ MonoBehaviour:
   Description: Check Generator Condition
   width: 1.3
   ammount: 4
+  color: {r: 0.99215686, g: 0.5764706, b: 0.105882354, a: 1}
   requirements: []

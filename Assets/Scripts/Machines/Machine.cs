@@ -241,6 +241,7 @@ public class Machine : ElympicsMonoBehaviour, IObservable
             else
                 taskui.transform.GetChild(1).gameObject.SetActive(false);
             taskui.name = machineTasks[i].ID.ToString();
+            taskui.transform.localScale = taskui.transform.localScale * 2;
             taskui.transform.SetParent(TasksPanel.transform);
             taskui.GetComponent<Button>().onClick.AddListener(delegate() 
             {

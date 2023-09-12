@@ -133,6 +133,7 @@ public class ItemPrinter : ElympicsMonoBehaviour, IUpdatable
         for(int i=0; i<allItems.Count; i++)
         {
             var itemui = Instantiate(_ItemPrefab);
+            Debug.Log(itemui.name + ":" + itemui.transform.localScale);
             Debug.Log("item " + allItems[i].Name);
             // taskui.transform.Find("Name").gameObject.GetComponent<TextMeshProUGUI>().text = allItems[i].Name;
             itemui.GetComponent<Image>().sprite = allItems[i].sprite;

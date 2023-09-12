@@ -12,10 +12,11 @@ public class InventoryManager : ElympicsMonoBehaviour, IObservable
     [SerializeField] private GameObject _prefab;
     private List<ItemData> allItems = new List<ItemData>();
     private ElympicsList<ElympicsInt> myItems = new ElympicsList<ElympicsInt>(() => new ElympicsInt());
-
     private ElympicsInt inventoryChange = new ElympicsInt(0);
+    private ElympicsBool hasGun = new ElympicsBool(false);
     public void Start()
     {
+        hasGun.ValueChanged += OnGunPickedUp;
         inventoryChange.ValueChanged += UpdateInventoryUI;
         Inventory = GameObject.Find("MainUI").transform.Find("ItemsPanel").gameObject;
         // var drawers = GameObject.FindGameObjectsWithTag("Drawer");
@@ -84,6 +85,11 @@ public class InventoryManager : ElympicsMonoBehaviour, IObservable
                 itemobject.transform.SetParent(Inventory.transform);
             }
         }
+    }
+
+    public void OnGunPickedUp(bool oldValue, bool newValue)
+    {
+        
     }
 
     public int GetItemsCount()

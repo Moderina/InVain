@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 5
   Name: Alcohol
-  sprite: {fileID: 21300000, guid: 0229325dd25469642b1f67610d85a654, type: 3}
+  sprite: {fileID: 21300000, guid: bbcbf51239449f44482520e36b2763ea, type: 3}
   printingTime: 6

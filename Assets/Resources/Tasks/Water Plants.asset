@@ -16,5 +16,6 @@ MonoBehaviour:
   Description: Water Plants
   width: 1.5
   ammount: 7
+  color: {r: 0.15686275, g: 0.8117647, b: 0.39215687, a: 1}
   requirements:
   - {fileID: 11400000, guid: cc712020719a40d47b8357b6aa2ffe75, type: 2}

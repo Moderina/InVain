@@ -16,5 +16,6 @@ MonoBehaviour:
   Description: Cleaning
   width: 2
   ammount: 10
+  color: {r: 0.44555214, g: 0.12746526, b: 0.8773585, a: 1}
   requirements:
   - {fileID: 11400000, guid: c4ab6641711b9134b90de6a98edda5bf, type: 2}

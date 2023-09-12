@@ -16,4 +16,5 @@ MonoBehaviour:
   Description: Harvest Fruits
   width: 1.8
   ammount: 8
+  color: {r: 0.15686275, g: 0.8117647, b: 0.39215687, a: 1}
   requirements: []

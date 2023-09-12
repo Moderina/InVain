@@ -93,8 +93,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4950144217298861068}
-  - component: {fileID: 4950144217298861058}
   - component: {fileID: 4950144217298861069}
+  - component: {fileID: 4024303402529165944}
+  - component: {fileID: 5026582951827557383}
   m_Layer: 0
   m_Name: InteractionArea
   m_TagString: Untagged
@@ -117,18 +118,6 @@ Transform:
   m_Father: {fileID: 4950144217779415957}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4950144217298861058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4950144217298861071}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cef3e788c3bb1064bb2d9a5a9e1734e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &4950144217298861069
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -155,6 +144,48 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4024303402529165944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4950144217298861071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 334c2a3facb248ac8c1a599797c52dae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceNetworkId: 0
+  networkId: 89
+  predictableFor:
+    playerIndex: -2
+  isUpdatableForNonOwners: 0
+  visibleFor:
+    playerIndex: -3
+  stateFrequencyStages:
+  - stageDurationInMiliseconds: 500
+    frequencyInMiliseconds: 30
+    maxStageDurationInMiliseconds: 5000
+  - stageDurationInMiliseconds: 1000
+    frequencyInMiliseconds: 200
+    maxStageDurationInMiliseconds: 5000
+  - stageDurationInMiliseconds: 1000
+    frequencyInMiliseconds: 1000
+    maxStageDurationInMiliseconds: 5000
+--- !u!114 &5026582951827557383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4950144217298861071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c804fdbc5aaf145459b1d88168efa8fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  point: {fileID: 0}
 --- !u!1 &4950144217498600706
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,8 +228,8 @@ GameObject:
   - component: {fileID: 4950144217779415957}
   - component: {fileID: 4950144217779415947}
   - component: {fileID: 4950144217779415956}
-  - component: {fileID: 4950144217779415959}
   - component: {fileID: 4950144217779415946}
+  - component: {fileID: 7676065649940030081}
   m_Layer: 0
   m_Name: InverseGun
   m_TagString: Weapon
@@ -258,7 +289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceNetworkId: 0
-  networkId: 4
+  networkId: 90
   predictableFor:
     playerIndex: -2
   isUpdatableForNonOwners: 0
@@ -274,23 +305,6 @@ MonoBehaviour:
   - stageDurationInMiliseconds: 1000
     frequencyInMiliseconds: 1000
     maxStageDurationInMiliseconds: 5000
---- !u!114 &4950144217779415959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4950144217779415958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 843c770fe40ef8b40926a9d45d5f1ea3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletType: inverse
-  bulletPoint: {fileID: 4950144217498600707}
-  bulletammount: 5
-  speed: 20
-  reloadTime: 0.2
 --- !u!114 &4950144217779415946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,3 +347,15 @@ MonoBehaviour:
   isKinematicConfig:
     synchronizationEnabled: 0
     tolerance: 0
+--- !u!114 &7676065649940030081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4950144217779415958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cef3e788c3bb1064bb2d9a5a9e1734e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
