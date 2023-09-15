@@ -6,6 +6,8 @@ public class AnimationStateController : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private Rigidbody2D rb;
+    // [SerializeField] private Jump jump;
+    [SerializeField] private GameObject gun;
     void Start()
     {
         
@@ -24,5 +26,22 @@ public class AnimationStateController : MonoBehaviour
             animator.SetBool("isWalking", false);
             animator.speed = 1;
         }
+        // if(jump == null) return;
+        // if(jump.jumping) 
+        // {
+        //     animator.SetBool("isJumping", true);
+        //     animator.SetBool("isWalking", false);
+        // }
+        // else
+        // {
+        //     animator.SetBool("isJumping", false);
+        // }
+        if(gun.activeSelf) animator.SetBool("hasGun", true);
+        else animator.SetBool("hasGun", false);
+    }
+
+    public void GunAnimation(bool change)
+    {
+        animator.SetBool("hasGun", change);
     }
 }

@@ -33,6 +33,7 @@ public class Pistol : ElympicsMonoBehaviour, IUpdatable
                 toDestroy = true;
                 bulletType = "dzban";
                 bulletsShot = 0;
+                gameObject.SetActive(false);
             }
         }
         lastInput = newInput;

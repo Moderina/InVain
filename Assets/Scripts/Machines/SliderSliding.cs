@@ -6,9 +6,7 @@ using Elympics;
 public class SliderSliding : ElympicsMonoBehaviour, IUpdatable
 {
     [SerializeField] private RectTransform area;
-    public ElympicsFloat speed = new ElympicsFloat();
-    private int LWall = -2;
-    private int RWall = 2;
+    public ElympicsFloat speed = new ElympicsFloat(0.1f);
     private bool right = true;
     void Start()
     {
@@ -21,19 +19,19 @@ public class SliderSliding : ElympicsMonoBehaviour, IUpdatable
         if(Elympics.IsServer)
         if (right)
         {
-            transform.Translate(Vector3.right * 0.1f);
+            transform.Translate(Vector3.right * speed.Value);
             if(transform.localPosition.x > 2) right = !right;
         }
         else
         {
-            transform.Translate(Vector3.left * 0.1f);
+            transform.Translate(Vector3.left * speed.Value);
             if(transform.localPosition.x < -2) right = !right;
         }
     }
 
     public void SetTask(float width)
     {
-        if(!Elympics.IsServer) return;
+        // if(!Elympics.IsServer) return;
         area.SetSizeWithCurrentAnchors(
             RectTransform.Axis.Horizontal, width);
         float rand = Random.Range(-200, 200)/100;

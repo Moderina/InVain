@@ -40,6 +40,7 @@ public class GunPickUp : ElympicsMonoBehaviour
             // }
             if (col.transform.childCount > 3) return;
             var gun = col.transform.GetChild(0).GetChild(3);
+            gun.gameObject.SetActive(true);
             gun.GetComponent<Pistol>().bulletType = transform.parent.GetComponent<Pistol>().bulletType;
             this.transform.parent.SetParent(col.transform);
             transform.parent.gameObject.SetActive(false);
@@ -81,7 +82,9 @@ public class GunPickUp : ElympicsMonoBehaviour
             // }
             if (col.transform.parent.childCount > 3) return;
             var gun = col.transform.parent.GetChild(0).GetChild(3);
+            gun.gameObject.SetActive(true);
             gun.GetComponent<Pistol>().bulletType = transform.parent.GetComponent<Pistol>().bulletType;
+            gun.GetChild(0).GetComponent<SpriteRenderer>().color = transform.parent.GetChild(0).GetComponent<SpriteRenderer>().color;
             this.transform.parent.SetParent(col.transform.parent);
             transform.parent.gameObject.SetActive(false);
             return;

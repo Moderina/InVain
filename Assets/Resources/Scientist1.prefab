@@ -23,15 +23,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 307882506576851236}
-  m_LocalRotation: {x: 0, y: 0, z: 0.15282196, w: 0.9882537}
-  m_LocalPosition: {x: 0.2, y: 0.3, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.5477803, w: 0.8366223}
+  m_LocalPosition: {x: 0.02, y: 0.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6037192889065161200}
   m_Father: {fileID: 2155215525860350308}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 17.581}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 66.43}
 --- !u!1 &451492351182719879
 GameObject:
   m_ObjectHideFlags: 0
@@ -953,6 +953,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 7357838975368985954}
   rb: {fileID: 8539342622071891550}
+  gun: {fileID: 4691326397895612800}
 --- !u!114 &3728363601779995219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1211,7 +1212,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4335825582633446988}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.777, z: 0}
+  m_LocalPosition: {x: 0.07, y: 0.84, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1368,13 +1369,14 @@ GameObject:
   - component: {fileID: 4691326397895612803}
   - component: {fileID: 4691326397895612802}
   - component: {fileID: 4691326397895612801}
+  - component: {fileID: 1031688348071247431}
   m_Layer: 0
   m_Name: ForceGun
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4691326397895612803
 Transform:
   m_ObjectHideFlags: 0
@@ -1438,6 +1440,18 @@ MonoBehaviour:
   bulletammount: 5
   speed: 20
   reloadTime: 0.2
+--- !u!114 &1031688348071247431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4691326397895612800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f422823cf7c74d30b6473ef0e0097292, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4691326398680037140
 GameObject:
   m_ObjectHideFlags: 0
@@ -1711,6 +1725,7 @@ MonoBehaviour:
     m_Bits: 1
   coyoteTime: 0.1
   jumpBufferDuration: 0.2
+  jumping: 0
 --- !u!114 &5272230217081051942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1740,7 +1755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TaskPanel: {fileID: 0}
-  numberOfTasks: 2
+  numberOfTasks: 0
   done:
     currentValue: 0
   finished:
@@ -2148,15 +2163,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8153686297588038745}
-  m_LocalRotation: {x: 0, y: 0, z: 0.07062701, w: 0.9975028}
-  m_LocalPosition: {x: -0.299, y: 0.3, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.55472577, w: 0.83203334}
+  m_LocalPosition: {x: -0.3, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4698742382642297540}
   m_Father: {fileID: 2155215525860350308}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 8.1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 67.384}
 --- !u!1 &8236116194782377431
 GameObject:
   m_ObjectHideFlags: 0

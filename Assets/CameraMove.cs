@@ -29,7 +29,7 @@ public class CameraMove : ElympicsMonoBehaviour
     {
         if(Elympics.IsServer) return;
         Vector3 movePosition = target.position + offset;
-        transform.position = Vector3.SmoothDamp(transform.position, movePosition, ref velocity, dumping);
+        // transform.position = Vector3.SmoothDamp(transform.position, movePosition, ref velocity, dumping);
     }
 
     public void UpdateTransform()

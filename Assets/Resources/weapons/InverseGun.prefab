@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4950144217298861068}
   - component: {fileID: 4950144217298861069}
   - component: {fileID: 4024303402529165944}
-  - component: {fileID: 5026582951827557383}
+  - component: {fileID: 8463356419209336770}
   m_Layer: 0
   m_Name: InteractionArea
   m_TagString: Untagged
@@ -173,7 +173,7 @@ MonoBehaviour:
   - stageDurationInMiliseconds: 1000
     frequencyInMiliseconds: 1000
     maxStageDurationInMiliseconds: 5000
---- !u!114 &5026582951827557383
+--- !u!114 &8463356419209336770
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -182,10 +182,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4950144217298861071}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c804fdbc5aaf145459b1d88168efa8fe, type: 3}
+  m_Script: {fileID: 11500000, guid: cef3e788c3bb1064bb2d9a5a9e1734e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  point: {fileID: 0}
 --- !u!1 &4950144217498600706
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,8 +227,8 @@ GameObject:
   - component: {fileID: 4950144217779415957}
   - component: {fileID: 4950144217779415947}
   - component: {fileID: 4950144217779415956}
+  - component: {fileID: -578122644879122747}
   - component: {fileID: 4950144217779415946}
-  - component: {fileID: 7676065649940030081}
   m_Layer: 0
   m_Name: InverseGun
   m_TagString: Weapon
@@ -305,6 +304,23 @@ MonoBehaviour:
   - stageDurationInMiliseconds: 1000
     frequencyInMiliseconds: 1000
     maxStageDurationInMiliseconds: 5000
+--- !u!114 &-578122644879122747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4950144217779415958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 843c770fe40ef8b40926a9d45d5f1ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletType: inverse
+  bulletPoint: {fileID: 4950144217498600707}
+  bulletammount: 5
+  speed: 5
+  reloadTime: 0.2
 --- !u!114 &4950144217779415946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,15 +363,3 @@ MonoBehaviour:
   isKinematicConfig:
     synchronizationEnabled: 0
     tolerance: 0
---- !u!114 &7676065649940030081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4950144217779415958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cef3e788c3bb1064bb2d9a5a9e1734e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

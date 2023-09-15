@@ -27,7 +27,7 @@ public class Jump : ElympicsMonoBehaviour
     private bool rememberedGround = false;
 
     // For effects
-    private bool jumping = false;
+    public bool jumping = false;
     private bool isMidAir = false;
     public event System.Action OnJumped;
     public event System.Action OnLanded;

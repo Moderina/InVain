@@ -89,12 +89,12 @@ public class GameEffects : MonoBehaviour
             if (light.intensity < 0)
             {
                 phase = !phase;
-                GameObject.Find("MainUI").transform.GetChild(9).gameObject.SetActive(true);
+                GameObject.Find("MainUI").transform.GetChild(8).gameObject.SetActive(true);
             }
         }
         else
         {
-            var image = GameObject.Find("MainUI").transform.GetChild(9).GetComponent<Image>();
+            var image = GameObject.Find("MainUI").transform.GetChild(8).GetComponent<Image>();
             var tempcolor = image.color;
             if (fadeTime < 2)
             {

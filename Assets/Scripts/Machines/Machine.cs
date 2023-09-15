@@ -81,7 +81,7 @@ public class Machine : ElympicsMonoBehaviour, IObservable
                 {
                     // slider.maxValue = machineTasks.Find(x => x.ID == taskIndex.Value).TaskTime;
                     sliderSliding.SetTask(machineTasks.Find(x => x.ID == taskIndex.Value).width);
-                    Debug.Log("Taskindex: " + taskIndex.Value);
+                    Debug.Log("TaskWidth: " + machineTasks.Find(x => x.ID == taskIndex.Value).width);
                 }
                 //if normal task
                 else
@@ -102,6 +102,10 @@ public class Machine : ElympicsMonoBehaviour, IObservable
                     if(sliderSliding.IsInside())
                     {
                         ammount.Value += 1;
+                    }
+                    else
+                    {
+                        sliderSliding.speed.Value /=2;
                     }
                 }
                 if(ammount.Value == machineTasks.Find(x => x.ID == taskIndex.Value).ammount || (machineSabotage.Count != 0 && ammount.Value == machineSabotage.Find(x => x.ID == taskIndex.Value).ammount))
@@ -140,6 +144,7 @@ public class Machine : ElympicsMonoBehaviour, IObservable
             taskIndex.Value = -1;
             progress.Value = 0;
             ammount.Value = 0;
+            sliderSliding.speed.Value = 0.1f;
             col.transform.Find("Canvas").Find("Missing").gameObject.SetActive(false);
             Broken.SetActive(false);
             //CleanUI();

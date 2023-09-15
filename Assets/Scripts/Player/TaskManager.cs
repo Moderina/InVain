@@ -46,8 +46,7 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
         {
             if(myTasks[i].Value == -1)
             {
-                TaskPanel.transform.GetChild(i+1).GetComponent<TextMeshProUGUI>().color = Color.green;
-                TaskPanel.transform.GetChild(i+1).localScale *= 0.5f;
+                TaskPanel.transform.GetChild(i+1).localScale *= 0.95f;
             }     
         }
         for (int i=0; i<myTasks.Count; i++)
@@ -146,7 +145,25 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
     private void TasksRecorded(bool lastValue, bool newValue)
     {
         if(Elympics.Player != PredictableFor) return;
-        TaskPanel.SetActive(false);
+        // TaskPanel.SetActive(false);
+        StartCoroutine(TaskPanelAnim());
+
+    }
+
+    private IEnumerator TaskPanelAnim()
+    {
+        for(int i=10; i<50; i++)
+        {
+            Debug.Log("sensore");
+            TaskPanel.transform.Translate(Vector3.down * 20/i);
+            yield return new WaitForSeconds(0.01f);
+        }
+        for(int i=80; i>0; i--)
+        {
+            Debug.Log("sensore");
+            TaskPanel.transform.Translate(Vector3.up * 20/i);
+            yield return new WaitForSeconds(0.01f);
+        }
     }
 
     private void GameFinished(bool lastValue, bool newValue)
@@ -155,17 +172,19 @@ public class TaskManager : ElympicsMonoBehaviour, IObservable
         Debug.Log("nothing wrong with me");
 
         var UI = TaskPanel.transform.parent;
-        var WIN = Instantiate(new GameObject(), UI.transform);
-        WIN.AddComponent<TextMeshProUGUI>();
+        // var WIN = Instantiate(new GameObject(), UI.transform);
+        var WIN = GameObject.Find("MainUI").transform.GetChild(9);
+        WIN.gameObject.SetActive(true);
+        // WIN.AddComponent<TextMeshProUGUI>();
         if (!AreTasksCompleted())
         {
-            WIN.GetComponent<TextMeshProUGUI>().text = "your work was in vain";
+            WIN.GetComponent<TextMeshProUGUI>().text = "YOUR WORK WAS IN VAIN";
             // WIN.GetComponent<TextMeshProUGUI>().aligment = TextAligment.Center;
             WIN.GetComponent<TextMeshProUGUI>().color = Color.blue;
         }
         else
         {
-            WIN.GetComponent<TextMeshProUGUI>().text = "your vain won";
+            WIN.GetComponent<TextMeshProUGUI>().text = "YOUR VAIN WON";
             // WIN.GetComponent<TextMeshProUGUI>().aligment = TextAligment.Center;
             WIN.GetComponent<TextMeshProUGUI>().color = Color.green;
         }
